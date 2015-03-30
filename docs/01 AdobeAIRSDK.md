@@ -1,0 +1,1 @@
+The SuperAwesome AdobeAIR SDK (Software Development Kit) lets you to easily add COPPA-compliant pre-roll and display advertisements to your apps.

@@ -1,0 +1,22 @@
+{
+    "name": "Adobe AIR SDK",
+    "text": "01 AdobeAIRSDK.md",
+    "sections":[
+        {
+            "name": "Getting Started",
+            "text": "02 GettingStarted.md"
+        },
+        {
+            "name": "Display Ads",
+            "text": "03 DisplayAds.md"
+        },
+        {
+            "name": "Video Ads",
+            "text": "04 VideoAds.md"
+        },
+        {
+            "name": "Technical Support",
+            "text": "05 Support.md"
+        }
+    ]
+}
