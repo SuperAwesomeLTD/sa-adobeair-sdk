@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+            <title>SuperAwesome Image Template</title>
+            <style>
+                html { width: 100%; height: 100%; padding: 0; margin: 0; border: 0; overflow: hidden; }
+                body { width: 100%; height: 100%; padding: 0; margin: 0; border: 0; overflow: hidden; }
+                div#big { width: 100%; height: 100%; background-color: #efefef; }
+                div#video { width: 100%; height: 100%; }
+                div#more { position: absolute; left: 0px; top: 0px; width: 100%; height: 20px; text-align: left; padding-left: 5px; }
+                a#showmore { font-family: Arial; size:10px; text-decoration: none; color: #ffffff; }
+            </style>
+            
+            <script>
+                var vid = document.getElementById("myvid");
+                vid.play();
+            </script>
+        </head>
+    <body>
+        <div id='big'>
+            <!-- the actual video -->
+            <div id='video'>
+                <video id='myvid' autoplay='true' webkit-playsinline width='100%' height='100%'>
+                    <source src='videoURL' type='video/mp4'>
+                </video>
+            </div>
+            <!-- the decorations -->
+            <div id='more'>
+                <a id='showmore' href='hrefURL'>More info</a>
+            </div>
+        </div>
+    </body>
+</html>
