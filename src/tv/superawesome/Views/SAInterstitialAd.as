@@ -1,7 +1,6 @@
 package tv.superawesome.Views{
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
-	import flash.display.Stage;
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
 	import flash.events.LocationChangeEvent;
@@ -11,66 +10,82 @@ package tv.superawesome.Views{
 	
 	public class SAInterstitialAd extends SAView{
 		
-		private var bg: Sprite;
-		private var st: Stage;
+		// private vars
+		private var background: Sprite;
+		private var close: Sprite;
 		private var webView: StageWebView;
 		
-		public function SAInterstitialAd(st: Stage, placementId:int=0){
-			this.st = st;
-			super(new Rectangle(0, 0, st.stageWidth, st.stageHeight), placementId);
-		}
-		
-		protected override function display(): void {
-			// 1. background
-			bg = new Sprite();
-			bg.x = 0;
-			bg.y = 0;
-			st.addChild(bg);
+		// constructor
+		public function SAInterstitialAd(placementId:int=0){
+			// call super
+			super(new Rectangle(0, 0, 0, 0), placementId);
 			
-			// 2. add real bg
-			var bdrm: Sprite = new Sprite();
+			// load external resources 
 			[Embed(source = '../../../resources/bg.png')] var BgIconClass:Class;
 			var bmp2:Bitmap = new BgIconClass();
-			bdrm.addChild(bmp2);
-			bdrm.x = super.frame.x;
-			bdrm.y = super.frame.y;
-			bdrm.width = super.frame.width;
-			bdrm.height = super.frame.height;
-			bg.addChildAt(bdrm, 0);
 			
-			// 2. calc scaling
+			[Embed(source = '../../../resources/close.png')] var CancelIconClass:Class;
+			var bmp: Bitmap = new CancelIconClass();
+			
+			// create background
+			background = new Sprite();
+			background.addChild(bmp2);
+			this.addChildAt(background, 0);
+			
+			// create webview
+			webView = new StageWebView();
+			webView.addEventListener(Event.COMPLETE, success);
+			webView.addEventListener(ErrorEvent.ERROR, error);
+			webView.addEventListener(LocationChangeEvent.LOCATION_CHANGING, locationChanged);
+			
+			// create close button
+			close = new Sprite();
+			close.addChild(bmp);
+			close.addEventListener(MouseEvent.CLICK, closeAction);
+			this.addChildAt(close, 1);
+		}
+		
+		public function onResize(...ig): void {
+			if (super.ad != null) {
+				this.display();
+			}
+		}
+		
+		protected override function display(): void {	
+			if (this.stage != null) delayedDisplay();
+			else this.addEventListener(Event.ADDED_TO_STAGE, delayedDisplay);
+		}
+		
+		protected function delayedDisplay(e:Event = null): void {
+			this.frame = new Rectangle(0, 0, this.stage.fullScreenWidth, this.stage.fullScreenHeight);
+			this.stage.addEventListener(Event.RESIZE, onResize);
+			
+			// assign new background frame
+			background.x = super.frame.x;
+			background.y = super.frame.y;
+			background.width = super.frame.width;
+			background.height = super.frame.height;
+			
+			// assign new webview frame
 			var newR: Rectangle = super.arrangeAdInFrame(super.frame);
 			newR.x += super.frame.x + 35;
 			newR.y += super.frame.y + 35;
 			newR.width -= 70;
 			newR.height -= 70;
-			
-			// calc the ad
-			webView = new StageWebView();
-			webView.stage = st;
-			webView.viewPort = newR;
+			webView.stage = this.stage;
 			webView.loadString(ad.adHTML);
-			webView.addEventListener(Event.COMPLETE, success);
-			webView.addEventListener(ErrorEvent.ERROR, error);
-			webView.addEventListener(LocationChangeEvent.LOCATION_CHANGING, locationChanged);
+			webView.viewPort = newR;
 			
-			// 6. the close button
-			var spr: Sprite = new Sprite();
-			[Embed(source = '../../../resources/close.png')] var CancelIconClass:Class;
-			var bmp: Bitmap = new CancelIconClass();
-			spr.addChild(bmp);
-			spr.x = super.frame.width-35;
-			spr.y = 5;
-			spr.width = 30;
-			spr.height = 30;
-			bg.addChildAt(spr, 1);
-			spr.addEventListener(MouseEvent.CLICK, close);
-			
+			// assign new close btn frame
+			close.x = super.frame.width-35;
+			close.y = 5;
+			close.width = 30;
+			close.height = 30;
 		}
 		
-		private function close(event: MouseEvent): void {
+		private function closeAction(event: MouseEvent): void {
 			// call remove child
-			st.removeChild(bg);
+			parent.removeChild(this);
 			webView.stage = null;
 			
 			// call delegate

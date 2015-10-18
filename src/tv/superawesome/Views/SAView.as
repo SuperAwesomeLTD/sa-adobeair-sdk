@@ -1,6 +1,7 @@
 // ActionScript file
 
 package tv.superawesome.Views {
+	import flash.display.Sprite;
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
 	import flash.geom.Rectangle;
@@ -11,7 +12,7 @@ package tv.superawesome.Views {
 	import tv.superawesome.Data.Models.SAAd;
 	import tv.superawesome.Data.Sender.SASender;
 
-	public class SAView {
+	public class SAView extends Sprite{
 		// delegate
 		public var delegate: SAViewProtocol;
 		
@@ -54,7 +55,6 @@ package tv.superawesome.Views {
 			
 			// load an Ad
 			SALoader.getInstance().loadAd(this.placementId, function (_ad: SAAd): void {
-				trace("here");
 				ad = _ad;
 				localDisplay();
 			},

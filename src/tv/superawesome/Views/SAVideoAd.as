@@ -1,12 +1,11 @@
-package tv.superawesome.Views{
-	import flash.display.Bitmap;
-	import flash.display.MovieClip;
-	import flash.display.Sprite;
-	import flash.display.Stage;
+package tv.superawesome.Views {
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.NetStatusEvent;
+	import flash.events.StageVideoAvailabilityEvent;
 	import flash.geom.Rectangle;
-	import flash.media.Video;
+	import flash.media.StageVideo;
+	import flash.media.StageVideoAvailability;
 	import flash.net.NetConnection;
 	import flash.net.NetStream;
 	
@@ -14,62 +13,53 @@ package tv.superawesome.Views{
 	
 	public class SAVideoAd extends SAView{
 		
-		private var bg: Sprite;
-		private var st: Stage;
+		// private vars
+		protected var stream:NetStream ;
+		protected var nc:NetConnection;
+		private var video:StageVideo ;
+		
+		// public vars
 		public var videoDelegate: SAVideoAdProtocol;
 		
-		public function SAVideoAd(st: Stage, frame:Rectangle, placementId:int=0){
-			this.st = st;
+		// constructor
+		public function SAVideoAd(frame:Rectangle, placementId:int=0){
 			super(frame, placementId);
+			this.addEventListener(MouseEvent.CLICK, mouseClick);
 		}
 		
+		// display and delayed display functions
 		protected override function display(): void {
-			// 1. background
-			bg = new Sprite();
-			bg.x = 0;
-			bg.y = 0;
-			st.addChild(bg);
+			if (stage) delayedDisplay();
+			else addEventListener(Event.ADDED_TO_STAGE, delayedDisplay);
+		}
+		
+		protected function delayedDisplay(e:Event = null): void {
+			this.stage.addEventListener( StageVideoAvailabilityEvent.STAGE_VIDEO_AVAILABILITY , stageVideoState );
+		}
+		
+		protected function stageVideoState( e:StageVideoAvailabilityEvent ):void{
 			
-			// 2. add real bg
-			var bdrm: Sprite = new Sprite();
-			[Embed(source = '../../../resources/bg.png')] var BgIconClass:Class;
-			var bmp2:Bitmap = new BgIconClass();
-			bdrm.addChild(bmp2);
-			bdrm.x = super.frame.x;
-			bdrm.y = super.frame.y;
-			bdrm.width = super.frame.width;
-			bdrm.height = super.frame.height;
-			bg.addChild(bdrm);
+			// calc scaling
+//			var newR: Rectangle = super.arrangeAdInFrame(super.frame);
+//			newR.x += super.frame.x;
+//			newR.y += super.frame.y;
+//			
+//			trace(newR.x + " " + newR.y + " " + newR.width + " " + newR.height);
 			
-			// 2. calc scaling
-			var newR: Rectangle = super.arrangeAdInFrame(super.frame);
-			newR.x += super.frame.x;
-			newR.y += super.frame.y;
+			var available:Boolean = e.availability == StageVideoAvailability.AVAILABLE ;
 			
-			// 3. create connection
-			var connection_nc: NetConnection = new NetConnection(); 
-			connection_nc.connect(null); 
-			var stream_ns: NetStream = new NetStream(connection_nc); 
-			var client: Object = new Object(); 
-			stream_ns.client = client; 
-			stream_ns.addEventListener(NetStatusEvent.NET_STATUS, onStatus); 
-			
-			// 4. create video
-			var video: Video = new Video(); 
-			video.attachNetStream(stream_ns); 
-			video.x = newR.x;
-			video.y = newR.y;
-			video.width = newR.width;
-			video.height = newR.height;
-			var mc:MovieClip = new MovieClip();
-			mc.addChild(video);
-			mc.addEventListener(MouseEvent.CLICK, function (event: MouseEvent): void {
-				goToURL();
-			});
-			bg.addChild(mc);
-			
-			// 5. actually play the video
-			stream_ns.play(ad.creative.details.video); 
+			if ( available ) {
+				nc = new NetConnection() ;
+				nc.connect(null) ;
+				stream = new NetStream(nc) ;
+				stream.client = this ;
+				video = this.stage.stageVideos[0] ;
+				video.viewPort = this.frame ;
+				video.attachNetStream( stream ) ;
+				
+				stream.addEventListener(NetStatusEvent.NET_STATUS, onStatus); 
+				stream.play(ad.creative.details.video) ;
+			}
 		}
 		
 		public function onStatus(stats: NetStatusEvent): void {
@@ -90,6 +80,18 @@ package tv.superawesome.Views{
 					break;
 				}
 			}
+		}
+		
+		public function onMetaData( info:Object ):void {
+//			trace("metadata");
+		}
+		
+		public function onPlayStatus(info:Object): void {
+//			trace("play status");
+		}
+		
+		public function mouseClick(event: MouseEvent): void {
+			goToURL();
 		}
 	}
 }

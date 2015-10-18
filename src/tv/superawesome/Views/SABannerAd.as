@@ -1,8 +1,6 @@
 package tv.superawesome.Views{
 	import flash.display.Bitmap;
-	import flash.display.Loader;
 	import flash.display.Sprite;
-	import flash.display.Stage;
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
 	import flash.events.LocationChangeEvent;
@@ -11,47 +9,51 @@ package tv.superawesome.Views{
 
 	public class SABannerAd extends SAView {
 		// the loader
-		private var imgLoader: Loader = new Loader();
-		private var bg: Sprite;
-		private var st: Stage;
+		private var background: Sprite;
+		private var close: Sprite;
 		private var webView: StageWebView;
 		
-		function SABannerAd(st: Stage, frame: Rectangle, placementId: int = 0) {
-			this.st = st;
+		function SABannerAd(frame: Rectangle, placementId: int = 0) {
+			// call to super
 			super(frame, placementId);
-		}
-		
-		protected override function display(): void {
-			// 1. background
-			bg = new Sprite();
-			bg.x = 0;
-			bg.y = 0;
-			st.addChild(bg);
 			
-			// 2. add real bg
-			var bdrm: Sprite = new Sprite();
+			// load external resources 
 			[Embed(source = '../../../resources/bg.png')] var BgIconClass:Class;
 			var bmp2:Bitmap = new BgIconClass();
-			bdrm.addChild(bmp2);
-			bdrm.x = super.frame.x;
-			bdrm.y = super.frame.y;
-			bdrm.width = super.frame.width;
-			bdrm.height = super.frame.height;
-			bg.addChild(bdrm);
 			
-			// 2. calc scaling
+			// create background
+			background = new Sprite();
+			background.addChild(bmp2);
+			this.addChildAt(background, 0);
+			
+			// create webview
+			webView = new StageWebView();
+			webView.addEventListener(Event.COMPLETE, success);
+			webView.addEventListener(ErrorEvent.ERROR, error);
+			webView.addEventListener(LocationChangeEvent.LOCATION_CHANGING, locationChanged);
+		}
+		
+		protected override function display(): void {	
+			if (this.stage != null) delayedDisplay();
+			else this.addEventListener(Event.ADDED_TO_STAGE, delayedDisplay);
+		}
+		
+		protected function delayedDisplay(): void {
+			// update background
+			background.x = super.frame.x;
+			background.y = super.frame.y;
+			background.width = super.frame.width;
+			background.height = super.frame.height;
+			
+			// calc scaling
 			var newR: Rectangle = super.arrangeAdInFrame(super.frame);
 			newR.x += super.frame.x;
 			newR.y += super.frame.y;
 			
 			// calc the ad
-			webView = new StageWebView();
-			webView.stage = st;
+			webView.stage = this.stage;
 			webView.viewPort = newR;
 			webView.loadString(ad.adHTML);
-			webView.addEventListener(Event.COMPLETE, success);
-			webView.addEventListener(ErrorEvent.ERROR, error);
-			webView.addEventListener(LocationChangeEvent.LOCATION_CHANGING, locationChanged);
 		}
 		
 		private function locationChanged(e:LocationChangeEvent): void {
