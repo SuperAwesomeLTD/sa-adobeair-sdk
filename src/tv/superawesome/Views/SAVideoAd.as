@@ -1,4 +1,6 @@
 package tv.superawesome.Views {
+	import flash.display.Bitmap;
+	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.NetStatusEvent;
@@ -8,15 +10,19 @@ package tv.superawesome.Views {
 	import flash.media.StageVideoAvailability;
 	import flash.net.NetConnection;
 	import flash.net.NetStream;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
+	import flash.text.TextFormatAlign;
 	
 	import tv.superawesome.Views.SAVideoAdProtocol;
 	
 	public class SAVideoAd extends SAView{
 		
 		// private vars
-		protected var stream:NetStream ;
-		protected var nc:NetConnection;
-		private var video:StageVideo ;
+		private var stream: NetStream;
+		private var nc: NetConnection;
+		private var videoBtn: Sprite;
+		private var video: StageVideo;
 		
 		// public vars
 		public var videoDelegate: SAVideoAdProtocol;
@@ -24,7 +30,6 @@ package tv.superawesome.Views {
 		// constructor
 		public function SAVideoAd(frame:Rectangle, placementId:int=0){
 			super(frame, placementId);
-			this.addEventListener(MouseEvent.CLICK, mouseClick);
 		}
 		
 		// display and delayed display functions
@@ -54,12 +59,27 @@ package tv.superawesome.Views {
 				stream = new NetStream(nc) ;
 				stream.client = this ;
 				video = this.stage.stageVideos[0] ;
-				video.viewPort = this.frame ;
+				video.viewPort = super.frame ;
 				video.attachNetStream(null);
 				video.attachNetStream( stream ) ;
 				
 				stream.addEventListener(NetStatusEvent.NET_STATUS, onStatus); 
 				stream.play(ad.creative.details.video) ;
+				
+				var format: TextFormat = new TextFormat();
+				format.size = 32.0;
+				format.align = flash.text.TextFormatAlign.RIGHT;
+				format.color = 0xffffff;
+				
+				var more: TextField = new TextField();
+				more.defaultTextFormat = format;
+				more.text = "Learn more";
+				more.x = this.frame.x;
+				more.y = this.frame.y;
+				more.width = this.frame.width;
+				more.height = 40.0;
+				more.addEventListener(MouseEvent.CLICK, mouseClick);
+				this.addChild(more);
 			}
 		}
 		
@@ -93,6 +113,7 @@ package tv.superawesome.Views {
 		}
 		
 		public function mouseClick(event: MouseEvent): void {
+			trace("blaaaa");
 			goToURL();
 		}
 	}
