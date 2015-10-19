@@ -55,6 +55,7 @@ package tv.superawesome.Views {
 				stream.client = this ;
 				video = this.stage.stageVideos[0] ;
 				video.viewPort = this.frame ;
+				video.attachNetStream(null);
 				video.attachNetStream( stream ) ;
 				
 				stream.addEventListener(NetStatusEvent.NET_STATUS, onStatus); 
@@ -63,6 +64,7 @@ package tv.superawesome.Views {
 		}
 		
 		public function onStatus(stats: NetStatusEvent): void {
+			trace("stats " + stats);
 			var code:String = stats.info.code;
 			switch (code) {
 				case "NetStream.Play.Start":{

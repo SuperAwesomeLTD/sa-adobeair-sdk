@@ -6,13 +6,22 @@ package
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
+	import flash.events.NetStatusEvent;
+	import flash.events.StageVideoAvailabilityEvent;
 	import flash.geom.Rectangle;
+	import flash.media.StageVideo;
+	import flash.media.StageVideoAvailability;
+	import flash.net.NetConnection;
+	import flash.net.NetStream;
+	import flash.utils.Timer;
+	import flash.events.TimerEvent;
 	
+	import tv.superawesome.SuperAwesome;
 	import tv.superawesome.Data.Loader.SALoader;
 	import tv.superawesome.Data.Loader.SALoaderProtocol;
+	import tv.superawesome.Data.Models.SAAd;
 	import tv.superawesome.Views.SABannerAd;
 	import tv.superawesome.Views.SAVideoAd;
-	import tv.superawesome.Data.Models.*;
 	
 	public class SuperAwesome_iOSDemo extends Sprite implements SALoaderProtocol
 	{
@@ -31,7 +40,7 @@ package
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
 			SALoader.getInstance().preloadAdForPlacementId(21863);
-			SALoader.getInstance().preloadAdForPlacementId(21925);
+			SALoader.getInstance().preloadAdForPlacementId(21022);
 			SALoader.getInstance().delegate = this;
 			
 			bad = new SABannerAd(new Rectangle(0, 0, 320, 100));
@@ -45,7 +54,7 @@ package
 				addChild(bad);
 				bad.playPreloaded();
 			}
-			else if (placementId == 21925) {
+			else if (placementId == 21022) {
 				vad.setAd(ad);
 				addChild(vad);
 				vad.playPreloaded();
