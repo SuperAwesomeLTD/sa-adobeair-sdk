@@ -23,7 +23,7 @@ package  {
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 
 			// Configures SuperAwesome SDK to production mode
-			SuperAwesome.getInstance().setConfigProduction();
+			SuperAwesome.getInstance().setConfigurationProduction();
 
 			// enables or disabled test mode
 			SuperAwesome.getInstance().enableTestMode();
