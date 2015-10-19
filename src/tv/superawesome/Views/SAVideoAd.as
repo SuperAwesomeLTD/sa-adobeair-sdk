@@ -80,6 +80,9 @@ package tv.superawesome.Views {
 				more.height = 40.0;
 				more.addEventListener(MouseEvent.CLICK, mouseClick);
 				this.addChild(more);
+				
+				// call to success
+				success();
 			}
 		}
 		
@@ -100,6 +103,11 @@ package tv.superawesome.Views {
 						videoDelegate.videoEnded(ad.placementId);
 					}
 					break;
+				}
+				case "NetStream.Play.StreamNotFound": {
+					trace("video error");
+					error();
+					break;		
 				}
 			}
 		}

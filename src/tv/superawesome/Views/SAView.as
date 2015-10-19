@@ -89,7 +89,7 @@ package tv.superawesome.Views {
 			return new Rectangle(nX, nY, nW, nH);
 		}
 		
-		protected function success(e:Event): void {
+		protected function success(e:Event = null): void {
 			SASender.postEventViewableImpression(ad);
 			
 			if (this.delegate != null) {
@@ -97,7 +97,7 @@ package tv.superawesome.Views {
 			}
 		}
 		
-		protected function error(e:ErrorEvent): void {
+		protected function error(e:ErrorEvent = null): void {
 			SASender.postEventAdFailedToView(ad);
 			
 			if (this.delegate != null) {
@@ -107,6 +107,10 @@ package tv.superawesome.Views {
 		
 		protected function goToURL(): void {
 			SASender.postEventClick(ad);
+			
+			if (this.delegate != null) {
+				this.delegate.adFollowedURL(this.placementId);
+			}
 			
 			var clickURL: URLRequest = new URLRequest(this.ad.creative.clickURL);
 			navigateToURL(clickURL, "_blank");

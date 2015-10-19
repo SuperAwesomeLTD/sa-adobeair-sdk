@@ -36,9 +36,9 @@ package  {
 The SuperAwesome SDK can be setup in three ways: Production, Staging and Development, by using:
 
 ```
-SuperAwesome.getInstance().setConfigProduction();
-SuperAwesome.getInstance().setConfigStaging();
-SuperAwesome.getInstance().setConfigDevelopment();
+SuperAwesome.getInstance().setConfigurationProduction();
+SuperAwesome.getInstance().setConfigurationStaging();
+SuperAwesome.getInstance().setConfigurationDevelopment();
 
 ```
 
