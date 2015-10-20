@@ -1,13 +1,16 @@
 package tv.superawesome.Views {
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
+	import flash.events.ErrorEvent;
 	import flash.events.Event;
+	import flash.events.LocationChangeEvent;
 	import flash.events.MouseEvent;
 	import flash.events.NetStatusEvent;
 	import flash.events.StageVideoAvailabilityEvent;
 	import flash.geom.Rectangle;
 	import flash.media.StageVideo;
 	import flash.media.StageVideoAvailability;
+	import flash.media.StageWebView;
 	import flash.net.NetConnection;
 	import flash.net.NetStream;
 	import flash.text.TextField;
@@ -39,17 +42,10 @@ package tv.superawesome.Views {
 		}
 		
 		protected function delayedDisplay(e:Event = null): void {
-			this.stage.addEventListener( StageVideoAvailabilityEvent.STAGE_VIDEO_AVAILABILITY , stageVideoState );
+			this.stage.addEventListener( StageVideoAvailabilityEvent.STAGE_VIDEO_AVAILABILITY , stageVideoState );	
 		}
 		
 		protected function stageVideoState( e:StageVideoAvailabilityEvent ):void{
-			
-			// calc scaling
-//			var newR: Rectangle = super.arrangeAdInFrame(super.frame);
-//			newR.x += super.frame.x;
-//			newR.y += super.frame.y;
-//			
-//			trace(newR.x + " " + newR.y + " " + newR.width + " " + newR.height);
 			
 			var available:Boolean = e.availability == StageVideoAvailability.AVAILABLE ;
 			

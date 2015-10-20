@@ -14,6 +14,7 @@ package
 	import tv.superawesome.Views.SABannerAd;
 	import tv.superawesome.Views.SAVideoAd;
 	
+	[SWF(backgroundColor="0xffffff")]
 	public class SuperAwesome_AndroidDemo extends Sprite implements SALoaderProtocol
 	{
 		private var bad: SABannerAd;
@@ -35,7 +36,7 @@ package
 			SALoader.getInstance().delegate = this;
 			
 			bad = new SABannerAd(new Rectangle(0, 0, 320, 100));
-			vad = new SAVideoAd(new Rectangle(0, 100, 480, 320), 21022);
+			vad = new SAVideoAd(new Rectangle(0, 100, 720, 680), 21022);
 		}
 		
 		public function didPreloadAd(ad: SAAd, placementId:int): void {

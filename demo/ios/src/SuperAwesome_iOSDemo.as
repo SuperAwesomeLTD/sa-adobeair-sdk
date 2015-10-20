@@ -6,17 +6,8 @@ package
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
-	import flash.events.NetStatusEvent;
-	import flash.events.StageVideoAvailabilityEvent;
 	import flash.geom.Rectangle;
-	import flash.media.StageVideo;
-	import flash.media.StageVideoAvailability;
-	import flash.net.NetConnection;
-	import flash.net.NetStream;
-	import flash.utils.Timer;
-	import flash.events.TimerEvent;
 	
-	import tv.superawesome.SuperAwesome;
 	import tv.superawesome.Data.Loader.SALoader;
 	import tv.superawesome.Data.Loader.SALoaderProtocol;
 	import tv.superawesome.Data.Models.SAAd;
@@ -28,6 +19,7 @@ package
 		private var bad: SABannerAd;
 		private var vad: SAVideoAd;
 		
+		[SWF(backgroundColor="0xffffff")]
 		public function SuperAwesome_iOSDemo()
 		{
 			super();
