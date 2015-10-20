@@ -70,23 +70,32 @@ package tv.superawesome.Views {
 		
 		protected function arrangeAdInFrame(frame: Rectangle): Rectangle {
 			
-			var SW: Number = frame.width;
-			var SH: Number = frame.height;
-			var AW: Number = ad.creative.details.width;
-			var AH: Number = ad.creative.details.height;
-			if (AW == 1 || AW == 0) { AW = SW; }
-			if (AH == 1 || AH == 0) { AH = SH; }
+			var newW: Number = frame.width;
+			var newH: Number = frame.height;
+			var oldW: Number = ad.creative.details.width;
+			var oldH: Number = ad.creative.details.height;
+			if (oldW == 1 || oldW == 0) { oldW = newW; }
+			if (oldH == 1 || oldH == 0) { oldH = newH; }
 			
-			var dW: Number = Math.min((SW/AW), 1);
-			var dH: Number = Math.min((SH/AH), 1);
-			var dT: Number = Math.min(dW, dH);
+			var oldR: Number = oldW / oldH;
+			var newR: Number = newW / newH;
 			
-			var nW: Number = AW * dT;
-			var nH: Number = AH * dT;
-			var nX: Number = (SW - nW) / 2.0;
-			var nY: Number = (SH - nH) / 2.0;
+			var W: Number = 0, H: Number = 0, X: Number = 0, Y: Number = 0;
 			
-			return new Rectangle(nX, nY, nW, nH);
+			if (oldR > newR) {
+				W = newW;
+				H = W / oldR;
+				X = 0;
+				Y = (newH - H) / 2;
+			}
+			else {
+				H = newH;
+				W = H * oldR;
+				Y = 0;
+				X = (newW - W) / 2;
+			}
+			
+			return new Rectangle(X, Y, W, H);
 		}
 		
 		protected function success(e:Event = null): void {

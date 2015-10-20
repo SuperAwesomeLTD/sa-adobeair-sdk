@@ -12,6 +12,7 @@ package
 	import tv.superawesome.Data.Loader.SALoaderProtocol;
 	import tv.superawesome.Data.Models.SAAd;
 	import tv.superawesome.Views.SABannerAd;
+	import tv.superawesome.Views.SAInterstitialAd;
 	import tv.superawesome.Views.SAVideoAd;
 	
 	[SWF(backgroundColor="0xffffff")]
@@ -36,11 +37,10 @@ package
 			SALoader.getInstance().delegate = this;
 			
 			bad = new SABannerAd(new Rectangle(0, 0, 320, 100));
-			vad = new SAVideoAd(new Rectangle(0, 100, 720, 680), 21022);
+			vad = new SAVideoAd(new Rectangle(0, 100, 720, 680));
 		}
 		
 		public function didPreloadAd(ad: SAAd, placementId:int): void {
-			trace("loaded " + placementId);
 			if (placementId == 21863) {
 				bad.setAd(ad);
 				addChild(bad);

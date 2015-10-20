@@ -67,20 +67,23 @@ package tv.superawesome.Views{
 			background.height = super.frame.height;
 			
 			// assign new webview frame
-			var newR: Rectangle = super.arrangeAdInFrame(super.frame);
-			newR.x += super.frame.x + 35;
-			newR.y += super.frame.y + 35;
-			newR.width -= 70;
-			newR.height -= 70;
+			var tW: Number = super.frame.width * 0.85;
+			var tH: Number = super.frame.height * 0.85;
+			var tX: Number = ( super.frame.width - tW ) / 2;
+			var tY: Number = ( super.frame.height - tH) / 2;
+			var newR: Rectangle = super.arrangeAdInFrame(new Rectangle(tX, tY, tW, tH));
+			newR.x += tX;
+			newR.y += tY;
 			webView.stage = this.stage;
 			webView.loadString(ad.adHTML);
 			webView.viewPort = newR;
 			
 			// assign new close btn frame
-			close.x = super.frame.width-35;
-			close.y = 5;
-			close.width = 30;
-			close.height = 30;
+			var cS: Number = Math.min(super.frame.width, super.frame.height) * 0.15;
+			close.x = super.frame.width - cS / 2.0;
+			close.y = 0;
+			close.width = cS / 2.0;
+			close.height = cS / 2.0;
 		}
 		
 		private function closeAction(event: MouseEvent): void {

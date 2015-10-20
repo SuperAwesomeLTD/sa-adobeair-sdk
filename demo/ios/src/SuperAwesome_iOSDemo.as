@@ -13,6 +13,7 @@ package
 	import tv.superawesome.Data.Models.SAAd;
 	import tv.superawesome.Views.SABannerAd;
 	import tv.superawesome.Views.SAVideoAd;
+	import tv.superawesome.Views.SAInterstitialAd;
 	
 	public class SuperAwesome_iOSDemo extends Sprite implements SALoaderProtocol
 	{
