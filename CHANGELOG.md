@@ -1,6 +1,9 @@
 sa-adobeair-sdk
 ============
 
+v3_beta2
+- Fixed click issue
+
 v3_beta
 - Created a lot of new features such as fullscreen video ads, better loading, preloading, etc
 
