@@ -75,8 +75,8 @@ package tv.superawesome.Views{
 			newR.x += tX;
 			newR.y += tY;
 			webView.stage = this.stage;
-			webView.loadString(ad.adHTML);
 			webView.viewPort = newR;
+			webView.loadString(ad.adHTML);
 			
 			// assign new close btn frame
 			var cS: Number = Math.min(super.frame.width, super.frame.height) * 0.15;

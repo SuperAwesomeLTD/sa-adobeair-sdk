@@ -19,6 +19,7 @@ package
 	[SWF(backgroundColor="0xffffff")]
 	public class SuperAwesome_AndroidDemo extends Sprite implements SALoaderProtocol
 	{
+		private var vad: SAVideoAd;
 		private var iad: SAInterstitialAd;
 		
 		public function SuperAwesome_AndroidDemo()
@@ -32,18 +33,25 @@ package
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
-			SuperAwesome.getInstance().disableTestMode();
+			SuperAwesome.getInstance().setConfigurationProduction();
+			SuperAwesome.getInstance().enableTestMode();
 			
-			SALoader.getInstance().preloadAdForPlacementId(24541);
-			SALoader.getInstance().delegate = this;
+//			SALoader.getInstance().preloadAdForPlacementId(24532);
+//			SALoader.getInstance().delegate = this;
 			
-			iad = new SAInterstitialAd();
+//			iad = new SAInterstitialAd(24541);
+//			iad.playInstant();
+//			addChild(iad);
+			
+//			vad = new SAVideoAd(new Rectangle(0, 0, 500, 350), 24532);
+//			vad.playInstant();
+//			addChild(vad);
 		}
 		
 		public function didPreloadAd(ad: SAAd, placementId:int): void {
-			iad.setAd(ad);
-			iad.playPreloaded();
-			addChild(iad);
+//			iad.setAd(ad);
+//			iad.playPreloaded();
+//			addChild(iad);
 		}
 		
 		public function didFailToPreloadAdForPlacementId(placementId:int): void {
