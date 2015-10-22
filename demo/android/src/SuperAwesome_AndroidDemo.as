@@ -8,6 +8,7 @@ package
 	import flash.events.Event;
 	import flash.geom.Rectangle;
 	
+	import tv.superawesome.SuperAwesome;
 	import tv.superawesome.Data.Loader.SALoader;
 	import tv.superawesome.Data.Loader.SALoaderProtocol;
 	import tv.superawesome.Data.Models.SAAd;
@@ -18,8 +19,7 @@ package
 	[SWF(backgroundColor="0xffffff")]
 	public class SuperAwesome_AndroidDemo extends Sprite implements SALoaderProtocol
 	{
-		private var bad: SABannerAd;
-		private var vad: SAVideoAd;
+		private var iad: SAInterstitialAd;
 		
 		public function SuperAwesome_AndroidDemo()
 		{
@@ -32,25 +32,18 @@ package
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
-			SALoader.getInstance().preloadAdForPlacementId(21863);
-			SALoader.getInstance().preloadAdForPlacementId(21925);
+			SuperAwesome.getInstance().disableTestMode();
+			
+			SALoader.getInstance().preloadAdForPlacementId(24541);
 			SALoader.getInstance().delegate = this;
 			
-			bad = new SABannerAd(new Rectangle(0, 0, 320, 100));
-			vad = new SAVideoAd(new Rectangle(0, 100, 720, 680));
+			iad = new SAInterstitialAd();
 		}
 		
 		public function didPreloadAd(ad: SAAd, placementId:int): void {
-			if (placementId == 21863) {
-				bad.setAd(ad);
-				addChild(bad);
-				bad.playPreloaded();
-			}
-			else if (placementId == 21925) {
-				vad.setAd(ad);
-				addChild(vad);
-				vad.playPreloaded();
-			}
+			iad.setAd(ad);
+			iad.playPreloaded();
+			addChild(iad);
 		}
 		
 		public function didFailToPreloadAdForPlacementId(placementId:int): void {

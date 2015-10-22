@@ -57,7 +57,7 @@ package tv.superawesome.Views{
 		}
 		
 		protected function delayedDisplay(e:Event = null): void {
-			this.frame = new Rectangle(0, 0, this.stage.fullScreenWidth, this.stage.fullScreenHeight);
+			this.frame = new Rectangle(0, 0, this.stage.stageWidth, this.stage.stageHeight);
 			this.stage.addEventListener(Event.RESIZE, onResize);
 			
 			// assign new background frame
