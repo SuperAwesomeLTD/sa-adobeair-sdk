@@ -15,9 +15,10 @@ package
 	import tv.superawesome.Views.SABannerAd;
 	import tv.superawesome.Views.SAInterstitialAd;
 	import tv.superawesome.Views.SAVideoAd;
+	import tv.superawesome.Views.SAAdProtocol;
 	
 	[SWF(backgroundColor="0xffffff")]
-	public class SuperAwesome_AndroidDemo extends Sprite implements SALoaderProtocol
+	public class SuperAwesome_AndroidDemo extends Sprite implements SALoaderProtocol, SAAdProtocol
 	{
 		private var vad: SAVideoAd;
 		private var iad: SAInterstitialAd;
@@ -43,9 +44,10 @@ package
 //			iad.playInstant();
 //			addChild(iad);
 			
-//			vad = new SAVideoAd(new Rectangle(0, 0, 500, 350), 24532);
-//			vad.playInstant();
-//			addChild(vad);
+			vad = new SAVideoAd(new Rectangle(0, 0, 500, 350), 24532);
+			vad.playInstant();
+			vad.delegate = this;
+			addChild(vad);
 		}
 		
 		public function didPreloadAd(ad: SAAd, placementId:int): void {
@@ -64,6 +66,19 @@ package
 		
 		private function handleDeactivate(event:Event):void {
 			// NativeApplication.nativeApplication.exit();
+		}
+		
+		public function adWasShown(placementId: int): void {
+			trace("Ad was shown");
+		}
+		public function adFailedToShow(placementId: int): void {
+			
+		}
+		public function adWasClosed(placementId: int): void {
+			
+		}
+		public function adFollowedURL(placementId: int): void {
+			
 		}
 	}
 }

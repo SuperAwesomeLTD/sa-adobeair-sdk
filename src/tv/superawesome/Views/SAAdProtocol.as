@@ -1,7 +1,7 @@
 package tv.superawesome.Views {
 	
 	// protocol implementation
-	public interface SAViewProtocol {
+	public interface SAAdProtocol {
 		
 		function adWasShown(placementId: int): void;
 		function adFailedToShow(placementId: int): void;

@@ -14,7 +14,7 @@ package tv.superawesome.Views {
 
 	public class SAView extends Sprite{
 		// delegate
-		public var delegate: SAViewProtocol;
+		public var delegate: SAAdProtocol;
 		
 		// private variables
 		private var placementId: int;

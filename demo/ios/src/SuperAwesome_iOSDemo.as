@@ -41,9 +41,13 @@ package
 			
 			iad = new SAInterstitialAd();
 			
-			vad = new SAVideoAd(new Rectangle(0, 0, 320, 270), 24532);
-			vad.playInstant();
-			addChild(vad);
+//			vad = new SAVideoAd(new Rectangle(0, 0, 320, 270), 24532);
+//			vad.playInstant();
+//			addChild(vad);
+			
+			bad = new SABannerAd(new Rectangle(0, 270, 320, 50), 19311);
+			bad.playInstant();
+			addChild(bad);
 		}
 		
 		public function didPreloadAd(ad: SAAd, placementId:int): void {

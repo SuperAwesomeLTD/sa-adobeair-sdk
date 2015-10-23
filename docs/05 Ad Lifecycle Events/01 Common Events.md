@@ -1,9 +1,9 @@
 Using the same delegate pattern all ads can serve additional events than can be caught and acted upon.
 
-To do this, your `MyAIRProject` class must also implement the `SAViewProtocol` interface:
+To do this, your `MyAIRProject` class must also implement the `SAAdProtocol` interface:
 
 ```
-public class MyAIRProject extends Sprite implements SALoaderProtocol, SAViewProtocol {
+public class MyAIRProject extends Sprite implements SALoaderProtocol, SAAdProtocol {
 	...
 }
 ``` 
