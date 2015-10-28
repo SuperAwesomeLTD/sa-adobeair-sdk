@@ -20,40 +20,38 @@ package
 	{
 		private var bad: SABannerAd;
 		private var vad: SAVideoAd;
-		private var iad: SAInterstitialAd;
 		
-		[SWF(backgroundColor="0xffffff")]
+		[SWF(backgroundColor="0xff0000")]
 		public function SuperAwesome_iOSDemo()
 		{
 			super();
 			
+			// setup stage and native app attributes
 			NativeApplication.nativeApplication.systemIdleMode = SystemIdleMode.KEEP_AWAKE;
 			NativeApplication.nativeApplication.addEventListener(Event.DEACTIVATE, handleDeactivate, false, 0, true)
 			
-			// support autoOrients
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
+			// setup SA SDK
 			SuperAwesome.getInstance().disableTestMode();
 			
 			SALoader.getInstance().preloadAdForPlacementId(24541);
 			SALoader.getInstance().delegate = this;
 			
-			iad = new SAInterstitialAd();
-			
-//			vad = new SAVideoAd(new Rectangle(0, 0, 320, 270), 24532);
-//			vad.playInstant();
-//			addChild(vad);
-			
-			bad = new SABannerAd(new Rectangle(0, 270, 320, 50), 19311);
+			bad = new SABannerAd(new Rectangle(0, 0, 640, 100), 19311);
+			SuperAwesome.getInstance().enableTestMode();
 			bad.playInstant();
 			addChild(bad);
+			
+			vad = new SAVideoAd(new Rectangle(0, 250, 640, 480), 24532);
+			SuperAwesome.getInstance().disableTestMode();
+			vad.playInstant();
+			addChild(vad);
 		}
 		
 		public function didPreloadAd(ad: SAAd, placementId:int): void {
-			iad.setAd(ad);
-			addChild(iad);
-			iad.playPreloaded();
+			// do nothing
 		}
 		
 		public function didFailToPreloadAdForPlacementId(placementId:int): void {
@@ -65,7 +63,7 @@ package
 		}
 		
 		private function handleDeactivate(event:Event):void {
-			// NativeApplication.nativeApplication.exit();
+			// do nothing
 		}
 	}
 }
