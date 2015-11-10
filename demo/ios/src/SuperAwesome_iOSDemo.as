@@ -35,9 +35,7 @@ package
 			
 			// setup SA SDK
 			SuperAwesome.getInstance().disableTestMode();
-			
-			SALoader.getInstance().preloadAdForPlacementId(24541);
-			SALoader.getInstance().delegate = this;
+			SuperAwesome.getInstance().setConfigurationProduction();
 			
 			bad = new SABannerAd(new Rectangle(0, 0, 640, 100), 19311);
 			SuperAwesome.getInstance().enableTestMode();

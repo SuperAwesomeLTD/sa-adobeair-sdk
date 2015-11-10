@@ -16,7 +16,6 @@ package tv.superawesome.Views {
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
 	
-	import tv.superawesome.Data.Sender.SASender;
 	import tv.superawesome.Data.VAST.SAVASTParser;
 	import tv.superawesome.Data.VAST.SAVASTProtocol;
 	import tv.superawesome.Views.SAVideoAdProtocol;
@@ -99,7 +98,6 @@ package tv.superawesome.Views {
 		}
 		
 		public function onStatus(stats: NetStatusEvent): void {
-			trace("stats " + stats);
 			var code:String = stats.info.code;
 			switch (code) {
 				case "NetStream.Play.Start":{
