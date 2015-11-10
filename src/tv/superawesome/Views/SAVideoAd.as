@@ -12,10 +12,12 @@ package tv.superawesome.Views {
 	import flash.net.NetStream;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
 	
+	import tv.superawesome.Data.Sender.SASender;
 	import tv.superawesome.Data.VAST.SAVASTParser;
 	import tv.superawesome.Data.VAST.SAVASTProtocol;
 	import tv.superawesome.Views.SAVideoAdProtocol;
@@ -50,13 +52,17 @@ package tv.superawesome.Views {
 		
 		private function processXML(e:Event):void {
 			var myXML: XML = new XML(e.target.data);
-			SAVASTParser.delegate = this;
-			SAVASTParser.findCorrectVASTClick(myXML);
+			
+			var parser: SAVASTParser = new SAVASTParser();
+			parser.delegate = this;
+			parser.simpleVASTParse(myXML);
 		}
 		
-		public function didFindVASTClickURL(clickURL: String): void {
+		public function didParseVAST(clickURL: String, impressionURL: String, completeURL: String): void {
 			this.ad.creative.clickURL = clickURL;
-			trace("from didFindVASTClickURL " + this.ad.creative.clickURL);
+			this.ad.creative.impresionURL = impressionURL;
+			this.ad.creative.completeURL = completeURL;
+			
 			this.stage.addEventListener( StageVideoAvailabilityEvent.STAGE_VIDEO_AVAILABILITY , stageVideoState );
 		}
 		
@@ -102,6 +108,10 @@ package tv.superawesome.Views {
 			switch (code) {
 				case "NetStream.Play.Start":{
 					trace("video started");
+					
+					// post VAST impression
+					SASender.postGeneric(ad.creative.impresionURL);
+					
 					if (videoDelegate != null) {
 						videoDelegate.videoStarted(ad.placementId);
 					}
@@ -109,6 +119,10 @@ package tv.superawesome.Views {
 				}
 				case "NetStream.Play.Stop": {
 					trace("video stopped");
+					
+					// post VAST impression
+					SASender.postGeneric(ad.creative.completeURL);
+					
 					if (videoDelegate != null) {
 						videoDelegate.videoEnded(ad.placementId);
 					}
@@ -131,7 +145,13 @@ package tv.superawesome.Views {
 		}
 		
 		public function mouseClick(event: MouseEvent): void {
-			goToURL();
+			if (this.delegate != null) {
+				this.delegate.adFollowedURL(super.ad.placementId);
+			}
+			
+			trace("going to " + ad.creative.clickURL);
+			var clickURL: URLRequest = new URLRequest(this.ad.creative.clickURL);
+			navigateToURL(clickURL, "_blank");
 		}
 	}
 }
