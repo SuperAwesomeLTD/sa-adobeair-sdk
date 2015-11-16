@@ -18,11 +18,9 @@ package tv.superawesome.Views {
 	import flash.text.TextFormatAlign;
 	
 	import tv.superawesome.Data.Sender.SASender;
-	import tv.superawesome.Data.VAST.SAVASTParser;
-	import tv.superawesome.Data.VAST.SAVASTProtocol;
 	import tv.superawesome.Views.SAVideoAdProtocol;
 	
-	public class SAVideoAd extends SAView implements SAVASTProtocol {
+	public class SAVideoAd extends SAView {
 		
 		// private vars
 		private var stream: NetStream;
@@ -34,39 +32,21 @@ package tv.superawesome.Views {
 		public var videoDelegate: SAVideoAdProtocol;
 		
 		// constructor
-		public function SAVideoAd(frame:Rectangle, placementId:int=0){
-			super(frame, placementId);
+		public function SAVideoAd(frame:Rectangle){
+			super(frame);
 		}
 		
 		// display and delayed display functions
-		protected override function display(): void {
+		public override function play(): void {
 			if (stage) delayedDisplay();
 			else addEventListener(Event.ADDED_TO_STAGE, delayedDisplay);
 		}
 		
-		protected function delayedDisplay(e:Event = null): void {
-			var xmlLoader:URLLoader = new URLLoader();
-			xmlLoader.load(new URLRequest (super.ad.creative.details.vast));
-			xmlLoader.addEventListener(Event.COMPLETE, processXML);
-		}
-		
-		private function processXML(e:Event):void {
-			var myXML: XML = new XML(e.target.data);
-			
-			var parser: SAVASTParser = new SAVASTParser();
-			parser.delegate = this;
-			parser.simpleVASTParse(myXML);
-		}
-		
-		public function didParseVAST(clickURL: String, impressionURL: String, completeURL: String): void {
-			this.ad.creative.clickURL = clickURL;
-			this.ad.creative.impresionURL = impressionURL;
-			this.ad.creative.completeURL = completeURL;
-			
+		private function delayedDisplay(e:Event = null): void {
 			this.stage.addEventListener( StageVideoAvailabilityEvent.STAGE_VIDEO_AVAILABILITY , stageVideoState );
 		}
 		
-		protected function stageVideoState( e:StageVideoAvailabilityEvent ):void{
+		private function stageVideoState( e:StageVideoAvailabilityEvent ):void{
 			
 			var available:Boolean = e.availability == StageVideoAvailability.AVAILABLE ;
 			
@@ -95,7 +75,7 @@ package tv.superawesome.Views {
 				more.y = this.frame.y;
 				more.width = this.frame.width;
 				more.height = 40.0;
-				more.addEventListener(MouseEvent.CLICK, mouseClick);
+				more.addEventListener(MouseEvent.CLICK, goToURL);
 				this.addChild(more);
 				
 				// call to success
@@ -103,14 +83,14 @@ package tv.superawesome.Views {
 			}
 		}
 		
-		public function onStatus(stats: NetStatusEvent): void {
+		private function onStatus(stats: NetStatusEvent): void {
 			var code:String = stats.info.code;
 			switch (code) {
 				case "NetStream.Play.Start":{
 					trace("video started");
 					
 					// post VAST impression
-					SASender.postGeneric(ad.creative.impresionURL);
+					SASender.sendEventToURL(ad.creative.viewableImpressionURL);
 					
 					if (videoDelegate != null) {
 						videoDelegate.videoStarted(ad.placementId);
@@ -121,7 +101,7 @@ package tv.superawesome.Views {
 					trace("video stopped");
 					
 					// post VAST impression
-					SASender.postGeneric(ad.creative.completeURL);
+					SASender.sendEventToURL(ad.creative.completeURL);
 					
 					if (videoDelegate != null) {
 						videoDelegate.videoEnded(ad.placementId);
@@ -136,22 +116,12 @@ package tv.superawesome.Views {
 			}
 		}
 		
-		public function onMetaData( info:Object ):void {
+		private function onMetaData( info:Object ):void {
 			// do nothing
 		}
 		
-		public function onPlayStatus(info:Object): void {
+		private function onPlayStatus(info:Object): void {
 			// do nothing
-		}
-		
-		public function mouseClick(event: MouseEvent): void {
-			if (this.delegate != null) {
-				this.delegate.adFollowedURL(super.ad.placementId);
-			}
-			
-			trace("going to " + ad.creative.clickURL);
-			var clickURL: URLRequest = new URLRequest(this.ad.creative.clickURL);
-			navigateToURL(clickURL, "_blank");
 		}
 	}
 }

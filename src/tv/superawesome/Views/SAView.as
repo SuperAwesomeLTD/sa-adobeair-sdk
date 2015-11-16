@@ -8,7 +8,6 @@ package tv.superawesome.Views {
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
 	
-	import tv.superawesome.Data.Loader.SALoader;
 	import tv.superawesome.Data.Models.SAAd;
 	import tv.superawesome.Data.Sender.SASender;
 
@@ -17,7 +16,6 @@ package tv.superawesome.Views {
 		public var delegate: SAAdProtocol;
 		
 		// private variables
-		private var placementId: int;
 		protected var ad: SAAd = null;
 		
 		// frame and aux variables
@@ -28,9 +26,8 @@ package tv.superawesome.Views {
 		public var refreshPeriod: int;
 		
 		// constructor
-		public function SAView(frame: Rectangle, placementId: int = 0) {
+		public function SAView(frame: Rectangle) {
 			this.frame = frame;
-			this.placementId = placementId;
 		}		
 		
 		public function setAd(_ad: SAAd): void {
@@ -38,34 +35,8 @@ package tv.superawesome.Views {
 		}
 		
 		// public play functions
-		public function playPreloaded(): void {
-			if (this.ad == null) {
-				if (this.delegate != null) {
-					this.delegate.adFailedToShow(this.placementId);
-				}
-				return;
-			}
-			
-			this.display();
-		}
-		
-		public function playInstant(): void {
-			// because ActionScript
-			var localDisplay: Function = this.display;
-			
-			// load an Ad
-			SALoader.getInstance().loadAd(this.placementId, function (_ad: SAAd): void {
-				ad = _ad;
-				localDisplay();
-			},
-				function(): void {
-					// do nothing
-				});
-		}
-		
-		// Display function and it's sister funcs
-		protected function display(): void {
-			// do nothing
+		public function play(): void {
+			// do nothing	
 		}
 		
 		protected function arrangeAdInFrame(frame: Rectangle): Rectangle {
@@ -99,26 +70,23 @@ package tv.superawesome.Views {
 		}
 		
 		protected function success(e:Event = null): void {
-			SASender.postEventViewableImpression(ad);
+			SASender.sendEventToURL(ad.creative.viewableImpressionURL);
 			
 			if (this.delegate != null) {
-				this.delegate.adWasShown(this.placementId);
+				this.delegate.adWasShown(this.ad.placementId);
 			}
 		}
 		
 		protected function error(e:ErrorEvent = null): void {
-			SASender.postEventAdFailedToView(ad);
-			
 			if (this.delegate != null) {
-				this.delegate.adFailedToShow(this.placementId);
+				this.delegate.adFailedToShow(this.ad.placementId);
 			}
 		}
 		
 		protected function goToURL(): void {
-			SASender.postEventClick(ad);
 			
 			if (this.delegate != null) {
-				this.delegate.adFollowedURL(this.placementId);
+				this.delegate.adWasClicked(this.ad.placementId);
 			}
 			
 			var clickURL: URLRequest = new URLRequest(this.ad.creative.clickURL);

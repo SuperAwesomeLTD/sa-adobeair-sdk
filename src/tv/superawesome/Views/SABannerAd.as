@@ -13,9 +13,9 @@ package tv.superawesome.Views{
 		private var close: Sprite;
 		private var webView: StageWebView;
 		
-		function SABannerAd(frame: Rectangle, placementId: int = 0) {
+		function SABannerAd(frame: Rectangle) {
 			// call to super
-			super(frame, placementId);
+			super(frame);
 			
 			// load external resources 
 			[Embed(source = '../../../resources/bg.png')] var BgIconClass:Class;
@@ -33,12 +33,12 @@ package tv.superawesome.Views{
 			webView.addEventListener(LocationChangeEvent.LOCATION_CHANGING, locationChanged);
 		}
 		
-		protected override function display(): void {	
+		public override function play(): void {	
 			if (this.stage != null) delayedDisplay();
 			else this.addEventListener(Event.ADDED_TO_STAGE, delayedDisplay);
 		}
 		
-		protected function delayedDisplay(): void {
+		private function delayedDisplay(): void {
 			// update background
 			background.x = super.frame.x;
 			background.y = super.frame.y;

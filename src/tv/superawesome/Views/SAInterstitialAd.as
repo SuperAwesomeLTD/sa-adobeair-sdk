@@ -7,6 +7,8 @@ package tv.superawesome.Views{
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 	import flash.media.StageWebView;
+	import flash.filesystem.File;
+	import es.xperiments.media.StageWebViewBridge;
 	
 	public class SAInterstitialAd extends SAView{
 		
@@ -16,9 +18,9 @@ package tv.superawesome.Views{
 		private var webView: StageWebView;
 		
 		// constructor
-		public function SAInterstitialAd(placementId:int=0){
+		public function SAInterstitialAd(){
 			// call super
-			super(new Rectangle(0, 0, 0, 0), placementId);
+			super(new Rectangle(0, 0, 0, 0));
 			
 			// load external resources 
 			[Embed(source = '../../../resources/bg.png')] var BgIconClass:Class;
@@ -37,6 +39,7 @@ package tv.superawesome.Views{
 			webView.addEventListener(Event.COMPLETE, success);
 			webView.addEventListener(ErrorEvent.ERROR, error);
 			webView.addEventListener(LocationChangeEvent.LOCATION_CHANGING, locationChanged);
+			webView.addEventListener(Event.COMPLETE, onHTMLLoadComplete, false, 0, true);
 			
 			// create close button
 			close = new Sprite();
@@ -47,16 +50,16 @@ package tv.superawesome.Views{
 		
 		public function onResize(...ig): void {
 			if (super.ad != null) {
-				this.display();
+				this.play();
 			}
 		}
 		
-		protected override function display(): void {	
+		public override function play(): void {	
 			if (this.stage != null) delayedDisplay();
 			else this.addEventListener(Event.ADDED_TO_STAGE, delayedDisplay);
 		}
 		
-		protected function delayedDisplay(e:Event = null): void {
+		private function delayedDisplay(e:Event = null): void {
 			this.frame = new Rectangle(0, 0, this.stage.stageWidth, this.stage.stageHeight);
 			this.stage.addEventListener(Event.RESIZE, onResize);
 			
@@ -76,7 +79,26 @@ package tv.superawesome.Views{
 			newR.y += tY;
 			webView.stage = this.stage;
 			webView.viewPort = newR;
-			webView.loadString(ad.adHTML);
+			trace('Inside the interstitial');
+			trace(ad.adHTML);
+			
+//			var htmlString:String = "<!DOCTYPE HTML>" + 
+//				"<html><script type=text/javascript>" + 
+//				"function callURI(){" + 
+//				"alert(\"You clicked me!!\");"+ 
+//				"}</script><body>" + 
+//				"<p><a href=javascript:callURI()>Click Me</a></p>" + 
+//				"</body></html>"; 
+//			
+//			webView.loadString(htmlString);
+//			webView.loadURL("https://s3-eu-west-1.amazonaws.com/beta-ads-uploads/rich-media/upload_23ea4ad869ed5253ebcb6f1474e672bf/index.html");
+			webView.loadURL("https://s3-eu-west-1.amazonaws.com/beta-ads-uploads/rich-media/upload_2cb21eb333130e17c41519c1df366b25/index.html");
+			
+//			var buildPath:String = File.applicationDirectory.nativePath;
+//			var source:String;
+//			source = buildPath + "/"+ "resources/test.html";
+//			trace(source);
+//			webView.loadURL(source);
 			
 			// assign new close btn frame
 			var cS: Number = Math.min(super.frame.width, super.frame.height) * 0.15;
@@ -84,6 +106,13 @@ package tv.superawesome.Views{
 			close.y = 0;
 			close.width = cS / 2.0;
 			close.height = cS / 2.0;
+		}
+		
+		private function onHTMLLoadComplete(event:Event):void {
+//			var write: String = "\"<script type='text/javascript' src='https://ads.superawesome.tv/v2/ad.js?placement=30016'></script>\"";
+//			var func: String = "javascript:document.write("+write+")";
+//			trace(func);
+//			webView.loadURL(func);
 		}
 		
 		private function closeAction(event: MouseEvent): void {

@@ -6,7 +6,7 @@ package tv.superawesome.Views {
 		function adWasShown(placementId: int): void;
 		function adFailedToShow(placementId: int): void;
 		function adWasClosed(placementId: int): void;
-		function adFollowedURL(placementId: int): void;
+		function adWasClicked(placementId: int): void;
 	}
 	
 }
