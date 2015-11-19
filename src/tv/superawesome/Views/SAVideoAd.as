@@ -79,7 +79,7 @@ package tv.superawesome.Views {
 				this.addChild(more);
 				
 				// call to success
-				success();
+//				success();
 			}
 		}
 		
@@ -90,7 +90,8 @@ package tv.superawesome.Views {
 					trace("video started");
 					
 					// post VAST impression
-					SASender.sendEventToURL(ad.creative.viewableImpressionURL);
+//					SASender.sendEventToURL(ad.creative.viewableImpressionURL);
+					success();
 					
 					if (videoDelegate != null) {
 						videoDelegate.videoStarted(ad.placementId);
@@ -116,12 +117,22 @@ package tv.superawesome.Views {
 			}
 		}
 		
-		private function onMetaData( info:Object ):void {
+		public function onMetaData( info:Object ):void {
 			// do nothing
 		}
 		
-		private function onPlayStatus(info:Object): void {
+		public function onPlayStatus(info:Object): void {
 			// do nothing
 		}
+		
+//		protected function goToURL(e: MouseEvent = null): void {
+//			
+//			if (this.delegate != null) {
+//				this.delegate.adWasClicked(this.ad.placementId);
+//			}
+//			
+//			var clickURL: URLRequest = new URLRequest(this.ad.creative.clickURL);
+//			navigateToURL(clickURL, "_blank");
+//		}
 	}
 }

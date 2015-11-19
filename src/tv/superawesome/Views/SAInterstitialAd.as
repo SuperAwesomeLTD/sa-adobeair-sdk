@@ -1,14 +1,21 @@
 package tv.superawesome.Views{
+	
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
 	import flash.events.LocationChangeEvent;
 	import flash.events.MouseEvent;
+	import flash.filesystem.File;
+	import flash.filesystem.FileMode;
+	import flash.filesystem.FileStream;
 	import flash.geom.Rectangle;
 	import flash.media.StageWebView;
-	import flash.filesystem.File;
-	import es.xperiments.media.StageWebViewBridge;
+	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
+	import flash.system.Capabilities;
+	
+	import tv.superawesome.Data.Models.SACreativeFormat;
 	
 	public class SAInterstitialAd extends SAView{
 		
@@ -21,31 +28,6 @@ package tv.superawesome.Views{
 		public function SAInterstitialAd(){
 			// call super
 			super(new Rectangle(0, 0, 0, 0));
-			
-			// load external resources 
-			[Embed(source = '../../../resources/bg.png')] var BgIconClass:Class;
-			var bmp2:Bitmap = new BgIconClass();
-			
-			[Embed(source = '../../../resources/close.png')] var CancelIconClass:Class;
-			var bmp: Bitmap = new CancelIconClass();
-			
-			// create background
-			background = new Sprite();
-			background.addChild(bmp2);
-			this.addChildAt(background, 0);
-			
-			// create webview
-			webView = new StageWebView();
-			webView.addEventListener(Event.COMPLETE, success);
-			webView.addEventListener(ErrorEvent.ERROR, error);
-			webView.addEventListener(LocationChangeEvent.LOCATION_CHANGING, locationChanged);
-			webView.addEventListener(Event.COMPLETE, onHTMLLoadComplete, false, 0, true);
-			
-			// create close button
-			close = new Sprite();
-			close.addChild(bmp);
-			close.addEventListener(MouseEvent.CLICK, closeAction);
-			this.addChildAt(close, 1);
 		}
 		
 		public function onResize(...ig): void {
@@ -60,16 +42,36 @@ package tv.superawesome.Views{
 		}
 		
 		private function delayedDisplay(e:Event = null): void {
+			
 			this.frame = new Rectangle(0, 0, this.stage.stageWidth, this.stage.stageHeight);
 			this.stage.addEventListener(Event.RESIZE, onResize);
 			
-			// assign new background frame
+			////////////////////////////////////////////////
+			// 1. create background
+			if (background == null) {
+				[Embed(source = '../../../resources/bg.png')] var BgIconClass:Class;
+				var bmp2:Bitmap = new BgIconClass();
+				
+				background = new Sprite();
+				background.addChild(bmp2);
+				this.addChildAt(background, 0);
+			}
+			
 			background.x = super.frame.x;
 			background.y = super.frame.y;
 			background.width = super.frame.width;
 			background.height = super.frame.height;
 			
-			// assign new webview frame
+			////////////////////////////////////////////////
+			// 2. create webview
+			if (webView == null) {
+				webView = new StageWebView(true);
+				webView.stage = this.stage;
+				webView.addEventListener(Event.COMPLETE, success);
+				webView.addEventListener(ErrorEvent.ERROR, error);
+				webView.addEventListener(LocationChangeEvent.LOCATION_CHANGING, locationChanged);
+			}
+			
 			var tW: Number = super.frame.width * 0.85;
 			var tH: Number = super.frame.height * 0.85;
 			var tX: Number = ( super.frame.width - tW ) / 2;
@@ -77,42 +79,88 @@ package tv.superawesome.Views{
 			var newR: Rectangle = super.arrangeAdInFrame(new Rectangle(tX, tY, tW, tH));
 			newR.x += tX;
 			newR.y += tY;
-			webView.stage = this.stage;
 			webView.viewPort = newR;
-			trace('Inside the interstitial');
-			trace(ad.adHTML);
 			
-//			var htmlString:String = "<!DOCTYPE HTML>" + 
-//				"<html><script type=text/javascript>" + 
-//				"function callURI(){" + 
-//				"alert(\"You clicked me!!\");"+ 
-//				"}</script><body>" + 
-//				"<p><a href=javascript:callURI()>Click Me</a></p>" + 
-//				"</body></html>"; 
-//			
-//			webView.loadString(htmlString);
-//			webView.loadURL("https://s3-eu-west-1.amazonaws.com/beta-ads-uploads/rich-media/upload_23ea4ad869ed5253ebcb6f1474e672bf/index.html");
-			webView.loadURL("https://s3-eu-west-1.amazonaws.com/beta-ads-uploads/rich-media/upload_2cb21eb333130e17c41519c1df366b25/index.html");
+			switch (ad.creative.format){
+				case SACreativeFormat.image: {
+					webView.loadString(ad.adHTML);
+					break;
+				}
+				case SACreativeFormat.rich: {
+					
+					var isIPhone: Boolean = (Capabilities.os.indexOf("iPhone") >= 0 ? true : false);
+					
+					// If the deployment target is iPhone, then do some hacks to display 
+					// rich media properly scaled
+					if (isIPhone == true) {
+						var scale: Number = 1;
+						if (ad.creative.details.width < ad.creative.details.height) {
+							scale = newR.width / Math.min(this.stage.stageWidth, this.stage.stageHeight);
+						} else {
+							scale = newR.height / Math.max(this.stage.stageWidth, this.stage.stageHeight);
+						}
+						
+						var finalString1: String = ad.adHTML;
+						finalString1 = finalString1.replace("_PARAM_SCALE_", scale);
+						finalString1 = finalString1.replace("_PARAM_SCALE_", scale);
+						finalString1 = finalString1.replace("_PARAM_DPI_", "device-dpi");
+						
+						webView.loadString(finalString1);
+					} 
+					// If the deployment target is not iPhone (then Android), do some other
+					// hacks to display rich media properly scaled
+					else {
+						var cdpi: Number = Capabilities.screenDPI;
+						var ndpi: Number =  Math.floor((ad.creative.details.width * cdpi) / newR.width);
+						
+						var finalString2: String = ad.adHTML;
+						finalString2 = finalString2.replace("_PARAM_SCALE_", "1.0");
+						finalString2 = finalString2.replace("_PARAM_SCALE_", "1.0");
+						finalString2 = finalString2.replace("_PARAM_DPI_", (ndpi + "dpi"));
+						trace(finalString2);
+						webView.loadString(finalString2);
+					}
+					
+					break;
+				}
+				case SACreativeFormat.tag: {
+					var finalHTML: String = ad.adHTML;
+					
+					var file:File = File.applicationStorageDirectory; 
+					file = file.resolvePath("tmpTag.html");
+					var fileStream: FileStream = new FileStream();
+					fileStream.open(file, FileMode.WRITE);
+					fileStream.writeUTFBytes(finalHTML);
+					fileStream.close();
+					
+					var destination:File = File.applicationStorageDirectory.resolvePath("docs/tmpTag.html");
+					file.copyTo(destination, true);   
+					var finalURL: String = "file://" + destination.nativePath ;
+					
+					webView.loadURL(finalURL);
+					
+					break;
+				}
+			}
 			
-//			var buildPath:String = File.applicationDirectory.nativePath;
-//			var source:String;
-//			source = buildPath + "/"+ "resources/test.html";
-//			trace(source);
-//			webView.loadURL(source);
+			////////////////////////////////////////////////
+			// create close button
+			if (close == null) {
+				[Embed(source = '../../../resources/close.png')] var CancelIconClass:Class;
+				var bmp: Bitmap = new CancelIconClass();
+				
+				close = new Sprite();
+				close.addChild(bmp);
+				close.addEventListener(MouseEvent.CLICK, closeAction);
+					
+				this.addChildAt(close, 1);
+			}
 			
-			// assign new close btn frame
 			var cS: Number = Math.min(super.frame.width, super.frame.height) * 0.15;
 			close.x = super.frame.width - cS / 2.0;
 			close.y = 0;
 			close.width = cS / 2.0;
 			close.height = cS / 2.0;
-		}
-		
-		private function onHTMLLoadComplete(event:Event):void {
-//			var write: String = "\"<script type='text/javascript' src='https://ads.superawesome.tv/v2/ad.js?placement=30016'></script>\"";
-//			var func: String = "javascript:document.write("+write+")";
-//			trace(func);
-//			webView.loadURL(func);
 		}
 		
 		private function closeAction(event: MouseEvent): void {
@@ -127,8 +175,41 @@ package tv.superawesome.Views{
 		}
 		
 		private function locationChanged(e:LocationChangeEvent): void {
-			e.preventDefault()
-			super.goToURL();
+			// call delegate
+			if (this.delegate != null) {
+				this.delegate.adWasClicked(this.ad.placementId);
+			}
+			
+			switch (ad.creative.format) {
+				case SACreativeFormat.image: {
+					e.preventDefault();
+					e.stopImmediatePropagation();
+					
+					var clickURL: URLRequest = new URLRequest(this.ad.creative.clickURL);
+					navigateToURL(clickURL, "_blank");
+					
+					break;
+				}
+				case SACreativeFormat.rich: {
+					// do nothing
+					break;
+				}
+				case SACreativeFormat.tag: {
+					e.preventDefault();
+					e.stopImmediatePropagation();
+					
+					var url: String = e.location;
+					var toDel:String = url.slice(0, url.indexOf("http"));
+					url = url.replace(toDel,"");
+					var finalURL: String = ad.creative.trackingURL + "&redir="+url;
+					
+					// navigate
+					var clickURL: URLRequest = new URLRequest(url);
+					navigateToURL(clickURL, "_blank");
+					
+					break;
+				}
+			}
 		}
 	}
 }

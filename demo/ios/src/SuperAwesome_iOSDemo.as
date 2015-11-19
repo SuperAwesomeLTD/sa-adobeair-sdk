@@ -1,5 +1,5 @@
 package
-{
+{	
 	import flash.desktop.NativeApplication;
 	import flash.desktop.SystemIdleMode;
 	import flash.display.Sprite;
@@ -8,18 +8,18 @@ package
 	import flash.events.Event;
 	import flash.geom.Rectangle;
 	import flash.media.StageWebView;
+	import flash.system.Capabilities;
 	
 	import tv.superawesome.SuperAwesome;
 	import tv.superawesome.Data.Loader.SALoader;
 	import tv.superawesome.Data.Loader.SALoaderProtocol;
 	import tv.superawesome.Data.Models.SAAd;
+	import tv.superawesome.Views.SABannerAd;
+	import tv.superawesome.Views.SAInterstitialAd;
+	import tv.superawesome.Views.SAVideoAd;
 	
 	public class SuperAwesome_iOSDemo extends Sprite implements SALoaderProtocol
 	{
-//		private var bad: SABannerAd;
-//		private var vad: SAVideoAd;
-//		private var iad: SAInterstitialAd;
-		
 		[SWF(backgroundColor="0xff0000")]
 		public function SuperAwesome_iOSDemo()
 		{
@@ -37,44 +37,39 @@ package
 			SuperAwesome.getInstance().setConfigurationProduction();
 			
 			SALoader.getInstance().delegate = this;
-			SALoader.getInstance().loadAd(30025);
-			
-//			bad = new SABannerAd(new Rectangle(0, 0, 640, 100), 19311);
-//			SuperAwesome.getInstance().enableTestMode();
-//			bad.playInstant();
-//			addChild(bad);
-//			
-//			vad = new SAVideoAd(new Rectangle(0, 250, 640, 480), 24532);
-//			SuperAwesome.getInstance().disableTestMode();
-//			vad.playInstant();
-//			addChild(vad);
-			
-//			iad = new SAInterstitialAd(27741);
-//			addChild(iad);
-//			iad.playInstant();
-			
-//			var file:File = File.applicationStorageDirectory; 
-//			file = file.resolvePath("test.html");
-//			
-//			var fileStream:FileStream = new FileStream();
-//			fileStream.open(file, FileMode.WRITE);
-//			
-//			var str: String;
-//			str = "<html><head></head><body><div class=\"celtra-ad-v3\">     <img src=\"data:image/png,celtra\" style=\"display: none\" onerror=\"         (function(img) {             var params = {'clickUrl':'[click]','expandDirection':'undefined','preferredClickThroughWindow':'','clickEvent':'advertiser','externalAdServer':'Custom','tagVersion':'1'};             var req = document.createElement('script');             req.id = params.scriptId = 'celtra-script-' + (window.celtraScriptIndex = (window.celtraScriptIndex||0)+1);             params.clientTimestamp = new Date/1000;             params.clientTimeZoneOffsetInMinutes = new Date().getTimezoneOffset();             var src = (window.location.protocol == 'https:' ? 'https' : 'http') + '://ads.celtra.com/4de76e38/web.js?';             for (var k in params) {                 src += '&amp;' + encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);             }             req.src = src;             img.parentNode.insertBefore(req, img.nextSibling);         })(this);     \"/> </div></body></html>";
-//			fileStream.writeUTF(str);
-//			fileStream.close();
-//			
-//			var _html: StageWebView = new StageWebView();
-//			_html.viewPort = new Rectangle(0, 0, this.stage.stageWidth, this.stage.stageHeight);
-//			_html.stage = this.stage;
-//			var buildPath:String = File.applicationStorageDirectory.nativePath;
-//			var source: String = buildPath + "/"+ "test.html";
-//			trace(source);
-//			_html.loadURL(source);
+			SALoader.getInstance().loadAd(10278);
+//			SALoader.getInstance().loadAd(21245);
+//			SALoader.getInstance().loadAd(10277);
+//			SALoader.getInstance().loadAd(10324);
 		}
 		
 		public function didLoadAd(ad: SAAd): void {
-			ad.print();
+//			ad.print();
+			
+//			if (ad.placementId == 10278) {
+//				var b:SABannerAd = new SABannerAd(new Rectangle(50,290,300,250));
+//				b.setAd(ad);
+//				addChild(b);
+//				b.play();
+//			} else 
+//				if (ad.placementId == 21245) {
+//				var v:SAVideoAd = new SAVideoAd(new Rectangle(0, 50, 320, 240));
+//				v.setAd(ad);
+//				addChild(v);
+//				v.play();
+//			} 
+//				else if (ad.placementId == 10277) {
+//				var b2: SABannerAd = new SABannerAd(new Rectangle(25, 600, 320, 50));
+//				b2.setAd(ad);
+//				addChild(b2);
+//				b2.play();
+//			} else 
+			if (ad.placementId == 10278) {
+				var i1:SAInterstitialAd = new SAInterstitialAd();
+				i1.setAd(ad);
+				addChild(i1);
+				i1.play();
+			}
 		}
 		
 		public function didFailToLoadAdForPlacementId(placementId:int): void {

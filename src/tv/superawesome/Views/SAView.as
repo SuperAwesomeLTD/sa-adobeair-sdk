@@ -4,6 +4,7 @@ package tv.superawesome.Views {
 	import flash.display.Sprite;
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
@@ -83,11 +84,13 @@ package tv.superawesome.Views {
 			}
 		}
 		
-		protected function goToURL(): void {
+		protected function goToURL(e: MouseEvent = null): void {
 			
 			if (this.delegate != null) {
 				this.delegate.adWasClicked(this.ad.placementId);
 			}
+			
+			trace(clickURL);
 			
 			var clickURL: URLRequest = new URLRequest(this.ad.creative.clickURL);
 			navigateToURL(clickURL, "_blank");

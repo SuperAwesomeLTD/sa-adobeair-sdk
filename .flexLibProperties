@@ -14,8 +14,8 @@
     <resourceEntry destPath="tv/superawesome/.DS_Store" sourcePath="tv/superawesome/.DS_Store"/>
     <resourceEntry destPath="resources/close.png" sourcePath="resources/close.png"/>
     <resourceEntry destPath=".DS_Store" sourcePath=".DS_Store"/>
-    <resourceEntry destPath="tv/superawesome/Views/.DS_Store" sourcePath="tv/superawesome/Views/.DS_Store"/>
     <resourceEntry destPath="resources/bg.png" sourcePath="resources/bg.png"/>
+    <resourceEntry destPath="tv/superawesome/Views/.DS_Store" sourcePath="tv/superawesome/Views/.DS_Store"/>
   </includeResources>
   <namespaceManifests/>
 </flexLibProperties>
