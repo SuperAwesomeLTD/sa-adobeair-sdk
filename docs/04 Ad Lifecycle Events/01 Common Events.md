@@ -31,7 +31,7 @@ public function adWasClosed(placementId: int): void {
 
 // this function will be called when a user clicks or taps on an Ad and 
 // follows the Ads associated URL
-public function adFollowedURL(placementId: int): void {
+public function adWasClicked(placementId: int): void {
 	
 }
 

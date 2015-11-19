@@ -20,54 +20,50 @@
             "text": "02 Initial Setup.md"
         },
         {
-            "name": "Playing Ads instantly",
+            "name": "Loading and displaying ads",
             "sections": [
                 {
                     "name": "Banner Ads",
-                    "text": "03 Playing Ads instantly/01 Banner Ads.md"
+                    "text": "03 Playing Ads/01 Banner Ads.md"
                 },
                 {
                     "name": "Interstitial Ads",
-                    "text": "03 Playing Ads instantly/02 Interstitial Ads.md"
+                    "text": "03 Playing Ads/02 Interstitial Ads.md"
                 },
                 {
                     "name": "Video Ads",
-                    "text": "03 Playing Ads instantly/03 Video Ads.md"
+                    "text": "03 Playing Ads/03 Video Ads.md"
                 }
             ]
-        },
-        {
-            "name": "Preloading Ads",
-            "text": "04 Preloading Ads.md"
         },
         {
             "name": "Ad Lifecycle Events",
             "sections": [
                 {
                     "name": "Common Events",
-                    "text": "05 Ad Lifecycle Events/01 Common Events.md"
+                    "text": "04 Ad Lifecycle Events/01 Common Events.md"
                 },
                 {
                     "name": "Video Events",
-                    "text": "05 Ad Lifecycle Events/02 Video Events.md"
+                    "text": "04 Ad Lifecycle Events/02 Video Events.md"
                 }
             ]
         },
         {
             "name": "Testing  Placements",
-            "text": "06 Testing Placements.md"
+            "text": "05 Testing Placements.md"
         },
         {
             "name": "Debug vs. Production",
-            "text": "07 Debug vs. Production.md"
+            "text": "06 Debug vs. Production.md"
         },
         {
             "name": "Technical Support",
-            "text": "08 Technical Support.md"
+            "text": "07 Technical Support.md"
         },
         {
             "name": "License",
-            "text": "09 License.md"
+            "text": "08 License.md"
         }
     ]
 }
