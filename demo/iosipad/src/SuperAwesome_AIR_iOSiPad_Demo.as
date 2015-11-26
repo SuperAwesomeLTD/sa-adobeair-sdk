@@ -10,11 +10,10 @@ package
 	import tv.superawesome.Data.Loader.SALoaderProtocol;
 	import tv.superawesome.Data.Models.SAAd;
 	import tv.superawesome.Views.SAVideoAd;
-	import tv.superawesome.Views.SAInterstitialAd;
 	
-	public class SuperAwesome_AIR_Android_Demo extends Sprite implements SALoaderProtocol
+	public class SuperAwesome_AIR_iOSiPad_Demo extends Sprite implements SALoaderProtocol
 	{
-		public function SuperAwesome_AIR_Android_Demo()
+		public function SuperAwesome_AIR_iOSiPad_Demo()
 		{
 			super();
 			
