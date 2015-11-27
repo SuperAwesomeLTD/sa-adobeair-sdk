@@ -11,6 +11,7 @@ package
 	import tv.superawesome.Data.Models.SAAd;
 	import tv.superawesome.Views.SAInterstitialAd;
 	import tv.superawesome.Views.SAVideoAd;
+	import tv.superawesome.Views.SABannerAd;
 	
 	public class SuperAwesome_AIR_Android_Demo extends Sprite implements SALoaderProtocol
 	{
@@ -26,7 +27,8 @@ package
 			SuperAwesome.getInstance().setConfigurationProduction();
 			
 			SALoader.getInstance().delegate = this;
-			SALoader.getInstance().loadAd(30121);
+//			SALoader.getInstance().loadAd(28000);
+			SALoader.getInstance().loadAd(30078);
 		}
 		
 		public function didLoadAd(ad: SAAd): void {
@@ -38,6 +40,10 @@ package
 //			vad.setAd(ad);
 //			addChild(vad);
 //			vad.play();
+//			var bad: SABannerAd = new SABannerAd(new Rectangle(0, 40, 100, 500));
+//			bad.setAd(ad);
+//			addChild(bad);
+//			bad.play();
 		}
 		
 		public function didFailToLoadAdForPlacementId(placementId: int): void {
