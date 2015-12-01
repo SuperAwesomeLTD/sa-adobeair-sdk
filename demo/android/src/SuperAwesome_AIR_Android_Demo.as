@@ -24,7 +24,7 @@ package
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
-			trace(SuperAwesome.getInstance().sdkVersion());
+			trace(SuperAwesome.getInstance().getSdkVersion());
 			trace(SASystem.getSystemType() + "_" + SASystem.getSystemSize());
 			
 			SuperAwesome.getInstance().disableTestMode();
