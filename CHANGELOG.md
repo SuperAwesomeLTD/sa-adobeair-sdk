@@ -1,6 +1,9 @@
 sa-adobeair-sdk
 ============
 
+v3.0
+- Get it to production ready. From now on it's small bug-fixes, improvements, etc.
+
 v3_beta2
 - Fixed click issue
 

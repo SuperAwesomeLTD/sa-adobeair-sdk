@@ -9,6 +9,7 @@ package
 	import tv.superawesome.Data.Loader.SALoader;
 	import tv.superawesome.Data.Loader.SALoaderProtocol;
 	import tv.superawesome.Data.Models.SAAd;
+	import tv.superawesome.System.*;
 	import tv.superawesome.Views.SAInterstitialAd;
 	import tv.superawesome.Views.SAVideoAd;
 	import tv.superawesome.Views.SABannerAd;
@@ -23,27 +24,21 @@ package
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
+			trace(SuperAwesome.getInstance().sdkVersion());
+			trace(SASystem.getSystemType() + "_" + SASystem.getSystemSize());
+			
 			SuperAwesome.getInstance().disableTestMode();
 			SuperAwesome.getInstance().setConfigurationProduction();
 			
 			SALoader.getInstance().delegate = this;
-//			SALoader.getInstance().loadAd(28000);
-			SALoader.getInstance().loadAd(30078);
+			SALoader.getInstance().loadAd(28000);
 		}
 		
 		public function didLoadAd(ad: SAAd): void {
-			var iad:SAInterstitialAd = new SAInterstitialAd();
-			iad.setAd(ad);
-			addChild(iad);
-			iad.play();
-//			var vad:SAVideoAd = new SAVideoAd(new Rectangle(0, 40, 640, 480));
-//			vad.setAd(ad);
-//			addChild(vad);
-//			vad.play();
-//			var bad: SABannerAd = new SABannerAd(new Rectangle(0, 40, 100, 500));
-//			bad.setAd(ad);
-//			addChild(bad);
-//			bad.play();
+			var vad:SAVideoAd = new SAVideoAd(new Rectangle(0, 40, 640, 480));
+			vad.setAd(ad);
+			addChild(vad);
+			vad.play();
 		}
 		
 		public function didFailToLoadAdForPlacementId(placementId: int): void {

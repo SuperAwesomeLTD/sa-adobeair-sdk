@@ -20,27 +20,27 @@
     <classEntry path="tv.superawesome.Data.Sender.SASender"/>
     <classEntry path="tv.superawesome.Data.VAST.SAVASTParser"/>
     <classEntry path="tv.superawesome.Data.Validator.SAValidator"/>
-    <classEntry path="tv.superawesome.SuperAwesome"/>
     <classEntry path="tv.superawesome.Views.SAAdProtocol"/>
     <classEntry path="tv.superawesome.Views.SABannerAd"/>
     <classEntry path="tv.superawesome.Views.SAInterstitialAd"/>
     <classEntry path="tv.superawesome.Views.SAVideoAd"/>
     <classEntry path="tv.superawesome.Views.SAVideoAdProtocol"/>
     <classEntry path="tv.superawesome.Views.SAView"/>
+    <classEntry path="tv.superawesome.SuperAwesome"/>
   </includeClasses>
   <includeResources>
-    <resourceEntry destPath=".DS_Store" sourcePath=".DS_Store"/>
     <resourceEntry destPath="com/.DS_Store" sourcePath="com/.DS_Store"/>
-    <resourceEntry destPath="com/adobe/.DS_Store" sourcePath="com/adobe/.DS_Store"/>
-    <resourceEntry destPath="resources/.DS_Store" sourcePath="resources/.DS_Store"/>
     <resourceEntry destPath="resources/displayImage.html" sourcePath="resources/displayImage.html"/>
-    <resourceEntry destPath="resources/displayRichMedia.html" sourcePath="resources/displayRichMedia.html"/>
-    <resourceEntry destPath="resources/displayTag.html" sourcePath="resources/displayTag.html"/>
+    <resourceEntry destPath="resources/.DS_Store" sourcePath="resources/.DS_Store"/>
     <resourceEntry destPath="tv/superawesome/.DS_Store" sourcePath="tv/superawesome/.DS_Store"/>
+    <resourceEntry destPath="resources/close.png" sourcePath="resources/close.png"/>
+    <resourceEntry destPath="resources/displayTag.html" sourcePath="resources/displayTag.html"/>
+    <resourceEntry destPath="tv/.DS_Store" sourcePath="tv/.DS_Store"/>
+    <resourceEntry destPath="com/adobe/.DS_Store" sourcePath="com/adobe/.DS_Store"/>
+    <resourceEntry destPath="resources/displayRichMedia.html" sourcePath="resources/displayRichMedia.html"/>
+    <resourceEntry destPath=".DS_Store" sourcePath=".DS_Store"/>
     <resourceEntry destPath="tv/superawesome/Data/Formatter/.DS_Store" sourcePath="tv/superawesome/Data/Formatter/.DS_Store"/>
     <resourceEntry destPath="resources/bg.png" sourcePath="resources/bg.png"/>
-    <resourceEntry destPath="resources/close.png" sourcePath="resources/close.png"/>
-    <resourceEntry destPath="tv/.DS_Store" sourcePath="tv/.DS_Store"/>
     <resourceEntry destPath="tv/superawesome/Views/.DS_Store" sourcePath="tv/superawesome/Views/.DS_Store"/>
   </includeResources>
   <namespaceManifests/>

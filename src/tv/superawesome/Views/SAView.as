@@ -4,10 +4,7 @@ package tv.superawesome.Views {
 	import flash.display.Sprite;
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
-	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
-	import flash.net.URLRequest;
-	import flash.net.navigateToURL;
 
 	import tv.superawesome.Data.Models.SAAd;
 	import tv.superawesome.Data.Sender.SASender;
@@ -84,16 +81,16 @@ package tv.superawesome.Views {
 			}
 		}
 		
-		protected function goToURL(e: MouseEvent = null): void {
-			
-			if (this.delegate != null) {
-				this.delegate.adWasClicked(this.ad.placementId);
-			}
-			
-			trace(this.ad.creative.clickURL);
-			
-			var clickURL: URLRequest = new URLRequest(this.ad.creative.clickURL);
-			navigateToURL(clickURL, "_blank");
-		}
+//		protected function goToURL(e: MouseEvent = null): void {
+//			
+//			if (this.delegate != null) {
+//				this.delegate.adWasClicked(this.ad.placementId);
+//			}
+//			
+//			trace(this.ad.creative.clickURL);
+//			
+//			var clickURL: URLRequest = new URLRequest(this.ad.creative.clickURL);
+//			navigateToURL(clickURL, "_blank");
+//		}
 	}
 }

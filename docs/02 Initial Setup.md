@@ -33,12 +33,11 @@ package  {
 }
 ```
 
-The SuperAwesome SDK can be setup in three ways: Production, Staging and Development, by using:
+The SuperAwesome SDK can be setup in two ways: Production and Staging, by using:
 
 ```
 SuperAwesome.getInstance().setConfigurationProduction();
 SuperAwesome.getInstance().setConfigurationStaging();
-SuperAwesome.getInstance().setConfigurationDevelopment();
 
 ```
 
@@ -50,6 +49,7 @@ SuperAwesome.getInstance().disableTestMode();
 
 ```
 
+By default the environment is setup with Production Mode and Test Mode disabled.
 
 
 

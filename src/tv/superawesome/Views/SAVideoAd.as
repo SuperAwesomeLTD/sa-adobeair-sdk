@@ -77,9 +77,6 @@ package tv.superawesome.Views {
 				more.height = 40.0;
 				more.addEventListener(MouseEvent.CLICK, goToURL);
 				this.addChild(more);
-				
-				// call to success
-//				success();
 			}
 		}
 		
@@ -89,8 +86,7 @@ package tv.superawesome.Views {
 				case "NetStream.Play.Start":{
 					trace("video started");
 					
-					// post VAST impression
-//					SASender.sendEventToURL(ad.creative.viewableImpressionURL);
+					// post VAST impression & other success stuff
 					success();
 					
 					if (videoDelegate != null) {
@@ -125,14 +121,16 @@ package tv.superawesome.Views {
 			// do nothing
 		}
 		
-//		protected function goToURL(e: MouseEvent = null): void {
-//			
-//			if (this.delegate != null) {
-//				this.delegate.adWasClicked(this.ad.placementId);
-//			}
-//			
-//			var clickURL: URLRequest = new URLRequest(this.ad.creative.clickURL);
-//			navigateToURL(clickURL, "_blank");
-//		}
+		protected function goToURL(e: MouseEvent = null): void {
+			
+			if (this.delegate != null) {
+				this.delegate.adWasClicked(this.ad.placementId);
+			}
+			
+			trace(this.ad.creative.clickURL);
+			
+			var clickURL: URLRequest = new URLRequest(this.ad.creative.clickURL);
+			navigateToURL(clickURL, "_blank");
+		}
 	}
 }

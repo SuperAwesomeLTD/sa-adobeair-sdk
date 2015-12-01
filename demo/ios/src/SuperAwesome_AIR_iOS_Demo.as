@@ -9,6 +9,7 @@ package
 	import tv.superawesome.Data.Loader.SALoader;
 	import tv.superawesome.Data.Loader.SALoaderProtocol;
 	import tv.superawesome.Data.Models.SAAd;
+	import tv.superawesome.System.SASystem;
 	import tv.superawesome.Views.SAVideoAd;
 	
 	public class SuperAwesome_AIR_iOS_Demo extends Sprite implements SALoaderProtocol
@@ -20,7 +21,10 @@ package
 			// support autoOrients
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
-		
+			
+			trace(SuperAwesome.getInstance().sdkVersion());
+			trace(SASystem.getSystemType() + "_" + SASystem.getSystemSize());
+			
 			SuperAwesome.getInstance().disableTestMode();
 			SuperAwesome.getInstance().setConfigurationProduction();
 			

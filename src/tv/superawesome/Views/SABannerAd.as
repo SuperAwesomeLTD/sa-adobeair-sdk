@@ -14,6 +14,7 @@ package tv.superawesome.Views{
 	import flash.net.navigateToURL;
 	
 	import tv.superawesome.Data.Models.SACreativeFormat;
+	import tv.superawesome.System.*;
 
 	public class SABannerAd extends SAView {
 		// the loader
@@ -67,12 +68,11 @@ package tv.superawesome.Views{
 					break;
 				}
 				case SACreativeFormat.rich: {
-					
-					var isIPhone: Boolean = (Capabilities.os.indexOf("iPhone") >= 0 ? true : false);
+					var _stype: String = SASystem.getSystemType();
 					
 					// If the deployment target is iPhone, then do some hacks to display 
 					// rich media properly scaled
-					if (isIPhone == true) {
+					if (_stype == SASystemType.ios) {
 						var scale: Number = 1;
 						if (ad.creative.details.width < ad.creative.details.height) {
 							scale = newR.width / Math.min(this.stage.stageWidth, this.stage.stageHeight);
@@ -87,9 +87,9 @@ package tv.superawesome.Views{
 						
 						webView.loadString(finalString1);
 					} 
-						// If the deployment target is not iPhone (then Android), do some other
-						// hacks to display rich media properly scaled
-					else {
+					// If the deployment target is not iPhone (then Android), do some other
+					// hacks to display rich media properly scaled
+					else if (_stype == SASystemType.android) {
 						var cdpi: Number = Capabilities.screenDPI;
 						var ndpi: Number =  Math.floor((ad.creative.details.width * cdpi) / newR.width);
 						
@@ -130,12 +130,14 @@ package tv.superawesome.Views{
 				this.delegate.adWasClicked(this.ad.placementId);
 			}
 			
+			var clickURL: URLRequest = null;
+			
 			switch (ad.creative.format) {
 				case SACreativeFormat.image: {
 					e.preventDefault();
 					e.stopImmediatePropagation();
 					
-					var clickURL: URLRequest = new URLRequest(this.ad.creative.clickURL);
+					clickURL = new URLRequest(this.ad.creative.clickURL);
 					navigateToURL(clickURL, "_blank");
 					
 					break;
@@ -154,7 +156,7 @@ package tv.superawesome.Views{
 					var finalURL: String = ad.creative.trackingURL + "&redir="+url;
 					
 					// navigate
-					var clickURL: URLRequest = new URLRequest(url);
+					clickURL = new URLRequest(url);
 					navigateToURL(clickURL, "_blank");
 					
 					break;
