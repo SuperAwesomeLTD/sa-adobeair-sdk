@@ -8,7 +8,6 @@
     <classEntry path="com.adobe.serialization.json.JSONToken"/>
     <classEntry path="com.adobe.serialization.json.JSONTokenType"/>
     <classEntry path="com.adobe.serialization.json.JSONTokenizer"/>
-    <classEntry path="tv.superawesome.Data.Formatter.SAFormatter"/>
     <classEntry path="tv.superawesome.Data.Loader.SALoader"/>
     <classEntry path="tv.superawesome.Data.Loader.SALoaderProtocol"/>
     <classEntry path="tv.superawesome.Data.Models.SAAd"/>
@@ -18,7 +17,6 @@
     <classEntry path="tv.superawesome.Data.Network.SANetwork"/>
     <classEntry path="tv.superawesome.Data.Parser.SAParser"/>
     <classEntry path="tv.superawesome.Data.Sender.SASender"/>
-    <classEntry path="tv.superawesome.Data.VAST.SAVASTParser"/>
     <classEntry path="tv.superawesome.Data.Validator.SAValidator"/>
     <classEntry path="tv.superawesome.Views.SAAdProtocol"/>
     <classEntry path="tv.superawesome.Views.SABannerAd"/>
