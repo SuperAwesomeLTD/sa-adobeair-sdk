@@ -1,22 +1,69 @@
 {
-    "name": "Adobe AIR SDK",
-    "text": "01 AdobeAIRSDK.md",
+    "name": "Adobe Flash SDK",
+    "text": "00 Intro.md",
     "sections":[
         {
             "name": "Getting Started",
-            "text": "02 GettingStarted.md"
+            "sections":[
+                {
+                    "name": "Registering Your App on the Dashboard",
+                    "text": "01 Getting Started/01 GettingStarted.md"
+                },
+                {
+                    "name": "Integrating the SDK",
+                    "text": "01 Getting Started/02 Integrate.md"
+                }
+            ]
         },
         {
-            "name": "Display Ads",
-            "text": "03 DisplayAds.md"
+            "name": "Initial Setup",
+            "text": "02 Initial Setup.md"
         },
         {
-            "name": "Video Ads",
-            "text": "04 VideoAds.md"
+            "name": "Loading and displaying ads",
+            "sections": [
+                {
+                    "name": "Banner Ads",
+                    "text": "03 Playing Ads/01 Banner Ads.md"
+                },
+                {
+                    "name": "Interstitial Ads",
+                    "text": "03 Playing Ads/02 Interstitial Ads.md"
+                },
+                {
+                    "name": "Video Ads",
+                    "text": "03 Playing Ads/03 Video Ads.md"
+                }
+            ]
+        },
+        {
+            "name": "Ad Lifecycle Events",
+            "sections": [
+                {
+                    "name": "Common Events",
+                    "text": "04 Ad Lifecycle Events/01 Common Events.md"
+                },
+                {
+                    "name": "Video Events",
+                    "text": "04 Ad Lifecycle Events/02 Video Events.md"
+                }
+            ]
+        },
+        {
+            "name": "Testing  Placements",
+            "text": "05 Testing Placements.md"
+        },
+        {
+            "name": "Debug vs. Production",
+            "text": "06 Debug vs. Production.md"
         },
         {
             "name": "Technical Support",
-            "text": "05 Support.md"
+            "text": "07 Technical Support.md"
+        },
+        {
+            "name": "License",
+            "text": "08 License.md"
         }
     ]
 }
