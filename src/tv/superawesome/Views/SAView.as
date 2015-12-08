@@ -18,6 +18,7 @@ package tv.superawesome.Views {
 	import flash.geom.Rectangle;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
+	
 	import tv.superawesome.Data.Models.SAAd;
 	import tv.superawesome.Data.Sender.SASender;
 	import tv.superawesome.Views.Protocols.SAAdProtocol;

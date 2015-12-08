@@ -22,9 +22,10 @@ package tv.superawesome.Views{
 	import flash.geom.Rectangle;
 	import flash.media.StageWebView;
 	import flash.system.Capabilities;
+	
+	import tv.superawesome.Aux.SAAux;
 	import tv.superawesome.Data.Models.SACreativeFormat;
 	import tv.superawesome.System.SASystem;
-	import tv.superawesome.Aux.SAAux;
 	import tv.superawesome.System.SASystemType;
 
 	//
@@ -34,6 +35,9 @@ package tv.superawesome.Views{
 		// private variables
 		private var background: Sprite = new Sprite();
 		private var webView: StageWebView = new StageWebView(true);
+		
+		[Embed(source = '../../../resources/bg.png')] private var BgIconClass:Class;
+		private var bmp2:Bitmap = new BgIconClass();
 		
 		// constructor
 		function SABannerAd(frame: Rectangle) {
@@ -59,9 +63,6 @@ package tv.superawesome.Views{
 		private function delayedDisplay(): void {
 			////////////////////////////////////////////////
 			// 1. create background
-			[Embed(source = '../../../resources/bg.png')] var BgIconClass:Class;
-			var bmp2:Bitmap = new BgIconClass();
-			
 			background.x = super.frame.x;
 			background.y = super.frame.y;
 			background.width = super.frame.width;

@@ -34,21 +34,21 @@ package
 			
 			SALoader.getInstance().delegate = this;
 			SALoader.getInstance().loadAd(10324);
-//			SALoader.getInstance().loadAd(28000);
+			SALoader.getInstance().loadAd(28000);
 		}
 		
 		public function didLoadAd(ad: SAAd): void {
-			var iad:SAInterstitialAd = new SAInterstitialAd();
-			iad.setAd(ad);
-			iad.adDelegate = this;
-			addChild(iad);
-			iad.play();
-//			var vad:SAVideoAd = new SAVideoAd(new Rectangle(0, 40, 640, 480));
-//			vad.setAd(ad);
-//			vad.adDelegate = this;
-//			vad.videoDelegate = this;
-//			addChild(vad);
-//			vad.play();
+//			var iad:SAInterstitialAd = new SAInterstitialAd();
+//			iad.setAd(ad);
+//			iad.adDelegate = this;
+//			addChild(iad);
+//			iad.play();
+			var vad:SAVideoAd = new SAVideoAd(new Rectangle(0, 40, 640, 480));
+			vad.setAd(ad);
+			vad.adDelegate = this;
+			vad.videoDelegate = this;
+			addChild(vad);
+			vad.play();
 			
 //			var bad:SABannerAd = new SABannerAd(new Rectangle(0, 0, 700, 500));
 //			bad.setAd(ad);
