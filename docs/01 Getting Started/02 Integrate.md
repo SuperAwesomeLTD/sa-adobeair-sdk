@@ -1,7 +1,7 @@
 ### Download the necessary files
 
 The new Adobe AIR SDK (v3 Beta) is compiled into a .swc file that you can download from here:
-* [SuperAwesome_AIR_v3Beta.swc](https://github.com/SuperAwesomeLTD/sa-adobeair-sdk/blob/v3_beta/bin/SuperAwesome_AIR_v3Beta.swc?raw=true).
+* [SuperAwesome_AIR.swc](https://github.com/SuperAwesomeLTD/sa-adobeair-sdk/blob/v3_beta/bin/SuperAwesome_AIR.swc?raw=true).
 
 This will allow you to add Banner, Interstitial and Video Ads to your project.
 
