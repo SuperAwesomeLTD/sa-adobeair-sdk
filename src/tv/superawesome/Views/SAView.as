@@ -26,7 +26,7 @@ package tv.superawesome.Views {
 	// @brief: base class for Adobe AIR rendering
 	public class SAView extends Sprite{
 		// delegate
-		public var delegate: SAAdProtocol;
+		public var adDelegate: SAAdProtocol;
 		
 		// private variables
 		protected var ad: SAAd = null;
@@ -58,8 +58,8 @@ package tv.superawesome.Views {
 		protected function success(e:Event = null): void {
 			SASender.sendEventToURL(ad.creative.viewableImpressionURL);
 			
-			if (this.delegate != null) {
-				this.delegate.adWasShown(this.ad.placementId);
+			if (this.adDelegate != null) {
+				this.adDelegate.adWasShown(this.ad.placementId);
 			}
 		}
 		
@@ -67,8 +67,8 @@ package tv.superawesome.Views {
 		// @brief: this function is called by descendants of SAView
 		// when some error happened at Ad data loading
 		protected function error(e:ErrorEvent = null): void {
-			if (this.delegate != null) {
-				this.delegate.adFailedToShow(this.ad.placementId);
+			if (this.adDelegate != null) {
+				this.adDelegate.adFailedToShow(this.ad.placementId);
 			}
 		}
 		
@@ -77,8 +77,8 @@ package tv.superawesome.Views {
 		// when going from the ad / app to the linked URL
 		protected function goToURL(e:LocationChangeEvent = null): void {
 			// call delegate
-			if (this.delegate != null) {
-				this.delegate.adWasClicked(this.ad.placementId);
+			if (this.adDelegate != null) {
+				this.adDelegate.adWasClicked(this.ad.placementId);
 			}
 			
 			if(e != null) {

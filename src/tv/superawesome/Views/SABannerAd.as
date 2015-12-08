@@ -32,11 +32,8 @@ package tv.superawesome.Views{
 	// banner ad capable of displaying images, rich media, 3rd party tags, etc
 	public class SABannerAd extends SAView {
 		// private variables
-		private var background: Sprite;
-		private var close: Sprite;
-		
-		// the whole mechanism is centered on StageWebView
-		private var webView: StageWebView;
+		private var background: Sprite = new Sprite();
+		private var webView: StageWebView = new StageWebView(true);
 		
 		// constructor
 		function SABannerAd(frame: Rectangle) {
@@ -48,8 +45,8 @@ package tv.superawesome.Views{
 		public override function play(): void {	
 			// check for wrong format
 			if (ad.creative.format == SACreativeFormat.video) {
-				if (this.delegate != null) {
-					this.delegate.adHasIncorrectPlacement(ad.placementId);
+				if (this.adDelegate != null) {
+					this.adDelegate.adHasIncorrectPlacement(ad.placementId);
 				}
 				return;
 			}
@@ -65,20 +62,15 @@ package tv.superawesome.Views{
 			[Embed(source = '../../../resources/bg.png')] var BgIconClass:Class;
 			var bmp2:Bitmap = new BgIconClass();
 			
-			background = new Sprite();
-			background.addChild(bmp2);
-			this.addChildAt(background, 0);
-			
 			background.x = super.frame.x;
 			background.y = super.frame.y;
 			background.width = super.frame.width;
 			background.height = super.frame.height;
-			
-			this.addChildAt(background, 0);
+			background.addChild(bmp2);
+			this.addChild(background);
 			
 			////////////////////////////////////////////////
 			// 2. create webview
-			webView = new StageWebView(true);
 			webView.stage = this.stage;
 			webView.addEventListener(Event.COMPLETE, success);
 			webView.addEventListener(ErrorEvent.ERROR, error);
@@ -156,8 +148,9 @@ package tv.superawesome.Views{
 		
 		// stop function
 		public function stop(): void {
-			parent.removeChild(this);
-			webView.stage = null;
+			this.webView.stage = null;
+			this.webView.dispose();
+			this.webView = null;
 		}
 	}
 }

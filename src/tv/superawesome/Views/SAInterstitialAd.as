@@ -73,8 +73,8 @@ package tv.superawesome.Views{
 			if (banner == null) {
 				banner = new SABannerAd(new Rectangle(0, 0, 0, 0));
 				banner.setAd(ad);
-			} else {
-				banner.stop();
+				banner.adDelegate = this.adDelegate;
+				this.addChild(banner);
 			}
 			
 			var tW: Number = super.frame.width * 0.85;
@@ -82,8 +82,6 @@ package tv.superawesome.Views{
 			var tX: Number = ( super.frame.width - tW ) / 2;
 			var tY: Number = ( super.frame.height - tH) / 2;
 			banner.frame = new Rectangle(tX, tY, tW, tH);
-			banner.setAd(ad);
-			addChild(banner);
 			banner.play();
 		
 			////////////////////////////////////////////////
@@ -93,9 +91,8 @@ package tv.superawesome.Views{
 				var bmp: Bitmap = new CancelIconClass();
 				
 				close = new Sprite();
-				close.addChild(bmp);
 				close.addEventListener(MouseEvent.CLICK, closeAction);
-					
+				close.addChild(bmp);
 				this.addChildAt(close, 1);
 			}
 			
@@ -114,8 +111,8 @@ package tv.superawesome.Views{
 			parent.removeChild(this);
 			
 			// call delegate
-			if (super.delegate != null) {
-				super.delegate.adWasClosed(ad.placementId);
+			if (super.adDelegate != null) {
+				super.adDelegate.adWasClosed(ad.placementId);
 			}
 		}
 	}

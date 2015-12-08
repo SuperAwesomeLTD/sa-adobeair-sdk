@@ -35,7 +35,6 @@ package tv.superawesome.Views {
 		// private vars
 		private var stream: NetStream;
 		private var nc: NetConnection;
-		private var videoBtn: Sprite;
 		private var video: StageVideo;
 		
 		// public vars
@@ -50,8 +49,8 @@ package tv.superawesome.Views {
 		public override function play(): void {
 			// check for wrong format
 			if (ad.creative.format != SACreativeFormat.video) {
-				if (this.delegate != null) {
-					this.delegate.adHasIncorrectPlacement(ad.placementId);
+				if (this.adDelegate != null) {
+					this.adDelegate.adHasIncorrectPlacement(ad.placementId);
 				}
 				return;
 			}
