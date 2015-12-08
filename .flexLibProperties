@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<flexLibProperties includeAllClasses="false" useMultiPlatformConfig="false" version="3">
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
     <classEntry path="com.adobe.serialization.json.JSON"/>
     <classEntry path="com.adobe.serialization.json.JSONDecoder"/>
@@ -8,6 +8,7 @@
     <classEntry path="com.adobe.serialization.json.JSONToken"/>
     <classEntry path="com.adobe.serialization.json.JSONTokenType"/>
     <classEntry path="com.adobe.serialization.json.JSONTokenizer"/>
+    <classEntry path="tv.superawesome.Aux.SAAux"/>
     <classEntry path="tv.superawesome.Data.Loader.SALoader"/>
     <classEntry path="tv.superawesome.Data.Loader.SALoaderProtocol"/>
     <classEntry path="tv.superawesome.Data.Models.SAAd"/>
@@ -15,31 +16,38 @@
     <classEntry path="tv.superawesome.Data.Models.SACreativeFormat"/>
     <classEntry path="tv.superawesome.Data.Models.SADetails"/>
     <classEntry path="tv.superawesome.Data.Network.SANetwork"/>
+    <classEntry path="tv.superawesome.Data.Network.SAUserAgent"/>
+    <classEntry path="tv.superawesome.Data.Parser.SAHTMLParser"/>
     <classEntry path="tv.superawesome.Data.Parser.SAParser"/>
+    <classEntry path="tv.superawesome.Data.Parser.SAVASTParser"/>
     <classEntry path="tv.superawesome.Data.Sender.SASender"/>
     <classEntry path="tv.superawesome.Data.Validator.SAValidator"/>
-    <classEntry path="tv.superawesome.Views.SAAdProtocol"/>
+    <classEntry path="tv.superawesome.SuperAwesomeCommon"/>
+    <classEntry path="tv.superawesome.System.SASystem"/>
+    <classEntry path="tv.superawesome.System.SASystemSize"/>
+    <classEntry path="tv.superawesome.System.SASystemType"/>
+    <classEntry path="tv.superawesome.Views.Protocols.SAAdProtocol"/>
+    <classEntry path="tv.superawesome.Views.Protocols.SAVideoAdProtocol"/>
+    <classEntry path="tv.superawesome.SuperAwesome"/>
     <classEntry path="tv.superawesome.Views.SABannerAd"/>
     <classEntry path="tv.superawesome.Views.SAInterstitialAd"/>
     <classEntry path="tv.superawesome.Views.SAVideoAd"/>
-    <classEntry path="tv.superawesome.Views.SAVideoAdProtocol"/>
     <classEntry path="tv.superawesome.Views.SAView"/>
-    <classEntry path="tv.superawesome.SuperAwesome"/>
   </includeClasses>
   <includeResources>
-    <resourceEntry destPath="com/.DS_Store" sourcePath="com/.DS_Store"/>
-    <resourceEntry destPath="resources/displayImage.html" sourcePath="resources/displayImage.html"/>
-    <resourceEntry destPath="resources/.DS_Store" sourcePath="resources/.DS_Store"/>
-    <resourceEntry destPath="tv/superawesome/.DS_Store" sourcePath="tv/superawesome/.DS_Store"/>
-    <resourceEntry destPath="resources/close.png" sourcePath="resources/close.png"/>
-    <resourceEntry destPath="resources/displayTag.html" sourcePath="resources/displayTag.html"/>
-    <resourceEntry destPath="tv/.DS_Store" sourcePath="tv/.DS_Store"/>
-    <resourceEntry destPath="com/adobe/.DS_Store" sourcePath="com/adobe/.DS_Store"/>
-    <resourceEntry destPath="resources/displayRichMedia.html" sourcePath="resources/displayRichMedia.html"/>
     <resourceEntry destPath=".DS_Store" sourcePath=".DS_Store"/>
-    <resourceEntry destPath="tv/superawesome/Data/Formatter/.DS_Store" sourcePath="tv/superawesome/Data/Formatter/.DS_Store"/>
-    <resourceEntry destPath="resources/bg.png" sourcePath="resources/bg.png"/>
+    <resourceEntry destPath="com/.DS_Store" sourcePath="com/.DS_Store"/>
+    <resourceEntry destPath="com/adobe/.DS_Store" sourcePath="com/adobe/.DS_Store"/>
+    <resourceEntry destPath="resources/.DS_Store" sourcePath="resources/.DS_Store"/>
+    <resourceEntry destPath="resources/displayImage.html" sourcePath="resources/displayImage.html"/>
+    <resourceEntry destPath="resources/displayRichMedia.html" sourcePath="resources/displayRichMedia.html"/>
+    <resourceEntry destPath="resources/displayTag.html" sourcePath="resources/displayTag.html"/>
+    <resourceEntry destPath="tv/superawesome/.DS_Store" sourcePath="tv/superawesome/.DS_Store"/>
+    <resourceEntry destPath="tv/superawesome/Data/.DS_Store" sourcePath="tv/superawesome/Data/.DS_Store"/>
     <resourceEntry destPath="tv/superawesome/Views/.DS_Store" sourcePath="tv/superawesome/Views/.DS_Store"/>
+    <resourceEntry destPath="resources/bg.png" sourcePath="resources/bg.png"/>
+    <resourceEntry destPath="resources/close.png" sourcePath="resources/close.png"/>
+    <resourceEntry destPath="tv/.DS_Store" sourcePath="tv/.DS_Store"/>
   </includeResources>
   <namespaceManifests/>
 </flexLibProperties>

@@ -1,4 +1,16 @@
+//
+//  SABannerAd.h
+//  tv.superawesome.Views
+//
+//  Copyright (c) 2015 SuperAwesome Ltd. All rights reserved.
+//
+//  Created by Gabriel Coman on 02/12/2015.
+//
+//
+
 package tv.superawesome.Views{
+	
+	// imports for this class
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.events.ErrorEvent;
@@ -10,24 +22,39 @@ package tv.superawesome.Views{
 	import flash.geom.Rectangle;
 	import flash.media.StageWebView;
 	import flash.system.Capabilities;
-	import flash.net.URLRequest;
-	import flash.net.navigateToURL;
-	
 	import tv.superawesome.Data.Models.SACreativeFormat;
-	import tv.superawesome.System.*;
+	import tv.superawesome.System.SASystem;
+	import tv.superawesome.Aux.SAAux;
+	import tv.superawesome.System.SASystemType;
 
+	//
+	// @brief: this is a descendant of SAView that actually implements a
+	// banner ad capable of displaying images, rich media, 3rd party tags, etc
 	public class SABannerAd extends SAView {
-		// the loader
+		// private variables
 		private var background: Sprite;
 		private var close: Sprite;
+		
+		// the whole mechanism is centered on StageWebView
 		private var webView: StageWebView;
 		
+		// constructor
 		function SABannerAd(frame: Rectangle) {
 			// call to super
 			super(frame);
 		}
 		
+		// overide of the SAView basic play function
 		public override function play(): void {	
+			// check for wrong format
+			if (ad.creative.format == SACreativeFormat.video) {
+				if (this.delegate != null) {
+					this.delegate.adHasIncorrectPlacement(ad.placementId);
+				}
+				return;
+			}
+			
+			// start displaying
 			if (this.stage != null) delayedDisplay();
 			else this.addEventListener(Event.ADDED_TO_STAGE, delayedDisplay);
 		}
@@ -55,9 +82,12 @@ package tv.superawesome.Views{
 			webView.stage = this.stage;
 			webView.addEventListener(Event.COMPLETE, success);
 			webView.addEventListener(ErrorEvent.ERROR, error);
-			webView.addEventListener(LocationChangeEvent.LOCATION_CHANGING, locationChanged);
+			webView.addEventListener(LocationChangeEvent.LOCATION_CHANGING, goToURL);
 			
-			var newR: Rectangle = super.arrangeAdInFrame(super.frame);
+			var newR:Rectangle = SAAux.arrangeAdInNewFrame(
+				super.frame,
+				new Rectangle(0, 0, ad.creative.details.width, ad.creative.details.height)
+			);
 			newR.x += super.frame.x;
 			newR.y += super.frame.y;
 			webView.viewPort = newR;
@@ -124,44 +154,10 @@ package tv.superawesome.Views{
 			}
 		}
 		
-		private function locationChanged(e:LocationChangeEvent): void {
-			// call delegate
-			if (this.delegate != null) {
-				this.delegate.adWasClicked(this.ad.placementId);
-			}
-			
-			var clickURL: URLRequest = null;
-			
-			switch (ad.creative.format) {
-				case SACreativeFormat.image: {
-					e.preventDefault();
-					e.stopImmediatePropagation();
-					
-					clickURL = new URLRequest(this.ad.creative.clickURL);
-					navigateToURL(clickURL, "_blank");
-					
-					break;
-				}
-				case SACreativeFormat.rich: {
-					// do nothing
-					break;
-				}
-				case SACreativeFormat.tag: {
-					e.preventDefault();
-					e.stopImmediatePropagation();
-					
-					var url: String = e.location;
-					var toDel:String = url.slice(0, url.indexOf("http"));
-					url = url.replace(toDel,"");
-					var finalURL: String = ad.creative.trackingURL + "&redir="+url;
-					
-					// navigate
-					clickURL = new URLRequest(url);
-					navigateToURL(clickURL, "_blank");
-					
-					break;
-				}
-			}
+		// stop function
+		public function stop(): void {
+			parent.removeChild(this);
+			webView.stage = null;
 		}
 	}
 }

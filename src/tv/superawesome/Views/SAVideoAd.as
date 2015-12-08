@@ -1,5 +1,16 @@
+//
+//  SAVideoAd.h
+//  tv.superawesome.Views
+//
+//  Copyright (c) 2015 SuperAwesome Ltd. All rights reserved.
+//
+//  Created by Gabriel Coman on 02/12/2015.
+//
+//
+
 package tv.superawesome.Views {
 	
+	// imports needed
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -10,16 +21,15 @@ package tv.superawesome.Views {
 	import flash.media.StageVideoAvailability;
 	import flash.net.NetConnection;
 	import flash.net.NetStream;
-	import flash.net.URLLoader;
-	import flash.net.URLRequest;
-	import flash.net.navigateToURL;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
-	
+	import tv.superawesome.Data.Models.SACreativeFormat;
 	import tv.superawesome.Data.Sender.SASender;
-	import tv.superawesome.Views.SAVideoAdProtocol;
+	import tv.superawesome.Views.Protocols.SAVideoAdProtocol;
 	
+	//
+	// @brief: a descendant of SAView that renders a video ad on screen
 	public class SAVideoAd extends SAView {
 		
 		// private vars
@@ -38,6 +48,15 @@ package tv.superawesome.Views {
 		
 		// display and delayed display functions
 		public override function play(): void {
+			// check for wrong format
+			if (ad.creative.format != SACreativeFormat.video) {
+				if (this.delegate != null) {
+					this.delegate.adHasIncorrectPlacement(ad.placementId);
+				}
+				return;
+			}
+			
+			// go forward and display the ad
 			if (stage) delayedDisplay();
 			else addEventListener(Event.ADDED_TO_STAGE, delayedDisplay);
 		}
@@ -46,11 +65,13 @@ package tv.superawesome.Views {
 			this.stage.addEventListener( StageVideoAvailabilityEvent.STAGE_VIDEO_AVAILABILITY , stageVideoState );
 		}
 		
+		// Stage Video Functions
 		private function stageVideoState( e:StageVideoAvailabilityEvent ):void{
 			
 			var available:Boolean = e.availability == StageVideoAvailability.AVAILABLE ;
 			
 			if ( available ) {
+				// net connection that plays the video
 				nc = new NetConnection() ;
 				nc.connect(null) ;
 				stream = new NetStream(nc) ;
@@ -63,6 +84,7 @@ package tv.superawesome.Views {
 				stream.addEventListener(NetStatusEvent.NET_STATUS, onStatus); 
 				stream.play(ad.creative.details.video) ;
 				
+				// the "more" button
 				var format: TextFormat = new TextFormat();
 				format.size = 32.0;
 				format.align = flash.text.TextFormatAlign.RIGHT;
@@ -75,7 +97,10 @@ package tv.superawesome.Views {
 				more.y = this.frame.y;
 				more.width = this.frame.width;
 				more.height = 40.0;
-				more.addEventListener(MouseEvent.CLICK, goToURL);
+				var scope:Object = this;
+				more.addEventListener(MouseEvent.CLICK, function (e:MouseEvent = null): void {
+					scope.goToURL(null);
+				});
 				this.addChild(more);
 			}
 		}
@@ -98,7 +123,7 @@ package tv.superawesome.Views {
 					trace("video stopped");
 					
 					// post VAST impression
-					SASender.sendEventToURL(ad.creative.completeURL);
+					SASender.sendEventToURL(ad.creative.videoCompleteURL);
 					
 					if (videoDelegate != null) {
 						videoDelegate.videoEnded(ad.placementId);
@@ -113,24 +138,13 @@ package tv.superawesome.Views {
 			}
 		}
 		
+		// functions needed for the video
 		public function onMetaData( info:Object ):void {
 			// do nothing
 		}
 		
 		public function onPlayStatus(info:Object): void {
 			// do nothing
-		}
-		
-		protected function goToURL(e: MouseEvent = null): void {
-			
-			if (this.delegate != null) {
-				this.delegate.adWasClicked(this.ad.placementId);
-			}
-			
-			trace(this.ad.creative.clickURL);
-			
-			var clickURL: URLRequest = new URLRequest(this.ad.creative.clickURL);
-			navigateToURL(clickURL, "_blank");
 		}
 	}
 }

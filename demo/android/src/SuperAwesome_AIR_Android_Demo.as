@@ -32,6 +32,7 @@ package
 			
 			SALoader.getInstance().delegate = this;
 			SALoader.getInstance().loadAd(10324);
+//			SALoader.getInstance().loadAd(28000);
 		}
 		
 		public function didLoadAd(ad: SAAd): void {

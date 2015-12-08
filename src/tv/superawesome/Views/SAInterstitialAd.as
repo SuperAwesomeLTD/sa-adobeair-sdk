@@ -1,29 +1,32 @@
+//
+//  SAInterstitialAd.h
+//  tv.superawesome.Views
+//
+//  Copyright (c) 2015 SuperAwesome Ltd. All rights reserved.
+//
+//  Created by Gabriel Coman on 02/12/2015.
+//
+//
+
 package tv.superawesome.Views{
 	
+	// imports
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
-	import flash.events.ErrorEvent;
 	import flash.events.Event;
-	import flash.events.LocationChangeEvent;
 	import flash.events.MouseEvent;
-	import flash.filesystem.File;
-	import flash.filesystem.FileMode;
-	import flash.filesystem.FileStream;
 	import flash.geom.Rectangle;
-	import flash.media.StageWebView;
-	import flash.net.URLRequest;
-	import flash.net.navigateToURL;
-	import flash.system.Capabilities;
 	
-	import tv.superawesome.Data.Models.SACreativeFormat;
-	import tv.superawesome.System.*;
-	
+	//
+	// @brief: Class that both extends SAView (to get access to a lot of
+	// the useful functions provided by this) and uses a SABannerAd
+	// to render an interstitial ad
 	public class SAInterstitialAd extends SAView{
 		
 		// private vars
 		private var background: Sprite;
 		private var close: Sprite;
-		private var webView: StageWebView;
+		private var banner:SABannerAd;
 		
 		// constructor
 		public function SAInterstitialAd(){
@@ -31,12 +34,14 @@ package tv.superawesome.Views{
 			super(new Rectangle(0, 0, 0, 0));
 		}
 		
+		// on Resize - is called when rotating the phone, for example
 		public function onResize(...ig): void {
 			if (super.ad != null) {
 				this.play();
 			}
 		}
 		
+		// override of play function
 		public override function play(): void {	
 			if (this.stage != null) delayedDisplay();
 			else this.addEventListener(Event.ADDED_TO_STAGE, delayedDisplay);
@@ -64,88 +69,25 @@ package tv.superawesome.Views{
 			background.height = super.frame.height;
 			
 			////////////////////////////////////////////////
-			// 2. create webview
-			if (webView == null) {
-				webView = new StageWebView(true);
-				webView.stage = this.stage;
-				webView.addEventListener(Event.COMPLETE, success);
-				webView.addEventListener(ErrorEvent.ERROR, error);
-				webView.addEventListener(LocationChangeEvent.LOCATION_CHANGING, locationChanged);
+			// 2. create banner
+			if (banner == null) {
+				banner = new SABannerAd(new Rectangle(0, 0, 0, 0));
+				banner.setAd(ad);
+			} else {
+				banner.stop();
 			}
 			
 			var tW: Number = super.frame.width * 0.85;
 			var tH: Number = super.frame.height * 0.85;
 			var tX: Number = ( super.frame.width - tW ) / 2;
 			var tY: Number = ( super.frame.height - tH) / 2;
-			var newR: Rectangle = super.arrangeAdInFrame(new Rectangle(tX, tY, tW, tH));
-			newR.x += tX;
-			newR.y += tY;
-			webView.viewPort = newR;
-			
-			switch (ad.creative.format){
-				case SACreativeFormat.image: {
-					webView.loadString(ad.adHTML);
-					break;
-				}
-				case SACreativeFormat.rich: {
-					
-					var _stype: String = SASystem.getSystemType();
-					
-					// If the deployment target is iPhone, then do some hacks to display 
-					// rich media properly scaled
-					if (_stype == SASystemType.ios) {
-						var scale: Number = 1;
-						if (ad.creative.details.width < ad.creative.details.height) {
-							scale = newR.width / Math.min(this.stage.stageWidth, this.stage.stageHeight);
-						} else {
-							scale = newR.height / Math.max(this.stage.stageWidth, this.stage.stageHeight);
-						}
-						
-						var finalString1: String = ad.adHTML;
-						finalString1 = finalString1.replace("_PARAM_SCALE_", scale);
-						finalString1 = finalString1.replace("_PARAM_SCALE_", scale);
-						finalString1 = finalString1.replace("_PARAM_DPI_", "device-dpi");
-						
-						webView.loadString(finalString1);
-					} 
-					// If the deployment target is not iPhone (then Android), do some other
-					// hacks to display rich media properly scaled
-					else if (_stype == SASystemType.android) {
-						var cdpi: Number = Capabilities.screenDPI;
-						var ndpi: Number =  Math.floor((ad.creative.details.width * cdpi) / newR.width);
-						
-						var finalString2: String = ad.adHTML;
-						finalString2 = finalString2.replace("_PARAM_SCALE_", "1.0");
-						finalString2 = finalString2.replace("_PARAM_SCALE_", "1.0");
-						finalString2 = finalString2.replace("_PARAM_DPI_", (ndpi + "dpi"));
-						trace(finalString2);
-						webView.loadString(finalString2);
-					}
-					
-					break;
-				}
-				case SACreativeFormat.tag: {
-					var finalHTML: String = ad.adHTML;
-					
-					var file:File = File.applicationStorageDirectory; 
-					file = file.resolvePath("tmpTag.html");
-					var fileStream: FileStream = new FileStream();
-					fileStream.open(file, FileMode.WRITE);
-					fileStream.writeUTFBytes(finalHTML);
-					fileStream.close();
-					
-					var destination:File = File.applicationStorageDirectory.resolvePath("docs/tmpTag.html");
-					file.copyTo(destination, true);   
-					var finalURL: String = "file://" + destination.nativePath ;
-					
-					webView.loadURL(finalURL);
-					
-					break;
-				}
-			}
-			
+			banner.frame = new Rectangle(tX, tY, tW, tH);
+			banner.setAd(ad);
+			addChild(banner);
+			banner.play();
+		
 			////////////////////////////////////////////////
-			// create close button
+			// 3. create close button
 			if (close == null) {
 				[Embed(source = '../../../resources/close.png')] var CancelIconClass:Class;
 				var bmp: Bitmap = new CancelIconClass();
@@ -164,54 +106,16 @@ package tv.superawesome.Views{
 			close.height = cS / 2.0;
 		}
 		
+		//
+		// This function closes the interstitial
 		private function closeAction(event: MouseEvent): void {
 			// call remove child
+			banner.stop();
 			parent.removeChild(this);
-			webView.stage = null;
 			
 			// call delegate
 			if (super.delegate != null) {
 				super.delegate.adWasClosed(ad.placementId);
-			}
-		}
-		
-		private function locationChanged(e:LocationChangeEvent): void {
-			// call delegate
-			if (this.delegate != null) {
-				this.delegate.adWasClicked(this.ad.placementId);
-			}
-			
-			var clickURL: URLRequest = null;
-			
-			switch (ad.creative.format) {
-				case SACreativeFormat.image: {
-					e.preventDefault();
-					e.stopImmediatePropagation();
-					
-					clickURL = new URLRequest(this.ad.creative.clickURL);
-					navigateToURL(clickURL, "_blank");
-					
-					break;
-				}
-				case SACreativeFormat.rich: {
-					// do nothing
-					break;
-				}
-				case SACreativeFormat.tag: {
-					e.preventDefault();
-					e.stopImmediatePropagation();
-					
-					var url: String = e.location;
-					var toDel:String = url.slice(0, url.indexOf("http"));
-					url = url.replace(toDel,"");
-					var finalURL: String = ad.creative.trackingURL + "&redir="+url;
-					
-					// navigate
-					clickURL = new URLRequest(url);
-					navigateToURL(clickURL, "_blank");
-					
-					break;
-				}
 			}
 		}
 	}
