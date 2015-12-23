@@ -91,6 +91,8 @@ package tv.superawesome.Views {
 				this.ad.creative.fullClickURL = this.ad.creative.trackingURL + "&redir=" + e.location;
 			}
 			
+			trace("fullClickURL " + this.ad.creative.fullClickURL);
+			
 			var clickURL:URLRequest = new URLRequest(this.ad.creative.fullClickURL);
 			navigateToURL(clickURL, "_blank");
 		}

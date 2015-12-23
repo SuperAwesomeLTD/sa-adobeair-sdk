@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses/>
+  <includeResources>
+    <resourceEntry destPath="resources/displayImage.html" sourcePath="resources/displayImage.html"/>
+    <resourceEntry destPath="com/.DS_Store" sourcePath="com/.DS_Store"/>
+    <resourceEntry destPath="resources/.DS_Store" sourcePath="resources/.DS_Store"/>
+    <resourceEntry destPath="tv/superawesome/.DS_Store" sourcePath="tv/superawesome/.DS_Store"/>
+    <resourceEntry destPath="resources/close.png" sourcePath="resources/close.png"/>
+    <resourceEntry destPath="resources/displayTag.html" sourcePath="resources/displayTag.html"/>
+    <resourceEntry destPath="tv/.DS_Store" sourcePath="tv/.DS_Store"/>
+    <resourceEntry destPath="com/adobe/.DS_Store" sourcePath="com/adobe/.DS_Store"/>
+    <resourceEntry destPath="resources/displayRichMedia.html" sourcePath="resources/displayRichMedia.html"/>
+    <resourceEntry destPath="tv/superawesome/Data/.DS_Store" sourcePath="tv/superawesome/Data/.DS_Store"/>
+    <resourceEntry destPath=".DS_Store" sourcePath=".DS_Store"/>
+    <resourceEntry destPath="resources/bg.png" sourcePath="resources/bg.png"/>
+    <resourceEntry destPath="tv/superawesome/Views/.DS_Store" sourcePath="tv/superawesome/Views/.DS_Store"/>
+  </includeResources>
+  <namespaceManifests/>
+</flexLibProperties>
