@@ -15,6 +15,7 @@ package tv.superawesome.Views {
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
 	import flash.events.LocationChangeEvent;
+	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
@@ -48,9 +49,14 @@ package tv.superawesome.Views {
 			this.ad = _ad;
 		}
 		
-		// public play functions
+		// public play function
 		public function play(): void {
 			// do nothing	
+		}
+		
+		// public close function
+		public function close(event: MouseEvent = null): void {
+			// do nothing
 		}
 		
 		//

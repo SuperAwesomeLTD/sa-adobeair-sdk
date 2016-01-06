@@ -16,6 +16,7 @@ package tv.superawesome.Views {
 	import flash.events.MouseEvent;
 	import flash.events.NetStatusEvent;
 	import flash.events.StageVideoAvailabilityEvent;
+	import flash.events.StageVideoEvent;
 	import flash.geom.Rectangle;
 	import flash.media.StageVideo;
 	import flash.media.StageVideoAvailability;
@@ -24,6 +25,7 @@ package tv.superawesome.Views {
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
+	
 	import tv.superawesome.Data.Models.SACreativeFormat;
 	import tv.superawesome.Data.Sender.SASender;
 	import tv.superawesome.Views.Protocols.SAVideoAdProtocol;
@@ -58,6 +60,16 @@ package tv.superawesome.Views {
 			// go forward and display the ad
 			if (stage) delayedDisplay();
 			else addEventListener(Event.ADDED_TO_STAGE, delayedDisplay);
+		}
+		
+		// close function
+		public override function close(e: MouseEvent = null): void {
+			stream.dispose();
+			
+			video.viewPort = new Rectangle(0, 0, 0, 0);
+			video.attachNetStream(null);
+			video = null;
+			this.parent.removeChild(this);
 		}
 		
 		private function delayedDisplay(e:Event = null): void {

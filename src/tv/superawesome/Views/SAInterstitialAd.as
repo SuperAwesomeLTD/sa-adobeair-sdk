@@ -25,7 +25,7 @@ package tv.superawesome.Views{
 		
 		// private vars
 		private var background: Sprite = new Sprite();
-		private var close: Sprite = new Sprite();
+		private var closeBtn: Sprite = new Sprite();
 		private var banner:SABannerAd = new SABannerAd(new Rectangle(0, 0, 0, 0));
 		
 		// external resources
@@ -55,11 +55,11 @@ package tv.superawesome.Views{
 				background.height = super.frame.height;
 				
 				// rearrange close btn
-				var cS: Number = Math.min(super.frame.width, super.frame.height) * 0.15;
-				close.x = super.frame.width - cS / 2.0;
-				close.y = 0;
-				close.width = cS / 2.0;
-				close.height = cS / 2.0;
+				var cS: Number = Math.min(this.frame.width, this.frame.height) * 0.15;
+				closeBtn.x = this.frame.width - cS / 2.0;
+				closeBtn.y = 0;
+				closeBtn.width = cS / 2.0;
+				closeBtn.height = cS / 2.0;
 			
 				// rearrange banner
 				var tW: Number = super.frame.width * 0.85;
@@ -79,45 +79,35 @@ package tv.superawesome.Views{
 		
 		private function delayedDisplay(e:Event = null): void {
 			
+			// get the new frame
 			this.frame = new Rectangle(0, 0, this.stage.stageWidth, this.stage.stageHeight);
+			
+			// add resize listener
 			this.stage.addEventListener(Event.RESIZE, onResize);
 			
-			////////////////////////////////////////////////
-			// 1. create background
-			background.x = super.frame.x;
-			background.y = super.frame.y;
-			background.width = super.frame.width;
-			background.height = super.frame.height;
+			// create the elements background
 			background.addChild(bmp2);
 			this.addChildAt(background, 0);
 			
-			////////////////////////////////////////////////
-			// 2. create banner
-			var tW: Number = super.frame.width * 0.85;
-			var tH: Number = super.frame.height * 0.85;
-			var tX: Number = ( super.frame.width - tW ) / 2;
-			var tY: Number = ( super.frame.height - tH) / 2;
-			banner.frame = new Rectangle(tX, tY, tW, tH);
 			banner.setAd(ad);
 			banner.adDelegate = this.adDelegate;
 			this.addChild(banner);
 			banner.play();
 		
-			////////////////////////////////////////////////
-			// 3. create close button
-			var cS: Number = Math.min(super.frame.width, super.frame.height) * 0.15;
-			close.x = super.frame.width - cS / 2.0;
-			close.y = 0;
-			close.width = cS / 2.0;
-			close.height = cS / 2.0;
-			close.addEventListener(MouseEvent.CLICK, closeAction);
-			close.addChild(bmp);
-			this.addChildAt(close, 1);
+			closeBtn.addEventListener(MouseEvent.CLICK, close);
+			closeBtn.addChild(bmp);
+			this.addChildAt(closeBtn, 1);
+			
+			// call on resize to resize them all
+			this.onResize();
 		}
 		
 		//
 		// This function closes the interstitial
-		private function closeAction(event: MouseEvent): void {
+		public override function close(event: MouseEvent = null): void {
+			// remove this
+			this.stage.removeEventListener(Event.RESIZE, onResize);
+			
 			// call remove child
 			banner.stop();
 			parent.removeChild(this);
