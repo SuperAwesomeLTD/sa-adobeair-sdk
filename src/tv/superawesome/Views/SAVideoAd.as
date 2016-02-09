@@ -113,6 +113,9 @@ package tv.superawesome.Views {
 					scope.goToURL(null);
 				});
 				this.addChild(more);
+			} else {
+				trace("No stage available");
+				error();
 			}
 		}
 		

@@ -67,7 +67,9 @@ package tv.superawesome.Views{
 				var tX: Number = ( super.frame.width - tW ) / 2;
 				var tY: Number = ( super.frame.height - tH) / 2;
 				banner.frame = new Rectangle(tX, tY, tW, tH);
-				banner.play();
+				if (banner != null){
+					banner.play();
+				}
 			}
 		}
 		
@@ -92,8 +94,10 @@ package tv.superawesome.Views{
 			banner.setAd(ad);
 			banner.adDelegate = this.adDelegate;
 			this.addChild(banner);
-			banner.play();
-		
+			if (banner != null) {
+				banner.play();	
+			}
+			
 			closeBtn.addEventListener(MouseEvent.CLICK, close);
 			closeBtn.addChild(bmp);
 			this.addChildAt(closeBtn, 1);

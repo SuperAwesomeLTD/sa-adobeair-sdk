@@ -10,16 +10,12 @@ package
 	import tv.superawesome.Data.Loader.SALoaderProtocol;
 	import tv.superawesome.Data.Models.SAAd;
 	import tv.superawesome.System.SASystem;
-	import tv.superawesome.Views.SABannerAd;
 	import tv.superawesome.Views.SAInterstitialAd;
 	import tv.superawesome.Views.SAVideoAd;
 	import tv.superawesome.Views.Protocols.SAAdProtocol;
-	import tv.superawesome.Views.Protocols.SAVideoAdProtocol;
 	
-	public class SuperAwesome_AIR_Android_Demo extends Sprite implements SALoaderProtocol, SAAdProtocol, SAVideoAdProtocol
-	{
-		public function SuperAwesome_AIR_Android_Demo()
-		{
+	public class AndroidDemo extends Sprite implements SALoaderProtocol, SAAdProtocol {
+		public function AndroidDemo() {
 			super();
 			
 			// support autoOrients
@@ -30,19 +26,24 @@ package
 			trace(SASystem.getSystemType() + "_" + SASystem.getSystemSize());
 			
 			SuperAwesome.getInstance().disableTestMode();
-			SuperAwesome.getInstance().setConfigurationStaging();
+			SuperAwesome.getInstance().setConfigurationDevelopment();
 			
 			SALoader.getInstance().delegate = this;
-			SALoader.getInstance().loadAd(7455);
+			SALoader.getInstance().loadAd(5);
 		}
 		
 		public function didLoadAd(ad: SAAd): void {
+			ad.print();
 			var vad:SAVideoAd = new SAVideoAd(new Rectangle(0, 40, 640, 480));
 			vad.setAd(ad);
 			vad.adDelegate = this;
-			vad.videoDelegate = this;
 			addChild(vad);
 			vad.play();
+//			var vad:SAVideoAd = new SAVideoAd(new Rectangle(0, 40, 640, 480));
+//			vad.setAd(ad);
+//			vad.adDelegate = this;
+//			addChild(vad);
+//			vad.play();
 		}
 		
 		public function didFailToLoadAdForPlacementId(placementId: int): void {
@@ -67,26 +68,6 @@ package
 		
 		public function adHasIncorrectPlacement(placementId: int): void {
 			trace(placementId + " adHasIncorrectPlacement");
-		}
-		
-		public function videoStarted(placementId: int): void {
-			trace(placementId + " videoStarted");
-		}
-		
-		public function videoReachedFirstQuartile(placementId:int): void {
-			trace(placementId + " videoReachedFirstQuartile");
-		}
-		
-		public function videoReachedMidpoint(placementId:int): void {
-			trace(placementId + " videoReachedMidpoint");
-		}
-		
-		public function videoReachedThirdQuartile(placementId: int): void {
-			trace(placementId + " videoReachedThirdQuartile");
-		}
-		
-		public function videoEnded(placementId:int): void {
-			trace(placementId + " videoEnded");
 		}
 	}
 }
