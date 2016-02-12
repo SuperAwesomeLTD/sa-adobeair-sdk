@@ -17,6 +17,8 @@ package tv.superawesome.Views{
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 	
+	import tv.superawesome.Data.Models.SACreativeFormat;
+	
 	//
 	// @brief: Class that both extends SAView (to get access to a lot of
 	// the useful functions provided by this) and uses a SABannerAd
@@ -75,6 +77,14 @@ package tv.superawesome.Views{
 		
 		// override of play function
 		public override function play(): void {	
+			// check for wrong format
+			if (ad.creative.format == SACreativeFormat.video) {
+				if (this.adDelegate != null) {
+					this.adDelegate.adHasIncorrectPlacement(ad.placementId);
+				}
+				return;
+			}
+			
 			if (this.stage != null) delayedDisplay();
 			else this.addEventListener(Event.ADDED_TO_STAGE, delayedDisplay);
 		}

@@ -11,12 +11,10 @@
 package tv.superawesome.Views {
 	
 	// imports needed
-	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.NetStatusEvent;
 	import flash.events.StageVideoAvailabilityEvent;
-	import flash.events.StageVideoEvent;
 	import flash.geom.Rectangle;
 	import flash.media.StageVideo;
 	import flash.media.StageVideoAvailability;
@@ -110,7 +108,7 @@ package tv.superawesome.Views {
 				more.height = 40.0;
 				var scope:Object = this;
 				more.addEventListener(MouseEvent.CLICK, function (e:MouseEvent = null): void {
-					scope.goToURL(null);
+					scope.goToURL();
 				});
 				this.addChild(more);
 			} else {
@@ -125,6 +123,11 @@ package tv.superawesome.Views {
 				case "NetStream.Play.Start":{
 					trace("video started");
 					
+					// send video events
+					for (var i: int = 0; i < ad.creative.impresionURL.length; i++) {
+						SASender.sendEventToURL(ad.creative.impresionURL[i]);
+					}
+					
 					// post VAST impression & other success stuff
 					success();
 					
@@ -137,7 +140,9 @@ package tv.superawesome.Views {
 					trace("video stopped");
 					
 					// post VAST impression
-					SASender.sendEventToURL(ad.creative.videoCompleteURL);
+					for (var t: int = 0; t < ad.creative.videoCompleteURL.length; t++) {
+						SASender.sendEventToURL(ad.creative.videoCompleteURL[t]);
+					}
 					
 					if (videoDelegate != null) {
 						videoDelegate.videoEnded(ad.placementId);

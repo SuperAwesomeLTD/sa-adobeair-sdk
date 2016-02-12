@@ -94,10 +94,8 @@ package tv.superawesome.Views {
 			}
 			
 			if (!this.ad.creative.isFullClickURLReliable) {
-				this.ad.creative.fullClickURL = this.ad.creative.trackingURL + "&redir=" + e.location;
+				SASender.sendEventToURL(ad.creative.trackingURL);
 			}
-			
-			trace("fullClickURL " + this.ad.creative.fullClickURL);
 			
 			var clickURL:URLRequest = new URLRequest(this.ad.creative.fullClickURL);
 			navigateToURL(clickURL, "_blank");
