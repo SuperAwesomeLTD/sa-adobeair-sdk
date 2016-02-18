@@ -33,7 +33,7 @@ package
 			trace(SASystem.getSystemType() + "_" + SASystem.getSystemSize());
 			
 			SuperAwesome.getInstance().disableTestMode();
-			SuperAwesome.getInstance().setConfigurationStaging();
+			SuperAwesome.getInstance().setConfigurationProduction();
 			
 			var goButton:SimpleButton = new SimpleButton();
 			
@@ -48,8 +48,8 @@ package
 			goButton.addEventListener(MouseEvent.CLICK, loadTheAd);
 			
 			SALoader.getInstance().delegate = this;
-			SALoader.getInstance().loadAd(79);
-//			SALoader.getInstance().loadAd(28000);
+//			SALoader.getInstance().loadAd(79);
+			SALoader.getInstance().loadAd(28000);
 			
 //			var parser:SAVASTParser = new SAVASTParser();
 //			parser.simpleVASTParse("https://ads.staging.superawesome.tv/v2/video/vast/79/336/554/?sdkVersion=unknown&rnd=288097736", function (vastdata: SAVASTData): void {
