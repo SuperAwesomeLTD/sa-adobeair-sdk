@@ -33,7 +33,8 @@ package
 			trace(SASystem.getSystemType() + "_" + SASystem.getSystemSize());
 			
 			SuperAwesome.getInstance().disableTestMode();
-			SuperAwesome.getInstance().setConfigurationProduction();
+//			SuperAwesome.getInstance().setConfigurationProduction();
+			SuperAwesome.getInstance().setConfigurationStaging();
 			
 			var goButton:SimpleButton = new SimpleButton();
 			
@@ -48,8 +49,8 @@ package
 			goButton.addEventListener(MouseEvent.CLICK, loadTheAd);
 			
 			SALoader.getInstance().delegate = this;
-//			SALoader.getInstance().loadAd(79);
-			SALoader.getInstance().loadAd(28000);
+			SALoader.getInstance().loadAd(232);
+//			SALoader.getInstance().loadAd(28000);
 			
 //			var parser:SAVASTParser = new SAVASTParser();
 //			parser.simpleVASTParse("https://ads.staging.superawesome.tv/v2/video/vast/79/336/554/?sdkVersion=unknown&rnd=288097736", function (vastdata: SAVASTData): void {
@@ -63,15 +64,15 @@ package
 		
 		public function loadTheAd(event: MouseEvent = null): void {
 			if (adData != null) {
-//				var iad:SAInterstitialAd = new SAInterstitialAd();
-//				iad.setAd(adData);
+				var iad:SAInterstitialAd = new SAInterstitialAd();
+				iad.setAd(adData);
 //				iad.adDelegate = this;
-//				addChildAt(iad, 0);
-//				iad.play();
-				var vad:SAVideoAd = new SAVideoAd(new Rectangle(0, 100, 640, 480));
-				vad.setAd(adData);
-				addChild(vad);
-				vad.play();
+				addChildAt(iad, 0);
+				iad.play();
+//				var vad:SAVideoAd = new SAVideoAd(new Rectangle(0, 100, 640, 480));
+//				vad.setAd(adData);
+//				addChild(vad);
+//				vad.play();
 			}
 		}
 		

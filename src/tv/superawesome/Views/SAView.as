@@ -20,9 +20,11 @@ package tv.superawesome.Views {
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
 	
+	import tv.superawesome.SuperAwesome;
 	import tv.superawesome.Data.Models.SAAd;
 	import tv.superawesome.Data.Sender.SASender;
 	import tv.superawesome.Views.Protocols.SAAdProtocol;
+	import tv.superawesome.Data.Models.SACreativeFormat;
 
 	//
 	// @brief: base class for Adobe AIR rendering
@@ -88,16 +90,27 @@ package tv.superawesome.Views {
 				this.adDelegate.adWasClicked(this.ad.placementId);
 			}
 			
+			var destinationURL: String = null;
 			if(e != null) {
 				e.preventDefault();
 				e.stopImmediatePropagation();
+				destinationURL = e.location;
+			} 
+			// mostly for video
+			else {
+				destinationURL = this.ad.creative.clickURL;
 			}
 			
-			if (!this.ad.creative.isFullClickURLReliable) {
+			// if destination URL exists (comes from the webview) but it does not contain
+			// anything related to SA ... 
+			if (destinationURL != null && 
+				destinationURL.indexOf(SuperAwesome.getInstance().getBaseURL()) < 0 &&
+				ad.creative.format != SACreativeFormat.video) 
+			{
 				SASender.sendEventToURL(ad.creative.trackingURL);
 			}
 			
-			var clickURL:URLRequest = new URLRequest(this.ad.creative.fullClickURL);
+			var clickURL:URLRequest = new URLRequest(destinationURL);
 			navigateToURL(clickURL, "_blank");
 		}
 	}

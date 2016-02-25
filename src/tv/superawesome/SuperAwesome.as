@@ -39,7 +39,7 @@ package tv.superawesome {
 		
 		// public (useful) functions
 		override public function getVersion(): String {
-			return "3.1.4";
+			return "3.1.5";
 		}
 		
 		override public function getSdk(): String {

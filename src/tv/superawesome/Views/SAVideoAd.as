@@ -108,6 +108,13 @@ package tv.superawesome.Views {
 				more.height = 40.0;
 				var scope:Object = this;
 				more.addEventListener(MouseEvent.CLICK, function (e:MouseEvent = null): void {
+					
+					// send vast events 
+					for (var p: int = 0; p < ad.creative.videoClickTrackingURLs.length; p++) {
+						SASender.sendEventToURL(ad.creative.videoClickTrackingURLs[p]);
+					}
+					
+					// go to URL
 					scope.goToURL();
 				});
 				this.addChild(more);
