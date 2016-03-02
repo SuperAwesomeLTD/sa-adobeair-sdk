@@ -49,7 +49,7 @@ package
 			goButton.addEventListener(MouseEvent.CLICK, loadTheAd);
 			
 			SALoader.getInstance().delegate = this;
-			SALoader.getInstance().loadAd(232);
+			SALoader.getInstance().loadAd(2109);
 //			SALoader.getInstance().loadAd(28000);
 			
 //			var parser:SAVASTParser = new SAVASTParser();
@@ -64,15 +64,15 @@ package
 		
 		public function loadTheAd(event: MouseEvent = null): void {
 			if (adData != null) {
-				var iad:SAInterstitialAd = new SAInterstitialAd();
-				iad.setAd(adData);
+//				var iad:SAInterstitialAd = new SAInterstitialAd();
+//				iad.setAd(adData);
 //				iad.adDelegate = this;
-				addChildAt(iad, 0);
-				iad.play();
-//				var vad:SAVideoAd = new SAVideoAd(new Rectangle(0, 100, 640, 480));
-//				vad.setAd(adData);
-//				addChild(vad);
-//				vad.play();
+//				addChildAt(iad, 0);
+//				iad.play();
+				var vad:SAVideoAd = new SAVideoAd(new Rectangle(0, 100, 640, 480));
+				vad.setAd(adData);
+				addChild(vad);
+				vad.play();
 			}
 		}
 		

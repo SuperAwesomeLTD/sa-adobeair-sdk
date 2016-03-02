@@ -1,49 +1,83 @@
-//
-//  SuperAwesome.h
-//  tv.superawesome
-//
-//  Copyright (c) 2015 SuperAwesome Ltd. All rights reserved.
-//
-//  Created by Gabriel Coman on 28/09/2015.
-//
-//
 package tv.superawesome {
-
-	// 
-	// @brief: this class is a descendant of SuperAwesomeCommon
-	// that implements AIR SDK specific functionality
-	public class SuperAwesome extends SuperAwesomeCommon {
+	public class SuperAwesome {
 		
-		// singleton part
+		/** constants */
+		private const BASE_URL_STAGING: String = "https://ads.staging.superawesome.tv/v2";
+		private const BASE_URL_DEVELOPMENT: String = "https://ads.dev.superawesome.tv/v2";
+		private const BASE_URL_PRODUCTION: String = "https://ads.superawesome.tv/v2";
+		
+		private var baseUrl: String;
+		private var isTestEnabled: Boolean;
+		private var configuration: int;
+		
+		/** singleton part */
 		private static var _instance: SuperAwesome;
-		
-		// the constructor, which acts as a Singleton
-		public function SuperAwesome() {
-			if (_instance) {
-				throw new Error("Singleton... use getInstance()");
-			}
-			
-			// enable cross domain and default values
-			this.disableTestMode();
-			this.setConfigurationProduction();
-			
-			// instrance
-			_instance = this;
-		}
-		
-		// main accessor function
 		public static function getInstance(): SuperAwesome {
 			if (!_instance) { new SuperAwesome(); }
 			return _instance;
 		}
 		
-		// public (useful) functions
-		override public function getVersion(): String {
-			return "3.1.5";
+		/** the constructor, which acts as a Singleton */
+		public function SuperAwesome() {
+			if (_instance) {
+				throw new Error("Singleton... use getInstance()");
+			}
+			
+			this.setConfigurationProduction();
+			this.disableTestMode();
+			
+			/** instrance */
+			_instance = this;
 		}
 		
-		override public function getSdk(): String {
+		/** functions to get info about the current SDK */
+		private function getVersion(): String {
+			return "4.0.0";
+		}
+		
+		private function getSdk(): String {
 			return "air";
+		}
+		
+		public function getSdkVersion(): String {
+			return getSdk() + "_" + getVersion();
+		}
+		
+		/** config functions */
+		public function setConfigurationProduction(): void {
+			configuration = SAConfiguration.PRODUCTION;
+			baseUrl = BASE_URL_PRODUCTION;
+		}
+		
+		public function setConfigurationStaging(): void {
+			configuration = SAConfiguration.STAGING;
+			baseUrl = BASE_URL_STAGING;
+		}
+		
+		public function setConfigurationDevelopment(): void {
+			configuration = SAConfiguration.DEVELOPMENT;
+			baseUrl = BASE_URL_DEVELOPMENT;
+		}
+		
+		public function getBaseURL(): String {
+			return baseUrl;
+		}
+		
+		public function getConfiguration(): int {
+			return configuration;
+		}
+		
+		/** testing functions */
+		public function enableTestMode(): void {
+			this.isTestEnabled = true;
+		}
+		
+		public function disableTestMode(): void {
+			this.isTestEnabled = false;
+		}
+		
+		public function isTestingEnabled(): Boolean {
+			return this.isTestEnabled;
 		}
 	}
 }
