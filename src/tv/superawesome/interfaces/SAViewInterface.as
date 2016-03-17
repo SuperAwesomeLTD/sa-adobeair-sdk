@@ -1,5 +1,7 @@
 package tv.superawesome.interfaces {
 	
+	/** imports needed for this interface */
+	import flash.events.StatusEvent;
 	import tv.superawesome.SAAd;
 	
 	/**
@@ -17,5 +19,8 @@ package tv.superawesome.interfaces {
 		
 		/** function that closes the ad */
 		function close(): void;
+		
+		/** native callback function */
+		function nativeCallback(event:StatusEvent): void ;
 	}
 }

@@ -7,113 +7,103 @@ package
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 	
+	import tv.superawesome.SAAd;
+	import tv.superawesome.SAFullscreenVideoAd;
+	import tv.superawesome.SALoader;
 	import tv.superawesome.SuperAwesome;
-	import tv.superawesome.Data.Loader.SALoader;
-	import tv.superawesome.Data.Loader.SALoaderProtocol;
-	import tv.superawesome.Data.Models.SAAd;
-	import tv.superawesome.Data.Parser.SAVASTData;
-	import tv.superawesome.Data.Parser.SAVASTParser;
-	import tv.superawesome.System.SASystem;
-	import tv.superawesome.Views.SAInterstitialAd;
-	import tv.superawesome.Views.SAVideoAd;
-	import tv.superawesome.Views.Protocols.SAAdProtocol;
+	import tv.superawesome.interfaces.SAAdInterface;
+	import tv.superawesome.interfaces.SALoaderInterface;
+	import tv.superawesome.interfaces.SAVideoAdInterface;
 	
-	public class AndroidDemo extends Sprite implements SALoaderProtocol, SAAdProtocol {
+	public class AndroidDemo extends Sprite implements SALoaderInterface, SAAdInterface, SAVideoAdInterface {
 		
-		var adData:SAAd = null;
+		private var loader:SALoader = new SALoader();
+		private var fvad:SAFullscreenVideoAd;
 		
 		public function AndroidDemo() {
 			super();
 			
-			// support autoOrients
+			/** support autoOrients */
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
-			trace(SuperAwesome.getInstance().getSdkVersion());
-			trace(SASystem.getSystemType() + "_" + SASystem.getSystemSize());
-			
+			/** setup the demo */
+			SuperAwesome.getInstance().setConfigurationProduction();
 			SuperAwesome.getInstance().disableTestMode();
-//			SuperAwesome.getInstance().setConfigurationProduction();
-			SuperAwesome.getInstance().setConfigurationStaging();
 			
-			var goButton:SimpleButton = new SimpleButton();
 			
-			var myButtonSprite:Sprite = new Sprite();
-			myButtonSprite.graphics.lineStyle(1, 0x555555);
-			myButtonSprite.graphics.beginFill(0xff000,1);
-			myButtonSprite.graphics.drawRect(0,50,400,100);
-			myButtonSprite.graphics.endFill();
-			
-			goButton.overState = goButton.downState = goButton.upState = goButton.hitTestState = myButtonSprite;
-			addChild(goButton);
-			goButton.addEventListener(MouseEvent.CLICK, loadTheAd);
-			
-			SALoader.getInstance().delegate = this;
-			SALoader.getInstance().loadAd(2109);
-//			SALoader.getInstance().loadAd(28000);
-			
-//			var parser:SAVASTParser = new SAVASTParser();
-//			parser.simpleVASTParse("https://ads.staging.superawesome.tv/v2/video/vast/79/336/554/?sdkVersion=unknown&rnd=288097736", function (vastdata: SAVASTData): void {
-//				vastdata.print();
-//			});
-//			var parser2:SAVASTParser = new SAVASTParser();
-//			parser2.simpleVASTParse("https://rtr.innovid.com/r1.56bba2bd642b83.82132076;cb=[timestamp]", function (vastdata2: SAVASTData): void {
-//				vastdata2.print();
-//			});
-		}
-		
-		public function loadTheAd(event: MouseEvent = null): void {
-			if (adData != null) {
-//				var iad:SAInterstitialAd = new SAInterstitialAd();
-//				iad.setAd(adData);
-//				iad.adDelegate = this;
-//				addChildAt(iad, 0);
-//				iad.play();
-				var vad:SAVideoAd = new SAVideoAd(new Rectangle(0, 100, 640, 480));
-				vad.setAd(adData);
-				addChild(vad);
-				vad.play();
-			}
+			loader.delegate = this;
+			loader.loadAd(30888);
 		}
 		
 		public function didLoadAd(ad: SAAd): void {
-			ad.print();
-			adData = ad;
-//			var vad:SAVideoAd = new SAVideoAd(new Rectangle(0, 40, 640, 480));
-//			vad.setAd(ad);
-//			vad.adDelegate = this;
-//			addChild(vad);
-//			vad.play();
+			trace(ad.placementId);
+			trace(ad.adJson);
 			
-//			var vad:SAVideoAd = new SAVideoAd(new Rectangle(0, 40, 640, 480));
-//			vad.setAd(ad);
-//			vad.adDelegate = this;
-//			addChild(vad);
-//			vad.play();
+			fvad = new SAFullscreenVideoAd();
+			fvad.setAd(ad);
+			fvad.adDelegate = this;
+			fvad.videoAdDelegate = this;
+			fvad.shouldAutomaticallyCloseAtEnd = true;
+			fvad.shouldShowCloseButton = true;
+			fvad.isParentalGateEnabled = true;
+			fvad.play();
 		}
 		
-		public function didFailToLoadAdForPlacementId(placementId: int): void {
-			trace("empty");
+		public function didFailToLoadAd(placementId: int): void {
+			trace("failed to load " + placementId);
 		}
 		
 		public function adWasShown(placementId: int): void {
-			trace(placementId + " adWasShown");
+			trace("adWasShown " + placementId);
 		}
 		
 		public function adFailedToShow(placementId: int): void {
-			trace(placementId + " adFailedToShow");
+			trace("adFailedToShow " + placementId);
 		}
 		
 		public function adWasClosed(placementId: int): void {
-			trace(placementId + " adWasClosed");	
+			trace("adWasClosed " + placementId);
 		}
 		
 		public function adWasClicked(placementId: int): void {
-			trace(placementId + " adWasClicked");	
+			trace("adWasClicked " + placementId);
 		}
 		
 		public function adHasIncorrectPlacement(placementId: int): void {
-			trace(placementId + " adHasIncorrectPlacement");
+			trace("adHasIncorrectPlacement " + placementId);
+		}
+		
+		public function adStarted(placementId: int): void {
+			trace("adStarted " + placementId);
+		}
+		
+		public function videoStarted(placementId: int): void {
+			trace("videoStarted " + placementId);
+		}
+		
+		public function videoReachedFirstQuartile(placementId: int): void {
+			trace("videoReachedFirstQuartile " + placementId);
+		}
+		
+		public function videoReachedMidpoint(placementId: int): void {
+			trace("videoReachedMidpoint " + placementId);
+		}
+		
+		public function videoReachedThirdQuartile(placementId: int): void {
+			trace("videoReachedThirdQuartile " + placementId);
+		}
+		
+		public function videoEnded(placementId: int): void {
+			trace("videoEnded " + placementId);
+		}
+		
+		public function adEnded(placementId: int): void {
+			trace("adEnded " + placementId);
+		}
+		
+		public function allAdsEnded(placementId: int): void {
+			trace("allAdsEnded " + placementId);
 		}
 	}
 }

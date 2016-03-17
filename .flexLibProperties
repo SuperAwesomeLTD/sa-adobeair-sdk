@@ -10,11 +10,12 @@
     <classEntry path="tv.superawesome.interfaces.SAParentalGateInterface"/>
     <classEntry path="tv.superawesome.interfaces.SAVideoAdInterface"/>
     <classEntry path="tv.superawesome.interfaces.SAViewInterface"/>
+    <classEntry path="tv.superawesome.SAFullscreenVideoAd"/>
   </includeClasses>
   <includeResources>
-    <resourceEntry destPath=".DS_Store" sourcePath=".DS_Store"/>
     <resourceEntry destPath="tv/.DS_Store" sourcePath="tv/.DS_Store"/>
     <resourceEntry destPath="tv/superawesome/.DS_Store" sourcePath="tv/superawesome/.DS_Store"/>
+    <resourceEntry destPath=".DS_Store" sourcePath=".DS_Store"/>
   </includeResources>
   <namespaceManifests/>
 </flexLibProperties>
