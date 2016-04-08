@@ -11,6 +11,9 @@
     <classEntry path="tv.superawesome.interfaces.SAVideoAdInterface"/>
     <classEntry path="tv.superawesome.interfaces.SAViewInterface"/>
     <classEntry path="tv.superawesome.SAFullscreenVideoAd"/>
+    <classEntry path="tv.superawesome.SAInterstitialAd"/>
+    <classEntry path="tv.superawesome.SABannerAd"/>
+    <classEntry path="tv.superawesome.SAVideoAd"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="tv/.DS_Store" sourcePath="tv/.DS_Store"/>

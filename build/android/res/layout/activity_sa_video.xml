@@ -13,16 +13,4 @@
         android:layout_height="match_parent"
         android:padding="0dp">
     </tv.superawesome.sdk.views.SAVideoAd>
-    <Button
-        android:id="@+id/video_close"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:width="30dp"
-        android:height="30dp"
-        android:background="@drawable/sa_close"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:adjustViewBounds="true"
-        android:onClick="closeVideo"/>
 </RelativeLayout>

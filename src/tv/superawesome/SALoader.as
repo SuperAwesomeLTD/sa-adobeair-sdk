@@ -64,6 +64,7 @@ package tv.superawesome {
 			var meta: Object = com.adobe.serialization.json.JSON.decode(data);
 			var name: String = meta.name;
 			var func: String = meta.func;
+			var placement: int = parseInt(meta.placementId);
 			
 			/** first make sure the event is for this object */
 			if (name.indexOf(this.name) >= 0) {
@@ -71,12 +72,12 @@ package tv.superawesome {
 				if (func.indexOf("didLoadAd") >= 0 && delegate != null) {
 					var ad:SAAd = new SAAd();
 					ad.adJson = event.level;
-					ad.placementId = this.placementId;
+					ad.placementId = placement;
 					delegate.didLoadAd(ad);
 				} 
 				/** error case */
 				if (func.indexOf("didFailToLoadAdForPlacementId") >= 0 && delegate != null) {
-					delegate.didFailToLoadAd(this.placementId);
+					delegate.didFailToLoadAd(placement);
 				}
 			}
 		}

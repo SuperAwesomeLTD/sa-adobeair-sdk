@@ -105,7 +105,7 @@
 
         <!-- The render mode for the app (either auto, cpu, gpu, or direct). Optional. Default auto -->
 		
-        <renderMode>direct</renderMode>
+        <renderMode>cpu</renderMode>
 		
         <!-- Whether the default direct mode rendering context allocates storage for depth and stencil buffers.  Optional.  Default false. -->
         <!-- <depthAndStencil></depthAndStencil> -->
@@ -276,19 +276,24 @@
 <android>
         <manifestAdditions><![CDATA[
 			<manifest android:installLocation="auto">
+			    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+			    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 			    <uses-permission android:name="android.permission.INTERNET"/>
-			    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 			    <application android:allowBackup="true">
-			    	<activity 	android:name="tv.superawesome.sdk.views.SAVideoActivity$SAVideoActivityInner"
-            					android:label="SAVideoActivity"
+			    	<activity 	android:name="tv.superawesome.sdk.views.SAInterstitialActivity$SAInterstitialActivityInner"
+            					android:label="SAInterstitialActivity"
             					android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
-           		 				android:configChanges="keyboardHidden|orientation|screenSize"></activity>
-			    	<service android:name="tv.superawesome.lib.sanetwork.SAGet" android:exported="false" />
-			    	<service android:name="tv.superawesome.lib.savast.savastparser.SAVASTParser$SAVASTParserInternal" android:exported="false"/>
+            					android:configChanges="keyboardHidden|orientation|screenSize"></activity>
+			    	<activity   android:name="tv.superawesome.sdk.views.SAVideoActivity$SAVideoActivityInner"
+					            android:label="SAVideoActivity"
+					            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"></activity>
+			    	<service android:name="tv.superawesome.lib.sautils.SAAsyncTask$SAAsync" android:exported="false"/>
+			    	<meta-data android:name="com.google.android.gms.version" android:value="8.4.0"/>
 			    </application>
 			</manifest>
 			
 		]]></manifestAdditions>
+		<containsVideo>true</containsVideo>
     </android>
     <iPhone>
         <InfoAdditions><![CDATA[
