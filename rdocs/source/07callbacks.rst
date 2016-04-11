@@ -9,25 +9,29 @@ Standard ad callbacks
 
 To catch standard ad callbacks:
 
-* your class must implement the **SAAdInterface**:
+* your class must implement the **SAAdInterface** interface:
 
 .. code-block:: actionscript
 
-    public class ExampleApplication
-            extends Sprite
-            implements SALoaderInterface, SAAdInterface {
+    public class AdobeAIRDemo
+           extends Sprite
+           implements SALoaderInterface, SAAdInterface {
 
         private var bannerAdData: SAAd = null;
         private var banner: SABannerAd = null;
+
+        // rest of the implementation ...
     }
 
 * the class must be set as delegate for your display objects:
 
 .. code-block:: actionscript
 
-    public class ExampleApplication
-            extends Sprite
-            implements SALoaderInterface, SAAdInterface {
+    public class AdobeAIRDemo
+           extends Sprite
+           implements SALoaderInterface, SAAdInterface {
+
+        // rest of the implementation ...
 
         public function showBanner() {
             if (bannerAdData != null) {
@@ -44,9 +48,11 @@ To catch standard ad callbacks:
 
 .. code-block:: actionscript
 
-    public class ExampleApplication
-            extends Sprite
-            implements SALoaderInterface, SAAdInterface {
+    public class AdobeAIRDemo
+           extends Sprite
+           implements SALoaderInterface, SAAdInterface {
+
+        // rest of the implementation ...
 
         public function adWasShown(placementId: int): void {
             // called when an ad is first shown
@@ -87,23 +93,27 @@ To catch parental gate callbacks:
 
 .. code-block:: actionscript
 
-    public class ExampleApplication
-            extends Sprite
-            implements SALoaderInterface,
-                       SAParentalGateInterface {
+    public class AdobeAIRDemo
+           extends Sprite
+           implements SALoaderInterface,
+                      SAParentalGateInterface {
 
         private var bannerAdData: SAAd = null;
         private var banner: SABannerAd = null;
+
+        // rest of the implementation ...
     }
 
 * the class must be set as delegate for your display objects:
 
 .. code-block:: actionscript
 
-    public class ExampleApplication
-            extends Sprite
-            implements SALoaderInterface,
-                       SAParentalGateInterface {
+    public class AdobeAIRDemo
+           extends Sprite
+           implements SALoaderInterface,
+                      SAParentalGateInterface {
+
+        // rest of the implementation ...
 
         public function showBanner() {
             if (bannerAdData != null) {
@@ -121,10 +131,10 @@ To catch parental gate callbacks:
 
 .. code-block:: actionscript
 
-    public class ExampleApplication
-            extends Sprite
-            implements SALoaderInterface,
-                       SAParentalGateInterface {
+    public class AdobeAIRDemo
+           extends Sprite
+           implements SALoaderInterface,
+                      SAParentalGateInterface {
 
         // rest of the implementation ...
 
@@ -154,23 +164,27 @@ To catch video ad callbacks (available only for SAVideoAd and SAFullscreenVideoA
 
 .. code-block:: actionscript
 
-    public class ExampleApplication
-            extends Sprite
-            implements SALoaderInterface,
-                       SAVideoAdInterface {
+    public class AdobeAIRDemo
+           extends Sprite
+           implements SALoaderInterface,
+                      SAVideoAdInterface {
 
         private var videoAdData: SAAd = null;
         private var video: SAVideoAd = null;
+
+        // rest of the implementation ...
     }
 
 * the class must be set as delegate for your display objects:
 
 .. code-block:: actionscript
 
-    public class ExampleApplication
-            extends Sprite
-            implements SALoaderInterface,
-                       SAVideoAdInterface {
+    public class AdobeAIRDemo
+           extends Sprite
+           implements SALoaderInterface,
+                      SAVideoAdInterface {
+
+        // rest of the implementation ...
 
         public function showVideo() {
             if (videoAdData != null) {
@@ -187,10 +201,10 @@ To catch video ad callbacks (available only for SAVideoAd and SAFullscreenVideoA
 
 .. code-block:: actionscript
 
-    public class ExampleApplication
-            extends Sprite
-            implements SALoaderInterface,
-                       SAVideoAdInterface {
+    public class AdobeAIRDemo
+           extends Sprite
+           implements SALoaderInterface,
+                      SAVideoAdInterface {
 
         // rest of the implementation ...
 

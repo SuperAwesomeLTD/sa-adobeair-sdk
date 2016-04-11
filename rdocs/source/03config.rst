@@ -29,11 +29,11 @@ There are also a few global SDK parameters you can change according to your need
 =============  ==============  =======
 Parameter      Values          Meaning
 =============  ==============  =======
-Configuration  | Production *  | If the SDK gets ads from
+Configuration  | Production *  | Should the SDK get ads from
                | Staging       | the production or test server.
                                | Test placements are all on production.
 
-Test mode      | Enabled       | If the SDK serves test ads. For test
+Test mode      | Enabled       | Should the SDK serve test ads. For test
                | Disabled *    | placements (30471, 30476, etc) must be Enabled.
 =============  ==============  =======
  * = denotes default values
@@ -42,18 +42,18 @@ You can leave these settings as they are or change them to fit your testing or p
 
 .. code-block:: actionscript
 
-    // Import all the SuperAwesome SDK library,
+    // Import all the SuperAwesome SDK library
     // with all subsequent namespaces
     import tv.superawesome.*
 
     //
-    // ExampleApplication is a generic Flash Builder
+    // AdobeAIRDemo is a generic Flash Builder
     // Mobile Project that will be exported to
     // either Android or iOS
-    public class ExampleApplication
+    public class AdobeAIRDemo
             extends Sprite {
 
-        public function ExampleApplication() {
+        public function AdobeAIRDemo() {
 
             SuperAwesome.getInstance().setConfigurationProduction();
             // SuperAwesome.getInstance().setConfigurationStaging();

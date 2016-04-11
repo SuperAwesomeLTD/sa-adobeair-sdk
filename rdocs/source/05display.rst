@@ -3,15 +3,17 @@ Display Ads
 
 In the next sections we'll see how to display banners, inline video ads, interstitials and fullscreen video ads.
 
-We'll suppose we have the same setup as the previous section:
+We'll assume we have the same setup as the previous section, but we'll also add
+four SuperAwesome display objects that we'll want to show at the press of a button
+in our app.
 
 .. code-block:: actionscript
 
     import tv.superawesome.*
 
-    public class ExampleApplication
-            extends Sprite
-            implements SALoaderInterface {
+    public class AdobeAIRDemo
+           extends Sprite
+           implements SALoaderInterface {
 
         // the loader object
         private var loader: SALoader = null;
@@ -21,19 +23,7 @@ We'll suppose we have the same setup as the previous section:
         private var interstitialAdData: SAAd = null;
         private var videoAdData: SAAd = null;
 
-        // rest of your implementation ...
-    }
-
-Additionally we'll also create four display objects we'll want to show at the press of a button in our app:
-
-.. code-block:: actionscript
-
-    public class ExampleApplication
-        extends Sprite
-        implements SALoaderInterface {
-
-        // code ...
-
+        // the four display objects
         private var banner: SABannerAd = null;
         private var interstitial: SAInterstitialAd = null;
         private var video: SAVideoAd = null;
@@ -47,9 +37,11 @@ To following code snippet shows you how to add a **SABannerAd** object to your a
 
 .. code-block:: actionscript
 
-    public class ExampleApplication
-            extends Sprite
-            implements SALoaderInterface {
+    public class AdobeAIRDemo
+           extends Sprite
+           implements SALoaderInterface {
+
+        // load ad data here ...
 
         public function showBanner() {
             if (bannerAdData != null) {
@@ -76,9 +68,11 @@ In-Line Video ads
 
 .. code-block:: actionscript
 
-    public class ExampleApplication
-            extends Sprite
-            implements SALoaderInterface {
+    public class AdobeAIRDemo
+           extends Sprite
+           implements SALoaderInterface {
+
+        // load ad data here ...
 
         public function showInLineVideo() {
             if (videoAdData != null) {
@@ -100,9 +94,11 @@ Interstitial ads are represented by objects of type **SAInterstitialAd**.
 
 .. code-block:: actionscript
 
-    public class ExampleApplication
-            extends Sprite
-            implements SALoaderInterface {
+    public class AdobeAIRDemo
+           extends Sprite
+           implements SALoaderInterface {
+
+        // load ad data here ...
 
         public function showInterstitial() {
             if (interstitialAdData != null) {
@@ -126,9 +122,11 @@ Finally, fullscreen video ads are represented by **SAFullscreenVideoAd**.
 
 .. code-block:: actionscript
 
-    public class ExampleApplication
-            extends Sprite
-            implements SALoaderInterface {
+    public class AdobeAIRDemo
+           extends Sprite
+           implements SALoaderInterface {
+
+        // load ads here ... 
 
         public function showVideo() {
             if (videoAdData != null) {

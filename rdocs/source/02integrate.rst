@@ -6,11 +6,11 @@ with the SuperAwesome Android or iOS SDK.
 This in turn allows you to harness the full power of native components, such as video based on AVFoundation / VideoView technology,
 proper WebViews, better fullscreen experience, etc.
 
-The first step in integrating it is to download the latest version of the `SAAIR.ane <https://github.com/SuperAwesomeLTD/sa-adobeair-sdk/raw/master/build/SAAIR.ane>`_
-file and add it to your project.
-Note that for this example Flash Builder is used, with a Mobile Project demo app.
+**Note:** This document assumes a Flash Builder ActionScript Mobile Project named **AdobeAIRDemo**, containing a single .as file, called AdobeAIRDemo.as,
+that acts as main class.
 
-Right-click on your project in the *Package Explorer* and select *Properties* :
+To begin integrating the SDK download the latest version of the `SAAIR.ane <https://github.com/SuperAwesomeLTD/sa-adobeair-sdk/raw/master/build/SAAIR.ane>`_
+file, then right-click on your project in the *Package Explorer* and select *Properties* :
 
 .. image:: img/IMG_02_Add_ANE_1.png
     :height: 500px
@@ -42,13 +42,13 @@ Android / Manifest Additions part of the xml file.
             <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
             <uses-permission android:name="android.permission.INTERNET"/>
             <application android:allowBackup="true">
-                <activity 	android:name="tv.superawesome.sdk.views.SAInterstitialActivity$SAInterstitialActivityInner"
-                            android:label="SAInterstitialActivity"
-                            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
-                            android:configChanges="keyboardHidden|orientation|screenSize"></activity>
-                <activity   android:name="tv.superawesome.sdk.views.SAVideoActivity$SAVideoActivityInner"
-                            android:label="SAVideoActivity"
-                            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"></activity>
+                <activity android:name="tv.superawesome.sdk.views.SAInterstitialActivity$SAInterstitialActivityInner"
+                          android:label="SAInterstitialActivity"
+                          android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+                          android:configChanges="keyboardHidden|orientation|screenSize"></activity>
+                <activity android:name="tv.superawesome.sdk.views.SAVideoActivity$SAVideoActivityInner"
+                          android:label="SAVideoActivity"
+                          android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"></activity>
                 <service android:name="tv.superawesome.lib.sautils.SAAsyncTask$SAAsync" android:exported="false"/>
                 <meta-data android:name="com.google.android.gms.version" android:value="8.4.0"/>
             </application>

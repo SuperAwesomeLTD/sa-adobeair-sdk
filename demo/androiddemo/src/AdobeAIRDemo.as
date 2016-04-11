@@ -19,7 +19,7 @@ package
 	import tv.superawesome.interfaces.SAParentalGateInterface;
 	import tv.superawesome.interfaces.SAVideoAdInterface;
 	
-	public class AndroidDemo extends Sprite implements SALoaderInterface, SAAdInterface, SAVideoAdInterface, SAParentalGateInterface {
+	public class AdobeAIRDemo extends Sprite implements SALoaderInterface, SAAdInterface, SAVideoAdInterface, SAParentalGateInterface {
 		
 		private var loader:SALoader = new SALoader();
 		private var fvad:SAFullscreenVideoAd;
@@ -27,7 +27,7 @@ package
 		private var bad:SABannerAd;
 		private var vad:SAVideoAd;
 		
-		public function AndroidDemo() {
+		public function AdobeAIRDemo() {
 			super();
 			
 			/** support autoOrients */
@@ -57,18 +57,18 @@ package
 				trace("will call inter for 30471");
 				bad = new SABannerAd(new Rectangle(250, 450, 640, 100));
 				bad.setAd(ad);
+				bad.adDelegate = this;
+				bad.isParentalGateEnabled = true;
+				bad.parentalGateDelegate = this;
 				bad.play();
 			} else if (ad.placementId == 28000) {
 				trace("will call inter for 28000");
 				fvad = new SAFullscreenVideoAd();
 				fvad.setAd(ad);
+				fvad.videoAdDelegate = this;
 				fvad.shouldShowCloseButton = true;
 				fvad.shouldAutomaticallyCloseAtEnd = true;
 				fvad.play();
-				
-				vad = new SAVideoAd(new Rectangle(0, 50, 640, 400));
-				vad.setAd(ad);
-				vad.play();
 			}
 		}
 		

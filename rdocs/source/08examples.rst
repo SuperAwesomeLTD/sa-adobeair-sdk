@@ -17,15 +17,18 @@ few lines of code.
         import flash.geom.Rectangle;
         import tv.superawesome.*;
 
-        public class ExampleApplication
-                extends Sprite
-                implements SALoaderInterface {
+        public class AdobeAIRDemo
+               extends Sprite
+               implements SALoaderInterface {
 
+            // declare the three main variables
+            // needed by SuperAwesome to load & display
+            // an Ad
             private var loader: SALoader = null;
             private var video: SAVideoAd = null;
             private var adData: SAAd = null;
 
-            public function ExampleApplication() {
+            public function AdobeAIRDemo() {
 
                 // set stage
                 stage.align = StageAlign.TOP_LEFT;
@@ -74,12 +77,12 @@ multiple callbacks.
         import flash.geom.Rectangle;
         import tv.superawesome.*;
 
-        public class ExampleApplication
-                extends Sprite
-                implements SALoaderInterface,
-                           SAAdInterface,
-                           SAParentalGateInterface,
-                           SAVideoAdInterface {
+        public class AdobeAIRDemo
+               extends Sprite
+               implements SALoaderInterface,
+                          SAAdInterface,
+                          SAParentalGateInterface,
+                          SAVideoAdInterface {
 
             // loader
             private var loader: SALoader = null;
@@ -94,7 +97,7 @@ multiple callbacks.
             private var interstitial: SAInterstitialAd = null;
             private var fvideo: SAFullscreenVideoAd = null;
 
-            public function ExampleApplication() {
+            public function AdobeAIRDemo() {
                 // set stage
                 stage.align = StageAlign.TOP_LEFT;
                 stage.scaleMode = StageScaleMode.NO_SCALE;
@@ -114,7 +117,7 @@ multiple callbacks.
             //
             // three function to display ads -
             // these should be connected to buttons
-            public function displayBannerAd(): void {
+            public function showBanner(): void {
                 var frame = new Rectangle(0, 0, 320, 50);
 
                 // it's good practice to always check
@@ -129,7 +132,7 @@ multiple callbacks.
                 }
             }
 
-            public function displayInterstitialAd(): void {
+            public function showInterstitial(): void {
                 if (interstitialAdData) {
                     interstitial = new SAInterstitialAd();
                     interstitial.setAd(interstitialAdData);
@@ -137,7 +140,7 @@ multiple callbacks.
                 }
             }
 
-            public function displayVideoAd(): void {
+            public function showVideo(): void {
                 if (videoAdData) {
                     fvideo = new SAFullscreenVideoAd();
                     fvideo.setAd(ad);

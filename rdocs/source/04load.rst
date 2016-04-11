@@ -10,7 +10,7 @@ Then, once that data is successfully loaded, you can finally show the ad.
 The two steps are independent of each other so you can easily pre-load ads for later use, saving performance.
 
 In the code snippet below we'll start by loading data for the test placement **30471**.
-A good place to do this is in the constructor of a class descending from **Sprite** (such as DemoApplication), where
+A good place to do this is in the constructor of a class descending from **Sprite** (such as AdobeAIRDemo), where
 we'll create a **SALoader** object to help us.
 
 SALoader is a SDK class whose sole role is to load, parse, process and validate ad data by comunicating with the native SDK (either iOS or Android).
@@ -20,19 +20,18 @@ You'll usually need just one instance of it.
 
     import tv.superawesome.*
 
-    public class ExampleApplication
-            extends Sprite {
+    public class AdobeAIRDemo
+           extends Sprite {
 
         // declare a new SALoader object
         private var loader:SALoader = null;
 
-        public function ExampleApplication() {
+        public function AdobeAIRDemo() {
 
-            SuperAwesome.getInstance().setConfigurationProduction();
+            // configure SDK to test mode
             SuperAwesome.getInstance().enableTestMode();
 
-            // then create it in memory
-            // and call the loadAd function
+            // create the loader and load ad
             loader = new SALoader();
             loader.loadAd(30471);
         }
@@ -43,40 +42,45 @@ When it's done, it calls two important callback methods, **didLoadAd(SAAd loaded
 to notify you of either success or failure.
 In order to use these callbacks:
 
-* your main class (ExampleApplication) must implement the **SALoaderInterface**
+* your main class (AdobeAIRDemo) must implement the **SALoaderInterface**
 
 .. code-block:: actionscript
 
-    public class ExampleApplication
-            extends Sprite
-            implements SALoaderInterface {
-        // rest of your code ...
-    }
+    public class AdobeAIRDemo
+           extends Sprite
+           implements SALoaderInterface
 
 * it must be set as delegate for the SALoader object created earlier
 
 .. code-block:: actionscript
 
-    public class ExampleApplication
-            extends Sprite
-            implements SALoaderInterface {
+    public class AdobeAIRDemo
+           extends Sprite
+           implements SALoaderInterface {
 
-        public function ExampleApplication() {
-            // rest of your code ...
+        // declare a new SALoader object
+        private var loader:SALoader = null;
 
+        public function AdobeAIRDemo() {
+
+            // configure SDK to test mode
+            SuperAwesome.getInstance().enableTestMode();
+
+            // create the loader and load ad
             loader = new SALoader();
+            // assign loader's delegate object
             loader.delegate = this;
             loader.loadAd(30471);
         }
     }
 
-* finally, your ExampleApplication class must also implement the two callback methods mentioned above
+* finally, your AdobeAIRDemo class must also implement the two callback methods mentioned above
 
 .. code-block:: actionscript
 
-    public class ExampleApplication
-            extends Sprite
-            implements SALoaderInterface {
+    public class AdobeAIRDemo
+           extends Sprite
+           implements SALoaderInterface {
 
         // rest of your code, the constructor, etc ...
 
@@ -103,18 +107,36 @@ To save ads for later use, you can do something like this:
 
     import tv.superawesome.*
 
-    public class ExampleApplication
-            extends Sprite
-            implements SALoaderInterface {
+    public class AdobeAIRDemo
+           extends Sprite
+           implements SALoaderInterface {
 
+        // declare a new SALoader object
         private var loader:SALoader = null;
+
         // declare a SAAd object as a class member variable
         private var bannerAdData: SAAd = null;
 
-        // rest of the implementation, and constructor ...
+        public function AdobeAIRDemo() {
+
+            // configure SDK to test mode
+            SuperAwesome.getInstance().enableTestMode();
+
+            // create the loader
+            loader = new SALoader();
+            // assign loader's delegate object
+            loader.delegate = this;
+            loader.loadAd(30471);
+        }
 
         public function didLoadAd(ad: SAAd): void {
+            // save current loaded ad into
+            // class member variable bannerAdData
             bannerAdData = ad;
+        }
+
+        public function didFailToLoadAd(placementId: int): void {
+            // at this moment no ad could be found
         }
     }
 
@@ -127,18 +149,23 @@ Finally, if you want to load multiple ads and save them for later use, you can d
 
     import tv.superawesome.*
 
-    public class ExampleApplication
-            extends Sprite
-            implements SALoaderInterface {
+    public class AdobeAIRDemo
+           extends Sprite
+           implements SALoaderInterface {
 
+        // declare a new SALoader object
         private var loader: SALoader = null;
+
+        // declare a number of SAAd objects
         private var bannerAdData: SAAd = null;
         private var interstitialAdData: SAAd = null;
         private var videoAdData: SAAd = null;
 
-        public function ExampleApplication() {
-            // rest of your code ...
+        public function AdobeAIRDemo() {
+            // configure SDK to test mode
+            SuperAwesome.getInstance().enableTestMode();
 
+            // create the loader and set delegate
             loader = new SALoader();
             loader.delegate = this;
 
