@@ -47,7 +47,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'SAAdobeAIRSDK'
+project = u'SuperAwesome Adobe AIR SDK'
 copyright = u'2016, Gabriel Coman'
 author = u'Gabriel Coman'
 
