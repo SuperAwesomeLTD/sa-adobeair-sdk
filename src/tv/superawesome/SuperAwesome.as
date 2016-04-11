@@ -32,7 +32,7 @@ package tv.superawesome {
 		
 		/** functions to get info about the current SDK */
 		private function getVersion(): String {
-			return "4.0.0";
+			return "3.1.6";
 		}
 		
 		private function getSdk(): String {
