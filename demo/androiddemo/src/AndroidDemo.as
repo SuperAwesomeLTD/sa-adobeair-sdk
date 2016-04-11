@@ -60,6 +60,12 @@ package
 				bad.play();
 			} else if (ad.placementId == 28000) {
 				trace("will call inter for 28000");
+				fvad = new SAFullscreenVideoAd();
+				fvad.setAd(ad);
+				fvad.shouldShowCloseButton = true;
+				fvad.shouldAutomaticallyCloseAtEnd = true;
+				fvad.play();
+				
 				vad = new SAVideoAd(new Rectangle(0, 50, 640, 400));
 				vad.setAd(ad);
 				vad.play();

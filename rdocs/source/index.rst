@@ -9,11 +9,11 @@ The SuperAwesome Adobe AIR SDK (Software Development Kit) lets you to easily add
 =======   ========
 Info      Contents
 =======   ========
-Version   4.0.0
-GitHub    https://github.com/SuperAwesomeLTD/sa-adobeair-sdk/tree/developv4
+Version   3.1.6
+GitHub    https://github.com/SuperAwesomeLTD/sa-adobeair-sdk
 Support   `devsupport@superawesome.tv <mailto:devsupport@superawesome.tv>`_
-License   `LICENSE.txt <https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-android/develop_v3/LICENSE.txt>`_
-Demo      `sa-air-sdk-demo.zip <https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-android/develop_v3/LICENSE.txt>`_
+License   `LICENSE.txt <https://github.com/SuperAwesomeLTD/sa-adobeair-sdk/blob/master/LICENSE.txt>`_
+Demo      `sa-air-sdk-demo.zip <https://github.com/SuperAwesomeLTD/sa-adobeair-sdk/blob/master/LICENSE.txt>`_
 =======   ========
 
 Table of Contents:

@@ -13,7 +13,7 @@ Creating Apps
 When first logging in to the dashboard, the first thing you'll want to do is create one or more **Apps**,
 with each app in the dashboard representing one of your own apps.
 
-Each app has a number of associated parameters such as ID, name, domain (or iTunes URL), etc.
+Each app has a number of associated parameters such as ID, name, domain (or iTunes / Google Play URL), etc.
 The name and domain can be configured when you create the app, while the ID is automatically assigned so as to be unique to each app.
 
 .. image:: img/IMG_01_Dashboard_2.png
