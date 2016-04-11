@@ -6,7 +6,6 @@ an app to websites, social networks, or other apps without the knowledge of thei
 A parental gate presents an adult level task which must be completed in order to continue.
 
 You can enable our parental gate on banners, interstitials and video ads.
-You can either enable it in Interface Builder or by using the following code in your project:
 
 .. code-block:: actionscript3
 
