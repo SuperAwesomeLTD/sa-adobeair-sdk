@@ -6,15 +6,16 @@ SuperAwesome Adobe AIR SDK
 
 The SuperAwesome Adobe AIR SDK (Software Development Kit) lets you to easily add COPPA compliant advertisements to your apps.
 
-=======   ========
-Info      Contents
-=======   ========
-Version   3.1.6
-GitHub    https://github.com/SuperAwesomeLTD/sa-adobeair-sdk
-Support   `devsupport@superawesome.tv <mailto:devsupport@superawesome.tv>`_
-License   `LICENSE.txt <https://github.com/SuperAwesomeLTD/sa-adobeair-sdk/blob/master/LICENSE.txt>`_
-Demo      `sa-air-sdk-demo.zip <https://github.com/SuperAwesomeLTD/sa-adobeair-sdk/blob/master/LICENSE.txt>`_
-=======   ========
+=============== ========
+Info            Contents
+=============== ========
+Version         3.1.6
+iOS Support     iOS 6.0+
+Android Support API 11: Android 3.0 (Honeycomb)
+GitHub          https://github.com/SuperAwesomeLTD/sa-adobeair-sdk
+Support         `devsupport@superawesome.tv <mailto:devsupport@superawesome.tv>`_
+License         `LICENSE.txt <https://github.com/SuperAwesomeLTD/sa-adobeair-sdk/blob/master/LICENSE.txt>`_
+=============== ========
 
 Table of Contents:
 
