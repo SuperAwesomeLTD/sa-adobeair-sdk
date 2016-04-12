@@ -6,8 +6,10 @@ with the SuperAwesome Android or iOS SDK.
 This in turn allows you to harness the full power of native components, such as video based on AVFoundation / VideoView technology,
 proper WebViews, better fullscreen experience, etc.
 
-**Note:** This document assumes a Flash Builder ActionScript Mobile Project named **AdobeAIRDemo**, containing a single .as file, called AdobeAIRDemo.as,
-that acts as main class.
+**Note:** This document assumes:
+
+* a Flash Builder ActionScript Mobile Project named **AdobeAIRDemo**,
+* containing a single .as file, called **AdobeAIRDemo.as**, that acts as main class.
 
 To begin integrating the SDK download the latest version of the `SAAIR.ane <https://github.com/SuperAwesomeLTD/sa-adobeair-sdk/raw/master/build/SAAIR.ane>`_
 file, then right-click on your project in the *Package Explorer* and select *Properties* :
