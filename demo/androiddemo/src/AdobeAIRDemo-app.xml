@@ -278,16 +278,19 @@
 			<manifest android:installLocation="auto">
 			    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 			    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 			    <uses-permission android:name="android.permission.INTERNET"/>
 			    <application android:allowBackup="true">
-			    	<activity 	android:name="tv.superawesome.sdk.views.SAInterstitialActivity$SAInterstitialActivityInner"
-            					android:label="SAInterstitialActivity"
-            					android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
-            					android:configChanges="keyboardHidden|orientation|screenSize"></activity>
-			    	<activity   android:name="tv.superawesome.sdk.views.SAVideoActivity$SAVideoActivityInner"
-					            android:label="SAVideoActivity"
-					            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"></activity>
-			    	<service android:name="tv.superawesome.lib.sautils.SAAsyncTask$SAAsync" android:exported="false"/>
+			    	<activity android:name="tv.superawesome.sdk.views.SAFullscreenVideoAd$SAFullscreenVideoAdActivity"
+						        android:label="SAVideoActivity"
+						        android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"></activity>
+
+				    <activity android:name="tv.superawesome.sdk.views.SAInterstitialAd$SAInterstitialAdActivity"
+				        android:label="SAInterstitialActivity"
+				        android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+				        android:configChanges="keyboardHidden|orientation|screenSize"></activity>
+				
+				    <service android:name="tv.superawesome.lib.sautils.SAAsyncTask$SAAsync" android:exported="false"/>
 			    	<meta-data android:name="com.google.android.gms.version" android:value="8.4.0"/>
 			    </application>
 			</manifest>
