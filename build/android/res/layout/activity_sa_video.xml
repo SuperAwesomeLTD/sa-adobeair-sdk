@@ -6,7 +6,7 @@
                 android:layout_height="match_parent"
                 android:paddingLeft="0dp"
                 android:background="#000000"
-                tools:context="tv.superawesome.sdk.views.SAVideoActivity$SAVideoActivityInner">
+                tools:context=".views.SAFullscreenVideoAd$SAVideoActivityInner">
     <tv.superawesome.sdk.views.SAVideoAd
         android:id="@+id/video_ad"
         android:layout_width="match_parent"

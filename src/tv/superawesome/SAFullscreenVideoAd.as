@@ -26,6 +26,9 @@ package tv.superawesome {
 		public var isParentalGateEnabled:Boolean = true;
 		public var shouldShowCloseButton:Boolean = true;
 		public var shouldAutomaticallyCloseAtEnd:Boolean = true;
+		public var shouldShowSmallClickButton:Boolean = false;
+		public var shouldLockOrientation:Boolean = false;
+		public var lockOrientation:int = SALockOrientation.ANY;
 		
 		/** delegates */
 		public var adDelegate:SAAdInterface = null;
@@ -56,7 +59,9 @@ package tv.superawesome {
 		
 		public function play (): void {
 			/** send external event to SA */
-			extContext.call("playFullscreenVideoAd", this.name, this.ad.placementId, this.ad.adJson, isParentalGateEnabled, shouldShowCloseButton, shouldAutomaticallyCloseAtEnd);
+			extContext.call("playFullscreenVideoAd", this.name, this.ad.placementId, this.ad.adJson, 
+							isParentalGateEnabled, shouldShowCloseButton, shouldAutomaticallyCloseAtEnd,
+							shouldShowSmallClickButton, shouldLockOrientation, lockOrientation);
 		}
 		
 		public function close(): void {

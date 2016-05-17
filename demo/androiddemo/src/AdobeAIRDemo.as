@@ -18,6 +18,7 @@ package
 	import tv.superawesome.interfaces.SALoaderInterface;
 	import tv.superawesome.interfaces.SAParentalGateInterface;
 	import tv.superawesome.interfaces.SAVideoAdInterface;
+	import tv.superawesome.SALockOrientation;
 	
 	public class AdobeAIRDemo extends Sprite implements SALoaderInterface, SAAdInterface, SAVideoAdInterface, SAParentalGateInterface {
 		
@@ -68,6 +69,8 @@ package
 				fvad.videoAdDelegate = this;
 				fvad.shouldShowCloseButton = true;
 				fvad.shouldAutomaticallyCloseAtEnd = true;
+				fvad.shouldLockOrientation = true;
+				fvad.lockOrientation = SALockOrientation.LANDSCAPE;
 				fvad.play();
 			}
 		}

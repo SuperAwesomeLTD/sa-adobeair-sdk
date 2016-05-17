@@ -1,6 +1,8 @@
 CHANGELOG
 ========
 
+3.1.8
+3.1.7
 3.1.6
  - First version of Adobe AIR SDK that uses native Android / iOS components to load & display ads; builds an .ane library
 

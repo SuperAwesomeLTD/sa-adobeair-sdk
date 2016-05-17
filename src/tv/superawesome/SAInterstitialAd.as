@@ -24,6 +24,8 @@ package tv.superawesome {
 		/** public vars */
 		private var ad:SAAd = null; 
 		public var isParentalGateEnabled:Boolean = true;
+		public var shouldLockOrientation:Boolean = false;
+		public var lockOrientation:int = SALockOrientation.ANY;
 		
 		/** delegates */
 		public var adDelegate:SAAdInterface = null;
@@ -52,7 +54,8 @@ package tv.superawesome {
 		
 		public function play (): void {
 			/** send external event to SA */
-			extContext.call("playInterstitialAd", this.name, this.ad.placementId, this.ad.adJson, isParentalGateEnabled);
+			extContext.call("playInterstitialAd", this.name, this.ad.placementId, this.ad.adJson, 
+							isParentalGateEnabled, shouldLockOrientation, lockOrientation);
 		}
 		
 		public function close(): void {

@@ -14,6 +14,7 @@
     <classEntry path="tv.superawesome.SAInterstitialAd"/>
     <classEntry path="tv.superawesome.SABannerAd"/>
     <classEntry path="tv.superawesome.SAVideoAd"/>
+    <classEntry path="tv.superawesome.SALockOrientation"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="tv/.DS_Store" sourcePath="tv/.DS_Store"/>

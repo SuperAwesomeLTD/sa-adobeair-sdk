@@ -28,6 +28,7 @@ package tv.superawesome{
 		public var isParentalGateEnabled:Boolean = true;
 		public var shouldShowCloseButton:Boolean = true;
 		public var shouldAutomaticallyCloseAtEnd:Boolean = true;
+		public var shouldShowSmallClickButton:Boolean = false;
 		
 		/** delegates */
 		public var adDelegate:SAAdInterface = null;
@@ -58,7 +59,7 @@ package tv.superawesome{
 		
 		public function play (): void {
 			/** send external event to SA */
-			extContext.call("playVideoAd", this.name, this.ad.placementId, this.ad.adJson, isParentalGateEnabled,
+			extContext.call("playVideoAd", this.name, this.ad.placementId, this.ad.adJson, isParentalGateEnabled, shouldShowSmallClickButton,
 							this.frame.x, this.frame.y, this.frame.width, this.frame.height);
 		}
 		

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SAFragment">
+        <attr name="placementID" format="string" />
+        <attr name="testMode" format="boolean" />
+        <attr name="showInstantly" format="boolean" />
+        <attr name="isParentalGateEnabled" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="SAVideoFragment">
+        <attr name="playInstantly" format="boolean" />
+    </declare-styleable>
+</resources>
