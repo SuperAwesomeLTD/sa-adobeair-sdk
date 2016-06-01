@@ -36,43 +36,52 @@ package
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
 			/** setup the demo */
-			SuperAwesome.getInstance().setConfigurationStaging();
-			SuperAwesome.getInstance().disableTestMode();
+			SuperAwesome.getInstance().setConfigurationProduction();
+			SuperAwesome.getInstance().enableTestMode();
 			
 			loader.delegate = this;
-			loader.loadAd(113);
-			loader.loadAd(114);
-			loader.loadAd(116);
+			loader.loadAd(2117);
+//			loader.loadAd(114);
+//			loader.loadAd(116);
 		}
 		
 		public function didLoadAd(ad: SAAd): void {
 			trace(ad.placementId);
 			trace(ad.adJson);
 			
-			if (ad.placementId == 114) {
-//				trace("will call inter for 10305");
+			if (ad.placementId == 2117) {
 //				iad = new SAInterstitialAd();
 //				iad.setAd(ad);
 //				iad.play();
-			} else if (ad.placementId == 113) {
-//				trace("will call inter for 30471");
-//				bad = new SABannerAd(new Rectangle(250, 450, 640, 100));
-//				bad.setAd(ad);
-//				bad.adDelegate = this;
-//				bad.isParentalGateEnabled = true;
-//				bad.parentalGateDelegate = this;
-//				bad.play();
-			} else if (ad.placementId == 116) {
-				trace("will call inter for 28000");
 				fvad = new SAFullscreenVideoAd();
 				fvad.setAd(ad);
-				fvad.videoAdDelegate = this;
-				fvad.shouldShowCloseButton = true;
-				fvad.shouldAutomaticallyCloseAtEnd = true;
-				fvad.shouldLockOrientation = true;
-				fvad.lockOrientation = SALockOrientation.LANDSCAPE;
 				fvad.play();
 			}
+			
+//			if (ad.placementId == 114) {
+////				trace("will call inter for 10305");
+////				iad = new SAInterstitialAd();
+////				iad.setAd(ad);
+////				iad.play();
+//			} else if (ad.placementId == 113) {
+////				trace("will call inter for 30471");
+////				bad = new SABannerAd(new Rectangle(250, 450, 640, 100));
+////				bad.setAd(ad);
+////				bad.adDelegate = this;
+////				bad.isParentalGateEnabled = true;
+////				bad.parentalGateDelegate = this;
+////				bad.play();
+//			} else if (ad.placementId == 116) {
+//				trace("will call inter for 28000");
+//				fvad = new SAFullscreenVideoAd();
+//				fvad.setAd(ad);
+//				fvad.videoAdDelegate = this;
+//				fvad.shouldShowCloseButton = true;
+//				fvad.shouldAutomaticallyCloseAtEnd = true;
+//				fvad.shouldLockOrientation = true;
+//				fvad.lockOrientation = SALockOrientation.LANDSCAPE;
+//				fvad.play();
+//			}
 		}
 		
 		public function didFailToLoadAd(placementId: int): void {
