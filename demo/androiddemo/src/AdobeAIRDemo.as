@@ -37,10 +37,10 @@ package
 			
 			/** setup the demo */
 			SuperAwesome.getInstance().setConfigurationProduction();
-			SuperAwesome.getInstance().enableTestMode();
+			SuperAwesome.getInstance().disableTestMode();
 			
 			loader.delegate = this;
-			loader.loadAd(2117);
+			loader.loadAd(28000);
 //			loader.loadAd(114);
 //			loader.loadAd(116);
 		}
@@ -49,7 +49,7 @@ package
 			trace(ad.placementId);
 			trace(ad.adJson);
 			
-			if (ad.placementId == 2117) {
+			if (ad.placementId == 28000) {
 //				iad = new SAInterstitialAd();
 //				iad.setAd(ad);
 //				iad.play();
