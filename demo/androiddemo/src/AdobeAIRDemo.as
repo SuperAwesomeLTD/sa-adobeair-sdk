@@ -36,20 +36,20 @@ package
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
 			/** setup the demo */
-			SuperAwesome.getInstance().setConfigurationProduction();
+			SuperAwesome.getInstance().setConfigurationStaging();
 			SuperAwesome.getInstance().disableTestMode();
 			
 			loader.delegate = this;
 			loader.loadAd(28000);
 //			loader.loadAd(114);
-//			loader.loadAd(116);
+			loader.loadAd(116);
 		}
 		
 		public function didLoadAd(ad: SAAd): void {
 			trace(ad.placementId);
 			trace(ad.adJson);
 			
-			if (ad.placementId == 28000) {
+			if (ad.placementId == 116) {
 //				iad = new SAInterstitialAd();
 //				iad.setAd(ad);
 //				iad.play();
