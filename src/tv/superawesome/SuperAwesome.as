@@ -2,11 +2,10 @@ package tv.superawesome {
 	public class SuperAwesome {
 		
 		/** constants */
-		private const BASE_URL_STAGING: String = "https://ads.staging.superawesome.tv/v2";
-		private const BASE_URL_DEVELOPMENT: String = "https://ads.dev.superawesome.tv/v2";
-		private const BASE_URL_PRODUCTION: String = "https://ads.superawesome.tv/v2";
+		private const CONFIGURATION_PRODUCTION: int = 0;
+		private const CONFIGURATION_STAGING: int = 1;
 		
-		private var baseUrl: String;
+		/** variables */
 		private var isTestEnabled: Boolean;
 		private var configuration: int;
 		
@@ -30,9 +29,40 @@ package tv.superawesome {
 			_instance = this;
 		}
 		
-		/** functions to get info about the current SDK */
+		// setters
+		
+		public function setConfiguration(config: int): void {
+			if (config == CONFIGURATION_PRODUCTION) {
+				setConfigurationProduction ();
+			} else {
+				setConfigurationStaging ();
+			}
+		}
+		
+		public function setConfigurationProduction(): void {
+			configuration = CONFIGURATION_PRODUCTION;
+		}
+		
+		public function setConfigurationStaging(): void {
+			configuration = CONFIGURATION_STAGING;
+		}
+		
+		public function setTestMode(testMode: Boolean): void {
+			this.isTestEnabled = testMode;
+		}
+		
+		public function enableTestMode(): void {
+			this.isTestEnabled = true;
+		}
+		
+		public function disableTestMode(): void {
+			this.isTestEnabled = false;
+		}
+		
+		// getters
+		
 		private function getVersion(): String {
-			return "3.2.1";
+			return "3.2.3";
 		}
 		
 		private function getSdk(): String {
@@ -43,37 +73,8 @@ package tv.superawesome {
 			return getSdk() + "_" + getVersion();
 		}
 		
-		/** config functions */
-		public function setConfigurationProduction(): void {
-			configuration = SAConfiguration.PRODUCTION;
-			baseUrl = BASE_URL_PRODUCTION;
-		}
-		
-		public function setConfigurationStaging(): void {
-			configuration = SAConfiguration.STAGING;
-			baseUrl = BASE_URL_STAGING;
-		}
-		
-		public function setConfigurationDevelopment(): void {
-			configuration = SAConfiguration.DEVELOPMENT;
-			baseUrl = BASE_URL_DEVELOPMENT;
-		}
-		
-		public function getBaseURL(): String {
-			return baseUrl;
-		}
-		
 		public function getConfiguration(): int {
 			return configuration;
-		}
-		
-		/** testing functions */
-		public function enableTestMode(): void {
-			this.isTestEnabled = true;
-		}
-		
-		public function disableTestMode(): void {
-			this.isTestEnabled = false;
 		}
 		
 		public function isTestingEnabled(): Boolean {
