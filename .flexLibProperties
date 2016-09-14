@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+<flexLibProperties includeAllClasses="false" useMultiPlatformConfig="false" version="3">
   <includeClasses>
-    <classEntry path="tv.superawesome.SAAd"/>
-    <classEntry path="tv.superawesome.SAConfiguration"/>
-    <classEntry path="tv.superawesome.SALoader"/>
-    <classEntry path="tv.superawesome.SuperAwesome"/>
-    <classEntry path="tv.superawesome.interfaces.SAAdInterface"/>
-    <classEntry path="tv.superawesome.interfaces.SALoaderInterface"/>
-    <classEntry path="tv.superawesome.interfaces.SAParentalGateInterface"/>
-    <classEntry path="tv.superawesome.interfaces.SAVideoAdInterface"/>
-    <classEntry path="tv.superawesome.interfaces.SAViewInterface"/>
-    <classEntry path="tv.superawesome.SAFullscreenVideoAd"/>
-    <classEntry path="tv.superawesome.SAInterstitialAd"/>
+    <classEntry path="com.adobe.serialization.json.JSON"/>
+    <classEntry path="com.adobe.serialization.json.JSONDecoder"/>
+    <classEntry path="com.adobe.serialization.json.JSONEncoder"/>
+    <classEntry path="com.adobe.serialization.json.JSONParseError"/>
+    <classEntry path="com.adobe.serialization.json.JSONToken"/>
+    <classEntry path="com.adobe.serialization.json.JSONTokenType"/>
+    <classEntry path="com.adobe.serialization.json.JSONTokenizer"/>
     <classEntry path="tv.superawesome.SABannerAd"/>
+    <classEntry path="tv.superawesome.enums.SAConfiguration"/>
+    <classEntry path="tv.superawesome.SAInterstitialAd"/>
+    <classEntry path="tv.superawesome.enums.SALockOrientation"/>
     <classEntry path="tv.superawesome.SAVideoAd"/>
-    <classEntry path="tv.superawesome.SALockOrientation"/>
+    <classEntry path="tv.superawesome.SuperAwesome"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="tv/.DS_Store" sourcePath="tv/.DS_Store"/>
+    <resourceEntry destPath="com/adobe/.DS_Store" sourcePath="com/adobe/.DS_Store"/>
+    <resourceEntry destPath="com/.DS_Store" sourcePath="com/.DS_Store"/>
     <resourceEntry destPath="tv/superawesome/.DS_Store" sourcePath="tv/superawesome/.DS_Store"/>
     <resourceEntry destPath=".DS_Store" sourcePath=".DS_Store"/>
   </includeResources>

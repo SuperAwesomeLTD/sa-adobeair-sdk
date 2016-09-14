@@ -1,4 +1,5 @@
-package tv.superawesome {
+package tv.superawesome.enums {
+	
 	public class SALockOrientation {
 		public static const ANY: int = 0;
 		public static const PORTRAIT: int = 1;

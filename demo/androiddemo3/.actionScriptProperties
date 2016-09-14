@@ -35,7 +35,7 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="3" linkType="1" path="/Users/gabriel.coman/Workspace/sa-adobeair-sdk/bin/SuperAwesome_AIR.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="5" linkType="2" path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/air_build/SAAIR-3.2.2.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/package/SuperAwesomeSDK-3.2.3.AdobeAIR.base.ane"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
@@ -53,7 +53,7 @@
       <airSettings airCertificatePath="" airTimestamp="true" anePathSet="true" version="1">
         <airExcludes/>
         <anePaths>
-          <anePathEntry path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/air_build/SAAIR-3.2.2.ane"/>
+          <anePathEntry path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/package/SuperAwesomeSDK-3.2.3.AdobeAIR.base.ane"/>
         </anePaths>
         <newLaunchParams/>
         <modifiedLaunchParams/>

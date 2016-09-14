@@ -1,0 +1,232 @@
+<?xml version="1.0" ?>
+<swc xmlns="http://www.adobe.com/flash/swccatalog/9">
+    <versions>
+        <swc version="1.2"/>
+        <flex version="4.7.0" build="354174" minimumSupportedVersion="3.0.0"/>
+        <compiler name="ActionScript Compiler" version="2.0.0" build="354174"/>
+    </versions>
+    <features>
+        <feature-script-deps/>
+        <feature-files/>
+    </features>
+    <libraries>
+        <library path="library.swf">
+            <script name="com/adobe/serialization/json/JSON" mod="1460363906000">
+                <def id="com.adobe.serialization.json:JSON"/>
+                <dep id="Boolean" type="s"/>
+                <dep id="Object" type="i"/>
+                <dep id="String" type="s"/>
+                <dep id="com.adobe.serialization.json:JSONDecoder" type="e"/>
+                <dep id="com.adobe.serialization.json:JSONEncoder" type="e"/>
+            </script>
+            <script name="com/adobe/serialization/json/JSONDecoder" mod="1460363906000">
+                <def id="com.adobe.serialization.json:JSONDecoder"/>
+                <dep id="Array" type="e"/>
+                <dep id="Boolean" type="s"/>
+                <dep id="Object" type="i"/>
+                <dep id="String" type="s"/>
+                <dep id="com.adobe.serialization.json:JSONToken" type="s"/>
+                <dep id="com.adobe.serialization.json:JSONTokenType" type="e"/>
+                <dep id="com.adobe.serialization.json:JSONTokenizer" type="s"/>
+            </script>
+            <script name="com/adobe/serialization/json/JSONEncoder" mod="1460363906000">
+                <def id="com.adobe.serialization.json:JSONEncoder"/>
+                <dep id="Array" type="e"/>
+                <dep id="Boolean" type="e"/>
+                <dep id="Function" type="e"/>
+                <dep id="Number" type="e"/>
+                <dep id="Object" type="i"/>
+                <dep id="String" type="s"/>
+                <dep id="XML" type="e"/>
+                <dep id="flash.utils:describeType" type="e"/>
+                <dep id="int" type="e"/>
+                <dep id="isFinite" type="e"/>
+            </script>
+            <script name="com/adobe/serialization/json/JSONParseError" mod="1460363906000">
+                <def id="com.adobe.serialization.json:JSONParseError"/>
+                <dep id="Error" type="i"/>
+                <dep id="String" type="s"/>
+                <dep id="int" type="s"/>
+            </script>
+            <script name="com/adobe/serialization/json/JSONToken" mod="1460363906000">
+                <def id="com.adobe.serialization.json:JSONToken"/>
+                <dep id="Object" type="i"/>
+                <dep id="int" type="s"/>
+            </script>
+            <script name="com/adobe/serialization/json/JSONTokenType" mod="1460363906000">
+                <def id="com.adobe.serialization.json:JSONTokenType"/>
+                <dep id="Object" type="i"/>
+                <dep id="int" type="s"/>
+            </script>
+            <script name="com/adobe/serialization/json/JSONTokenizer" mod="1460363906000">
+                <def id="com.adobe.serialization.json:JSONTokenizer"/>
+                <dep id="Boolean" type="s"/>
+                <dep id="NaN" type="e"/>
+                <dep id="Number" type="e"/>
+                <dep id="Object" type="i"/>
+                <dep id="RegExp" type="s"/>
+                <dep id="String" type="s"/>
+                <dep id="com.adobe.serialization.json:JSONParseError" type="e"/>
+                <dep id="com.adobe.serialization.json:JSONToken" type="e"/>
+                <dep id="com.adobe.serialization.json:JSONTokenType" type="e"/>
+                <dep id="int" type="s"/>
+                <dep id="isFinite" type="e"/>
+                <dep id="isNaN" type="e"/>
+                <dep id="parseInt" type="e"/>
+            </script>
+            <script name="tv/superawesome/SAAd" mod="1460363906000">
+                <def id="tv.superawesome:SAAd"/>
+                <dep id="Object" type="i"/>
+                <dep id="String" type="s"/>
+                <dep id="int" type="s"/>
+            </script>
+            <script name="tv/superawesome/SABannerAd" mod="1460363906000">
+                <def id="tv.superawesome:SABannerAd"/>
+                <dep id="Boolean" type="s"/>
+                <dep id="Error" type="e"/>
+                <dep id="Function" type="s"/>
+                <dep id="Object" type="e"/>
+                <dep id="String" type="s"/>
+                <dep id="com.adobe.serialization.json:JSON" type="e"/>
+                <dep id="flash.events:EventDispatcher" type="i"/>
+                <dep id="flash.events:StatusEvent" type="s"/>
+                <dep id="flash.external:ExtensionContext" type="s"/>
+                <dep id="flash.geom:Rectangle" type="s"/>
+                <dep id="int" type="s"/>
+                <dep id="tv.superawesome:SAAd" type="s"/>
+                <dep id="tv.superawesome.interfaces:SAAdInterface" type="s"/>
+                <dep id="tv.superawesome.interfaces:SAParentalGateInterface" type="s"/>
+                <dep id="tv.superawesome.interfaces:SAViewInterface" type="i"/>
+            </script>
+            <script name="tv/superawesome/SAConfiguration" mod="1460363906000">
+                <def id="tv.superawesome:SAConfiguration"/>
+                <dep id="Object" type="i"/>
+                <dep id="int" type="s"/>
+            </script>
+            <script name="tv/superawesome/SAFullscreenVideoAd" mod="1463499750000">
+                <def id="tv.superawesome:SAFullscreenVideoAd"/>
+                <dep id="Boolean" type="s"/>
+                <dep id="Error" type="e"/>
+                <dep id="Function" type="s"/>
+                <dep id="Object" type="e"/>
+                <dep id="String" type="s"/>
+                <dep id="com.adobe.serialization.json:JSON" type="e"/>
+                <dep id="flash.events:EventDispatcher" type="i"/>
+                <dep id="flash.events:StatusEvent" type="s"/>
+                <dep id="flash.external:ExtensionContext" type="s"/>
+                <dep id="int" type="s"/>
+                <dep id="tv.superawesome:SAAd" type="s"/>
+                <dep id="tv.superawesome:SALockOrientation" type="e"/>
+                <dep id="tv.superawesome.interfaces:SAAdInterface" type="s"/>
+                <dep id="tv.superawesome.interfaces:SAParentalGateInterface" type="s"/>
+                <dep id="tv.superawesome.interfaces:SAVideoAdInterface" type="s"/>
+                <dep id="tv.superawesome.interfaces:SAViewInterface" type="i"/>
+            </script>
+            <script name="tv/superawesome/SAInterstitialAd" mod="1463499635000">
+                <def id="tv.superawesome:SAInterstitialAd"/>
+                <dep id="Boolean" type="s"/>
+                <dep id="Error" type="e"/>
+                <dep id="Function" type="s"/>
+                <dep id="Object" type="e"/>
+                <dep id="String" type="s"/>
+                <dep id="com.adobe.serialization.json:JSON" type="e"/>
+                <dep id="flash.events:EventDispatcher" type="i"/>
+                <dep id="flash.events:StatusEvent" type="s"/>
+                <dep id="flash.external:ExtensionContext" type="s"/>
+                <dep id="int" type="s"/>
+                <dep id="tv.superawesome:SAAd" type="s"/>
+                <dep id="tv.superawesome:SALockOrientation" type="e"/>
+                <dep id="tv.superawesome.interfaces:SAAdInterface" type="s"/>
+                <dep id="tv.superawesome.interfaces:SAParentalGateInterface" type="s"/>
+                <dep id="tv.superawesome.interfaces:SAViewInterface" type="i"/>
+            </script>
+            <script name="tv/superawesome/SALoader" mod="1460363906000">
+                <def id="tv.superawesome:SALoader"/>
+                <dep id="Boolean" type="e"/>
+                <dep id="Error" type="e"/>
+                <dep id="Function" type="s"/>
+                <dep id="Object" type="e"/>
+                <dep id="String" type="s"/>
+                <dep id="com.adobe.serialization.json:JSON" type="e"/>
+                <dep id="flash.events:EventDispatcher" type="i"/>
+                <dep id="flash.events:StatusEvent" type="s"/>
+                <dep id="flash.external:ExtensionContext" type="s"/>
+                <dep id="int" type="s"/>
+                <dep id="parseInt" type="e"/>
+                <dep id="tv.superawesome:SAAd" type="s"/>
+                <dep id="tv.superawesome:SuperAwesome" type="e"/>
+                <dep id="tv.superawesome.interfaces:SALoaderInterface" type="s"/>
+                <dep id="tv.superawesome.interfaces:SAViewInterface" type="i"/>
+            </script>
+            <script name="tv/superawesome/SALockOrientation" mod="1463499455000">
+                <def id="tv.superawesome:SALockOrientation"/>
+                <dep id="Object" type="i"/>
+                <dep id="int" type="s"/>
+            </script>
+            <script name="tv/superawesome/SAVideoAd" mod="1463499560000">
+                <def id="tv.superawesome:SAVideoAd"/>
+                <dep id="Boolean" type="s"/>
+                <dep id="Error" type="e"/>
+                <dep id="Function" type="s"/>
+                <dep id="Object" type="e"/>
+                <dep id="String" type="s"/>
+                <dep id="com.adobe.serialization.json:JSON" type="e"/>
+                <dep id="flash.events:EventDispatcher" type="i"/>
+                <dep id="flash.events:StatusEvent" type="s"/>
+                <dep id="flash.external:ExtensionContext" type="s"/>
+                <dep id="flash.geom:Rectangle" type="s"/>
+                <dep id="int" type="s"/>
+                <dep id="tv.superawesome:SAAd" type="s"/>
+                <dep id="tv.superawesome.interfaces:SAAdInterface" type="s"/>
+                <dep id="tv.superawesome.interfaces:SAParentalGateInterface" type="s"/>
+                <dep id="tv.superawesome.interfaces:SAVideoAdInterface" type="s"/>
+                <dep id="tv.superawesome.interfaces:SAViewInterface" type="i"/>
+            </script>
+            <script name="tv/superawesome/SuperAwesome" mod="1470256675000">
+                <def id="tv.superawesome:SuperAwesome"/>
+                <dep id="Boolean" type="s"/>
+                <dep id="Error" type="e"/>
+                <dep id="Object" type="i"/>
+                <dep id="String" type="s"/>
+                <dep id="int" type="s"/>
+            </script>
+            <script name="tv/superawesome/interfaces/SAAdInterface" mod="1460363906000">
+                <def id="tv.superawesome.interfaces:SAAdInterface"/>
+                <dep id="Object" type="i"/>
+                <dep id="int" type="s"/>
+            </script>
+            <script name="tv/superawesome/interfaces/SALoaderInterface" mod="1460363906000">
+                <def id="tv.superawesome.interfaces:SALoaderInterface"/>
+                <dep id="Object" type="i"/>
+                <dep id="int" type="s"/>
+                <dep id="tv.superawesome:SAAd" type="s"/>
+            </script>
+            <script name="tv/superawesome/interfaces/SAParentalGateInterface" mod="1460363906000">
+                <def id="tv.superawesome.interfaces:SAParentalGateInterface"/>
+                <dep id="Object" type="i"/>
+                <dep id="int" type="s"/>
+            </script>
+            <script name="tv/superawesome/interfaces/SAVideoAdInterface" mod="1460363906000">
+                <def id="tv.superawesome.interfaces:SAVideoAdInterface"/>
+                <dep id="Object" type="i"/>
+                <dep id="int" type="s"/>
+            </script>
+            <script name="tv/superawesome/interfaces/SAViewInterface" mod="1460363906000">
+                <def id="tv.superawesome.interfaces:SAViewInterface"/>
+                <dep id="Object" type="i"/>
+                <dep id="flash.events:StatusEvent" type="s"/>
+                <dep id="tv.superawesome:SAAd" type="s"/>
+            </script>
+            <digests>
+                <digest type="SHA-256" signed="false" value="8afb4b7c29a10da37e580f634f45318e27286b66071b5d79adba184f2b6ee7bc"/>
+            </digests>
+        </library>
+    </libraries>
+    <files>
+        <file path=".DS_Store" mod="1456844292000"/>
+        <file path="com/.DS_Store" mod="1448981433000"/>
+        <file path="com/adobe/.DS_Store" mod="1444672203000"/>
+        <file path="tv/.DS_Store" mod="1456844949000"/>
+        <file path="tv/superawesome/.DS_Store" mod="1456844954000"/>
+    </files>
+</swc>
