@@ -1,4 +1,5 @@
 package tv.superawesome {
+	
 	public class SuperAwesome {
 		
 		// singleton variable
