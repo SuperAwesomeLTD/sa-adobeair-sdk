@@ -63,6 +63,7 @@ package
 			addChild(playInter1);
 			playInter1.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
 				if (SAInterstitialAd.hasAdAvailable(415)){
+					trace("has ad available");
 					SAInterstitialAd.play(415);
 				}
 			});
