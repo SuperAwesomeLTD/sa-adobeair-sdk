@@ -7,7 +7,7 @@ package tv.superawesome{
 	
 	import tv.superawesome.enums.SAConfiguration;
 	import tv.superawesome.enums.SAEvent;
-	import tv.superawesome.enums.SALockOrientation;
+	import tv.superawesome.enums.SAOrientation;
 
 	public class SAVideoAd  {
 		
@@ -16,8 +16,7 @@ package tv.superawesome{
 		
 		private static var staticInstance: SAVideoAd = null;
 		private static var isParentalGateEnabled: Boolean = true;
-		private static var shouldLockOrientation: Boolean = false;
-		private static var lockOrientation: int = SALockOrientation.ANY;
+		private static var orientation: int = SAOrientation.ANY;
 		private static var configuration: int = SAConfiguration.PRODUCTION;
 		private static var shouldShowCloseButton: Boolean = true;
 		private static var shouldShowSmallClickButton: Boolean = false;
@@ -73,8 +72,7 @@ package tv.superawesome{
 				shouldShowCloseButton, 
 				shouldShowSmallClickButton, 
 				shouldAutomaticallyCloseAtEnd, 
-				shouldLockOrientation, 
-				lockOrientation
+				orientation
 			);
 		}
 		
@@ -141,18 +139,15 @@ package tv.superawesome{
 		}
 		
 		public static function setOrientationAny (): void {
-			shouldLockOrientation = false;
-			lockOrientation = SALockOrientation.ANY;
+			orientation = SAOrientation.ANY;
 		}
 		
 		public static function setOrientationPortrait (): void {
-			shouldLockOrientation = true;
-			lockOrientation = SALockOrientation.PORTRAIT;
+			orientation = SAOrientation.PORTRAIT;
 		}
 		
 		public static function setOrientationLandscape (): void {
-			shouldLockOrientation = true;
-			lockOrientation = SALockOrientation.LANDSCAPE;
+			orientation = SAOrientation.LANDSCAPE;
 		}
 		
 		////////////////////////////////////////////////////////////

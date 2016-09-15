@@ -1,6 +1,6 @@
 package tv.superawesome.enums {
 	
-	public class SALockOrientation {
+	public class SAOrientation {
 		public static const ANY: int = 0;
 		public static const PORTRAIT: int = 1;
 		public static const LANDSCAPE:int = 2;
