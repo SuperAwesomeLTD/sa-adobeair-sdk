@@ -3,16 +3,12 @@ package tv.superawesome{
 	import com.adobe.serialization.json.JSON;
 	
 	import flash.events.StatusEvent;
-	import flash.external.ExtensionContext;
 	
 	import tv.superawesome.enums.SAConfiguration;
 	import tv.superawesome.enums.SAEvent;
 	import tv.superawesome.enums.SAOrientation;
 
 	public class SAVideoAd  {
-		
-		// private static vars
-		private static var extContext: ExtensionContext;
 		
 		private static var staticInstance: SAVideoAd = null;
 		private static var isParentalGateEnabled: Boolean = true;
@@ -36,17 +32,11 @@ package tv.superawesome{
 		
 		// constructor
 		public function SAVideoAd () {
-			// create extension context
-			extContext = ExtensionContext.createExtensionContext("tv.superawesome.plugins.air", "" );
-			if ( !extContext ) {
-				throw new Error( "SuperAwesome native extension is not supported on this platform." );
-			}
-			
 			// add callback
-			extContext.addEventListener(StatusEvent.STATUS, nativeCallback);
+			SuperAwesome.getInstance().getContext().addEventListener(StatusEvent.STATUS, nativeCallback);
 			
 			// call to create the instance
-			extContext.call("SuperAwesomeAIRSAVideoAdCreate");
+			SuperAwesome.getInstance().getContext().call("SuperAwesomeAIRSAVideoAdCreate");
 		}
 		
 		////////////////////////////////////////////////////////////
@@ -55,7 +45,7 @@ package tv.superawesome{
 		
 		public static function load (placementId: int) : void {
 			tryAndCreateOnce ();
-			extContext.call(
+			SuperAwesome.getInstance().getContext().call(
 				"SuperAwesomeAIRSAVideoAdLoad", 
 				placementId, 
 				configuration, 
@@ -65,7 +55,7 @@ package tv.superawesome{
 		
 		public static function play (placementId: int): void {
 			tryAndCreateOnce ();
-			extContext.call(
+			SuperAwesome.getInstance().getContext().call(
 				"SuperAwesomeAIRSAVideoAdPlay", 
 				placementId, 
 				isParentalGateEnabled, 
@@ -78,7 +68,9 @@ package tv.superawesome{
 		
 		public static function hasAdAvailable (placementId: int): Boolean {
 			tryAndCreateOnce ();
-			var adAvailable: Boolean = extContext.call("SuperAwesomeAIRSAVideoAdHasAdAvailable", placementId) as Boolean;
+			var adAvailable: Boolean = SuperAwesome.getInstance().getContext().call(
+				"SuperAwesomeAIRSAVideoAdHasAdAvailable", 
+				placementId) as Boolean;
 			return adAvailable;
 		}
 		

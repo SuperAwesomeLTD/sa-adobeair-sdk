@@ -4,6 +4,7 @@ package
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 	
@@ -12,19 +13,19 @@ package
 	import tv.superawesome.SAFullscreenVideoAd;
 	import tv.superawesome.SAInterstitialAd;
 	import tv.superawesome.SALoader;
+	import tv.superawesome.SALockOrientation;
 	import tv.superawesome.SAVideoAd;
 	import tv.superawesome.SuperAwesome;
 	import tv.superawesome.interfaces.SAAdInterface;
 	import tv.superawesome.interfaces.SALoaderInterface;
 	import tv.superawesome.interfaces.SAParentalGateInterface;
 	import tv.superawesome.interfaces.SAVideoAdInterface;
-	import tv.superawesome.SALockOrientation;
 	
 	public class AdobeAIRDemo extends Sprite implements SALoaderInterface, SAAdInterface, SAVideoAdInterface, SAParentalGateInterface {
 		
-		private var loader:SALoader = new SALoader();
+//		private var loader:SALoader = new SALoader();
 		private var fvad:SAFullscreenVideoAd;
-		private var iad:SAInterstitialAd;
+		// private var iad:SAInterstitialAd;
 		private var bad:SABannerAd;
 		private var vad:SAVideoAd;
 		
@@ -36,52 +37,41 @@ package
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
 			/** setup the demo */
-			SuperAwesome.getInstance().setConfigurationStaging();
+			SuperAwesome.getInstance().setConfigurationProduction();
 			SuperAwesome.getInstance().disableTestMode();
 			
+			var loader:SALoader = new SALoader();
 			loader.delegate = this;
-//			loader.loadAd(24541);
-//			loader.loadAd(115);
-			loader.loadAd(116);
+			loader.loadAd(24541);
+			var loader2:SALoader = new SALoader ();
+			loader2.delegate = this;
+			loader2.loadAd(28000);
+			
+			var color1:uint = 0xff0000;
+			
+			var playBanner:Sprite = new Sprite ();
+			playBanner.graphics.beginFill(color1, 1);
+			playBanner.graphics.drawRect(0, 0, 200, 150);
+			playBanner.graphics.endFill();
+			addChild(playBanner);
+			playBanner.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
+				loader.loadAd(24541);
+			});
 		}
 		
 		public function didLoadAd(ad: SAAd): void {
 			trace(ad.placementId);
 			trace(ad.adJson);
 			
-			if (ad.placementId == 116) {
-//				iad = new SAInterstitialAd();
-//				iad.setAd(ad);
-//				iad.play();
-				fvad = new SAFullscreenVideoAd();
-				fvad.setAd(ad);
-				fvad.play();
+			if (ad.placementId == 24541) {
+				var iad: SAInterstitialAd = new SAInterstitialAd();
+				iad.setAd(ad);
+				iad.adDelegate = this;
+				iad.play();
+				iad = null;
+			} else if (ad.placementId == 28000) {
+				// abc
 			}
-			
-//			if (ad.placementId == 114) {
-////				trace("will call inter for 10305");
-////				iad = new SAInterstitialAd();
-////				iad.setAd(ad);
-////				iad.play();
-//			} else if (ad.placementId == 113) {
-////				trace("will call inter for 30471");
-////				bad = new SABannerAd(new Rectangle(250, 450, 640, 100));
-////				bad.setAd(ad);
-////				bad.adDelegate = this;
-////				bad.isParentalGateEnabled = true;
-////				bad.parentalGateDelegate = this;
-////				bad.play();
-//			} else if (ad.placementId == 116) {
-//				trace("will call inter for 28000");
-//				fvad = new SAFullscreenVideoAd();
-//				fvad.setAd(ad);
-//				fvad.videoAdDelegate = this;
-//				fvad.shouldShowCloseButton = true;
-//				fvad.shouldAutomaticallyCloseAtEnd = true;
-//				fvad.shouldLockOrientation = true;
-//				fvad.lockOrientation = SALockOrientation.LANDSCAPE;
-//				fvad.play();
-//			}
 		}
 		
 		public function didFailToLoadAd(placementId: int): void {

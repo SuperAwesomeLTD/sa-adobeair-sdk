@@ -9,6 +9,8 @@ package
 	import tv.superawesome.SABannerAd;
 	import tv.superawesome.SAInterstitialAd;
 	import tv.superawesome.SAVideoAd;
+	import tv.superawesome.enums.SAEvent;
+	import tv.superawesome.SuperAwesome;
 	
 	public class AndroidDemo3 extends Sprite
 	{	
@@ -26,11 +28,19 @@ package
 			banner.enableParentalGate();
 			banner.load(414);
 			
-			SAInterstitialAd.setConfigurationStaging();
+//			SAInterstitialAd.setConfigurationProduction();
 			SAInterstitialAd.disabledParentalGate();
 			SAInterstitialAd.setOrientationPortrait();
-			SAInterstitialAd.load(415);
-			SAInterstitialAd.load(418);
+//			SAInterstitialAd.load(415);
+//			SAInterstitialAd.load(418);
+			SAInterstitialAd.load(24541);
+			SAInterstitialAd.setCallback(function(placement:int, evt: int): void {
+				if (evt == SAEvent.adLoaded) {
+					trace("Ad loaded " + placement);
+				} else if (evt == SAEvent.adFailedToLoad) {
+					trace("Ad failed to load " + placement);
+				}
+			});
 			
 			SAVideoAd.setConfigurationStaging();
 			SAVideoAd.setOrientationLandscape();
@@ -44,6 +54,7 @@ package
 			var color3:uint = 0x0000ff;
 			var color4:uint = 0xff00ff;
 			var color5:uint = 0x00ffff;
+			var color6:uint = 0xf0f0f0;
 			
 			var playBanner:Sprite = new Sprite ();
 			playBanner.graphics.beginFill(color1, 1);
@@ -62,9 +73,8 @@ package
 			playInter1.graphics.endFill();
 			addChild(playInter1);
 			playInter1.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
-				if (SAInterstitialAd.hasAdAvailable(415)){
-					trace("has ad available");
-					SAInterstitialAd.play(415);
+				if (SAInterstitialAd.hasAdAvailable(24541)){
+					SAInterstitialAd.play(24541);
 				}
 			});
 			
@@ -99,6 +109,15 @@ package
 				if (SAVideoAd.hasAdAvailable(417)) {
 					SAVideoAd.play(417);
 				}
+			});
+			
+			var dispose:Sprite = new Sprite ();
+			dispose.graphics.beginFill(color6, 1);
+			dispose.graphics.drawRect(400, 150, 200, 150);
+			dispose.graphics.endFill();
+			addChild(dispose);
+			dispose.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
+				SuperAwesome.getInstance().disposeContext();
 			});
 		}
 	}

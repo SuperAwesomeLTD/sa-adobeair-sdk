@@ -289,7 +289,7 @@
 				        android:configChanges="keyboardHidden|orientation|screenSize"></activity>
 				
 				    <service android:name="tv.superawesome.lib.sanetwork.asynctask.SAAsyncTask$SAAsync" android:exported="false"/>
-			    	<meta-data android:name="com.google.android.gms.version" android:value="8.4.0"/>
+			    	<!-- <meta-data android:name="com.google.android.gms.version" android:value="8.4.0"/> -->
 			    </application>
 			</manifest>
 			

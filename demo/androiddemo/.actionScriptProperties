@@ -35,7 +35,7 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="1" linkType="1" path="/Applications/Adobe Flash Builder 4.7/sdks/21.0.0"/>
-      <libraryPathEntry kind="5" linkType="2" path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/air_build/SuperAwesomeSDK-3.2.3.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="/Users/gabriel.coman/Downloads/SuperAwesomeSDK.3.2.3.ane"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
@@ -53,7 +53,7 @@
       <airSettings airCertificatePath="/Users/gabriel.coman/Desktop/CERTS/Gabriel Coman.p12" airTimestamp="true" anePathSet="true" version="1">
         <airExcludes/>
         <anePaths>
-          <anePathEntry path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/air_build/SuperAwesomeSDK-3.2.3.ane"/>
+          <anePathEntry path="/Users/gabriel.coman/Downloads/SuperAwesomeSDK.3.2.3.ane"/>
         </anePaths>
         <newLaunchParams/>
         <modifiedLaunchParams/>

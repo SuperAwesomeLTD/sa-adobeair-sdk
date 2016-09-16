@@ -1,9 +1,10 @@
 package tv.superawesome {
+	
 	import com.adobe.serialization.json.JSON;
 	
 	import flash.events.StatusEvent;
-	import flash.external.ExtensionContext;
 	
+	import tv.superawesome.SuperAwesome;
 	import tv.superawesome.enums.SABannerColor;
 	import tv.superawesome.enums.SABannerPosition;
 	import tv.superawesome.enums.SABannerSize;
@@ -15,9 +16,7 @@ package tv.superawesome {
 		// index
 		private static var index: int = 0;
 		
-		// static vars
-		private var extContext: ExtensionContext;
-		
+		// name of the ad
 		private var name: String = null;
 		
 		private static var isParentalGateEnabled: Boolean = true;
@@ -34,17 +33,11 @@ package tv.superawesome {
 			super ();
 			this.name = "SABannerAd_" + (++SABannerAd.index);
 			
-			// create the context
-			extContext = ExtensionContext.createExtensionContext("tv.superawesome.plugins.air", "" );
-			if ( !extContext ) {
-				throw new Error( "SuperAwesome native extension is not supported on this platform." );
-			}
-			
 			// add event listener
-			extContext.addEventListener(StatusEvent.STATUS, nativeCallback);
+			SuperAwesome.getInstance().getContext().addEventListener(StatusEvent.STATUS, nativeCallback);
 			
 			// call create
-			extContext.call("SuperAwesomeAIRSABannerAdCreate", this.name);
+			SuperAwesome.getInstance().getContext().call("SuperAwesomeAIRSABannerAdCreate", this.name);
  		}
 		
 		////////////////////////////////////////////////////////////
@@ -52,7 +45,7 @@ package tv.superawesome {
 		////////////////////////////////////////////////////////////
 		
 		public function load (placementId: int) : void {
-			extContext.call(
+			SuperAwesome.getInstance().getContext().call(
 				"SuperAwesomeAIRSABannerAdLoad", 
 				this.name,
 				placementId, 
@@ -62,12 +55,14 @@ package tv.superawesome {
 		}
 		
 		public function hasAdAvailable (): Boolean {
-			var adAvailable:Boolean = extContext.call("SuperAwesomeAIRSABannerAdHasAdAvailable", this.name) as Boolean;
+			var adAvailable:Boolean = SuperAwesome.getInstance().getContext().call(
+				"SuperAwesomeAIRSABannerAdHasAdAvailable", 
+				this.name) as Boolean;
 			return adAvailable;
 		}
 		
 		public function play (): void {
-			extContext.call(
+			SuperAwesome.getInstance().getContext().call(
 				"SuperAwesomeAIRSABannerAdPlay", 
 				this.name,
 				isParentalGateEnabled, 
@@ -78,7 +73,7 @@ package tv.superawesome {
 		}
 		
 		public function close (): void {
-			extContext.call(
+			SuperAwesome.getInstance().getContext().call(
 				"SuperAwesomeAIRSABannerAdClose",
 				this.name
 			);
