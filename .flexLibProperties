@@ -9,11 +9,16 @@
     <classEntry path="com.adobe.serialization.json.JSONTokenType"/>
     <classEntry path="com.adobe.serialization.json.JSONTokenizer"/>
     <classEntry path="tv.superawesome.SABannerAd"/>
-    <classEntry path="tv.superawesome.enums.SAConfiguration"/>
+    <classEntry path="tv.superawesome.SAGameWall"/>
     <classEntry path="tv.superawesome.SAInterstitialAd"/>
-    <classEntry path="tv.superawesome.enums.SAOrientation"/>
     <classEntry path="tv.superawesome.SAVideoAd"/>
     <classEntry path="tv.superawesome.SuperAwesome"/>
+    <classEntry path="tv.superawesome.enums.SABannerColor"/>
+    <classEntry path="tv.superawesome.enums.SABannerPosition"/>
+    <classEntry path="tv.superawesome.enums.SABannerSize"/>
+    <classEntry path="tv.superawesome.enums.SAConfiguration"/>
+    <classEntry path="tv.superawesome.enums.SAEvent"/>
+    <classEntry path="tv.superawesome.enums.SAOrientation"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="tv/.DS_Store" sourcePath="tv/.DS_Store"/>

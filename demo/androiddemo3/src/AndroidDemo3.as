@@ -10,7 +10,8 @@ package
 	import tv.superawesome.SAInterstitialAd;
 	import tv.superawesome.SAVideoAd;
 	import tv.superawesome.enums.SAEvent;
-	import tv.superawesome.SuperAwesome;
+	import tv.superawesome.SAGameWall;
+//	import tv.superawesome.SuperAwesome;
 	
 	public class AndroidDemo3 extends Sprite
 	{	
@@ -26,28 +27,71 @@ package
 			banner.setPositionBottom();
 			banner.setConfigurationStaging();
 			banner.enableParentalGate();
+			banner.setCallback(function(placement:int, evt: int): void {
+				if (evt == SAEvent.adLoaded) {
+					trace("Banner Ad loaded " + placement);
+				} else if (evt == SAEvent.adFailedToLoad) {
+					trace("Banner Ad failed to load " + placement);
+				} else if (evt == SAEvent.adShown) {
+					trace("Banner Ad shown " + placement);
+				} else if (evt == SAEvent.adFailedToShow) {
+					trace("Banner Ad failed to show " + placement);
+				} else if (evt == SAEvent.adClicked) {
+					trace("Banner Ad clicked " + placement);
+				} else if (evt == SAEvent.adClosed) {
+					trace("Banner Ad closed " + placement);
+				}
+			});
 			banner.load(414);
 			
-//			SAInterstitialAd.setConfigurationProduction();
+			SAInterstitialAd.setConfigurationStaging();
 			SAInterstitialAd.disabledParentalGate();
 			SAInterstitialAd.setOrientationPortrait();
-//			SAInterstitialAd.load(415);
-//			SAInterstitialAd.load(418);
-			SAInterstitialAd.load(24541);
 			SAInterstitialAd.setCallback(function(placement:int, evt: int): void {
 				if (evt == SAEvent.adLoaded) {
-					trace("Ad loaded " + placement);
+					trace("Interstitial Ad loaded " + placement);
 				} else if (evt == SAEvent.adFailedToLoad) {
-					trace("Ad failed to load " + placement);
+					trace("Interstitial Ad failed to load " + placement);
+				} else if (evt == SAEvent.adShown) {
+					trace("Interstitial Ad shown " + placement);
+				} else if (evt == SAEvent.adFailedToShow) {
+					trace("Interstitial Ad failed to show " + placement);
+				} else if (evt == SAEvent.adClicked) {
+					trace("Interstitial Ad clicked " + placement);
+				} else if (evt == SAEvent.adClosed) {
+					trace("Interstitial Ad closed " + placement);
+				}
+			});
+			SAInterstitialAd.load(415);
+			SAInterstitialAd.load(418);
+			
+			SAVideoAd.setOrientationLandscape();
+			SAVideoAd.enabledTestMode();
+			SAVideoAd.setCallback(function(placement:int, evt: int): void {
+				if (evt == SAEvent.adLoaded) {
+					trace("Video Ad loaded " + placement);
+				} else if (evt == SAEvent.adFailedToLoad) {
+					trace("Video Ad failed to load " + placement);
+				} else if (evt == SAEvent.adShown) {
+					trace("Video Ad shown " + placement);
+				} else if (evt == SAEvent.adFailedToShow) {
+					trace("Video Ad failed to show " + placement);
+				} else if (evt == SAEvent.adClicked) {
+					trace("Video Ad clicked " + placement);
+				} else if (evt == SAEvent.adClosed) {
+					trace("Video Ad closed " + placement);
 				}
 			});
 			
-			SAVideoAd.setConfigurationStaging();
-			SAVideoAd.setOrientationLandscape();
-			SAVideoAd.enableSmallClickButton();
-			SAVideoAd.disableCloseButton();
-			SAVideoAd.load(416);
-			SAVideoAd.load(417);
+			SAVideoAd.load(28000);
+//			SAVideoAd.load(416);
+//			SAVideoAd.load(416);
+//			SAVideoAd.load(416);
+//			SAVideoAd.load(417);
+			
+			SAGameWall.setConfigurationStaging();
+			SAGameWall.disabledParentalGate();
+			SAGameWall.load(437);
 			
 			var color1:uint = 0xff0000;
 			var color2:uint = 0x00ff00;
@@ -73,8 +117,8 @@ package
 			playInter1.graphics.endFill();
 			addChild(playInter1);
 			playInter1.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
-				if (SAInterstitialAd.hasAdAvailable(24541)){
-					SAInterstitialAd.play(24541);
+				if (SAInterstitialAd.hasAdAvailable(415)){
+					SAInterstitialAd.play(415);
 				}
 			});
 			
@@ -95,8 +139,8 @@ package
 			playVideo1.graphics.endFill();
 			addChild(playVideo1);
 			playVideo1.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
-				if (SAVideoAd.hasAdAvailable(416)) {
-					SAVideoAd.play(416);
+				if (SAVideoAd.hasAdAvailable(28000)) {
+					SAVideoAd.play(28000);
 				}
 			});
 			
@@ -106,19 +150,22 @@ package
 			playVideo2.graphics.endFill();
 			addChild(playVideo2);
 			playVideo2.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
-				if (SAVideoAd.hasAdAvailable(417)) {
-					SAVideoAd.play(417);
+//				if (SAVideoAd.hasAdAvailable(417)) {
+//					SAVideoAd.play(417);
+//				}
+				if (SAGameWall.hasAdAvailable(437)) {
+					SAGameWall.play(437);
 				}
 			});
 			
-			var dispose:Sprite = new Sprite ();
-			dispose.graphics.beginFill(color6, 1);
-			dispose.graphics.drawRect(400, 150, 200, 150);
-			dispose.graphics.endFill();
-			addChild(dispose);
-			dispose.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
-				SuperAwesome.getInstance().disposeContext();
-			});
+//			var dispose:Sprite = new Sprite ();
+//			dispose.graphics.beginFill(color6, 1);
+//			dispose.graphics.drawRect(400, 150, 200, 150);
+//			dispose.graphics.endFill();
+//			addChild(dispose);
+//			dispose.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
+//				 SuperAwesome.getInstance().disposeContext();
+//			});
 		}
 	}
 }
