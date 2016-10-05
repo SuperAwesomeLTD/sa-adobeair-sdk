@@ -17,6 +17,7 @@ package tv.superawesome{
 		private static var shouldShowCloseButton: Boolean = true;
 		private static var shouldShowSmallClickButton: Boolean = false;
 		private static var shouldAutomaticallyCloseAtEnd: Boolean = true;
+		private static var isBackButtonEnabled: Boolean = false;
 		private static var isTestingEnabled: Boolean = false;
 		private static var callback: Function = function(pId: int, evt: int): void{};
 		
@@ -62,7 +63,8 @@ package tv.superawesome{
 				shouldShowCloseButton, 
 				shouldShowSmallClickButton, 
 				shouldAutomaticallyCloseAtEnd, 
-				orientation
+				orientation,
+				isBackButtonEnabled
 			);
 		}
 		
@@ -140,6 +142,14 @@ package tv.superawesome{
 		
 		public static function setOrientationLandscape (): void {
 			orientation = SAOrientation.LANDSCAPE;
+		}
+		
+		public static function enabledBackButton (): void {
+			isBackButtonEnabled = true;
+		}
+		
+		public static function disableBackButton (): void {
+			isBackButtonEnabled = false;
 		}
 		
 		////////////////////////////////////////////////////////////

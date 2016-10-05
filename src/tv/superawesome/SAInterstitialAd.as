@@ -14,6 +14,7 @@ package tv.superawesome {
 		private static var staticInstance: SAInterstitialAd = null;
 		private static var isParentalGateEnabled: Boolean = true;
 		private static var isTestingEnabled: Boolean = false;
+		private static var isBackButtonEnabled: Boolean = false;
 		private static var orientation: int = SAOrientation.ANY;
 		private static var configuration: int = SAConfiguration.PRODUCTION;
 		private static var callback: Function = function(pId: int, evt: int): void{};
@@ -57,7 +58,8 @@ package tv.superawesome {
 				"SuperAwesomeAIRSAInterstitialAdPlay", 
 				placementId, 
 				isParentalGateEnabled, 
-				orientation
+				orientation,
+				isBackButtonEnabled
 			);
 		}
 		
@@ -112,6 +114,14 @@ package tv.superawesome {
 		public static function setOrientationLandscape (): void {
 			orientation = SAOrientation.LANDSCAPE;
 		}	
+		
+		public static function enabledBackButton (): void {
+			isBackButtonEnabled = true;
+		}
+		
+		public static function disableBackButton (): void {
+			isBackButtonEnabled = false;
+		}
 		
 		////////////////////////////////////////////////////////////
 		// Callback
