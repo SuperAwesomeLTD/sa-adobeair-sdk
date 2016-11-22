@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<application xmlns="http://ns.adobe.com/air/application/21.0">
+<application xmlns="http://ns.adobe.com/air/application/23.0">
 
 <!-- Adobe AIR Application Descriptor File Template.
 
@@ -15,7 +15,7 @@
 
 	<!-- A universally unique application identifier. Must be unique across all AIR applications.
 	Using a reverse DNS-style name as the id is recommended. (Eg. com.example.ExampleApplication.) Required. -->
-	<id>AndroidDemo3</id>
+	<id>com.superawesome.AndroidDemo3</id>
 
 	<!-- Used as the filename for the application. Required. -->
 	<filename>AndroidDemo3</filename>
@@ -311,6 +311,8 @@
     </android>
     <iPhone>
         <InfoAdditions><![CDATA[
+        	<key>MinimumOSVersion</key>
+			<string>8.0</string>
 			<key>UIDeviceFamily</key>
 			<array>
 				<string>1</string>

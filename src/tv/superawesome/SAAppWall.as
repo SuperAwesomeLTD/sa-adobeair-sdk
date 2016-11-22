@@ -8,9 +8,9 @@ package tv.superawesome {
 	import tv.superawesome.enums.SAConfiguration;
 	import tv.superawesome.enums.SAEvent;
 	
-	public class SAGameWall extends EventDispatcher {
+	public class SAAppWall extends EventDispatcher {
 		
-		private static var staticInstance: SAGameWall = null;
+		private static var staticInstance: SAAppWall = null;
 		private static var isParentalGateEnabled: Boolean = true;
 		private static var isTestingEnabled: Boolean = false;
 		private static var isBackButtonEnabled: Boolean = false;
@@ -18,22 +18,22 @@ package tv.superawesome {
 		private static var callback: Function = function(pId: int, evt: int): void{};
 		
 		// instance vars
-		private static var name: String = "SAGameWall";
+		private static var name: String = "SAAppWall";
 		
 		// func that creates a 
 		private static function tryAndCreateOnce (): void {
 			if (staticInstance == null) {
-				staticInstance = new SAGameWall();
+				staticInstance = new SAAppWall();
 			}
 		}
 		
 		// constructor
-		public function SAGameWall () {
+		public function SAAppWall () {
 			// add event listener
 			SuperAwesome.getInstance().getContext().addEventListener(StatusEvent.STATUS, nativeCallback);
 			
 			// call to create the instance
-			SuperAwesome.getInstance().getContext().call("SuperAwesomeAIRSAGameWallCreate");
+			SuperAwesome.getInstance().getContext().call("SuperAwesomeAIRSAAppWallCreate");
 		}
 		
 		////////////////////////////////////////////////////////////
@@ -43,7 +43,7 @@ package tv.superawesome {
 		public static function load (placementId: int) : void {
 			tryAndCreateOnce ();
 			SuperAwesome.getInstance().getContext().call(
-				"SuperAwesomeAIRSAGameWallLoad", 
+				"SuperAwesomeAIRSAAppWallLoad", 
 				placementId, 
 				configuration, 
 				isTestingEnabled
@@ -53,7 +53,7 @@ package tv.superawesome {
 		public static function play (placementId: int): void {
 			tryAndCreateOnce ();
 			SuperAwesome.getInstance().getContext().call(
-				"SuperAwesomeAIRSAGameWallPlay", 
+				"SuperAwesomeAIRSAAppWallPlay", 
 				placementId, 
 				isParentalGateEnabled,
 				isBackButtonEnabled
@@ -63,7 +63,7 @@ package tv.superawesome {
 		public static function hasAdAvailable (placementId: int): Boolean {
 			tryAndCreateOnce ();
 			var adAvailable: Boolean = SuperAwesome.getInstance().getContext().call(
-				"SuperAwesomeAIRSAGameWallHasAdAvailable", 
+				"SuperAwesomeAIRSAAppWallHasAdAvailable", 
 				placementId) as Boolean;
 			return adAvailable;
 		}
@@ -135,7 +135,7 @@ package tv.superawesome {
 			}
 			
 			// check to see target
-			if (callName != null && call != null && callName.indexOf(SAGameWall.name) >= 0) {
+			if (callName != null && call != null && callName.indexOf(SAAppWall.name) >= 0) {
 				
 				if (call.indexOf ("adLoaded") >= 0) {
 					callback (placement, SAEvent.adLoaded);

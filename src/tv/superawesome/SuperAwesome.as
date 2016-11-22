@@ -32,7 +32,7 @@ package tv.superawesome {
 		// getters
 		
 		private function getVersion(): String {
-			return "5.1.2";
+			return "5.1.3";
 		}
 		
 		private function getSdk(): String {
@@ -45,6 +45,10 @@ package tv.superawesome {
 		
 		public function getContext () : ExtensionContext {
 			return extContext;
+		}
+		
+		public function handleCPI (): void {
+			extContext.call("SuperAwesomeAIRSuperAwesomeHandleCPI");
 		}
 	}
 }

@@ -10,8 +10,8 @@ package
 	import tv.superawesome.SAInterstitialAd;
 	import tv.superawesome.SAVideoAd;
 	import tv.superawesome.enums.SAEvent;
-	import tv.superawesome.SAGameWall;
-//	import tv.superawesome.SuperAwesome;
+	import tv.superawesome.SAAppWall;
+	import tv.superawesome.SuperAwesome;
 	
 	public class AndroidDemo3 extends Sprite
 	{	
@@ -23,6 +23,10 @@ package
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
+			SuperAwesome.getInstance().handleCPI ();
+			
+			// SuperAwesome.getInstance().handleCPI();
+//			SuperAwesome.getInstance().
 			var banner:SABannerAd = new SABannerAd();
 			banner.setPositionBottom();
 			banner.setConfigurationStaging();
@@ -42,6 +46,7 @@ package
 					trace("Banner Ad closed " + placement);
 				}
 			});
+			banner.enabledTestMode();
 			banner.load(414);
 			
 			SAInterstitialAd.setConfigurationStaging();
@@ -62,6 +67,7 @@ package
 					trace("Interstitial Ad closed " + placement);
 				}
 			});
+			SAInterstitialAd.enabledTestMode();
 			SAInterstitialAd.load(415);
 			SAInterstitialAd.load(418);
 			
@@ -89,9 +95,24 @@ package
 //			SAVideoAd.load(416);
 //			SAVideoAd.load(417);
 			
-			SAGameWall.setConfigurationStaging();
-			SAGameWall.disabledParentalGate();
-			SAGameWall.load(437);
+			SAAppWall.setConfigurationStaging();
+			SAAppWall.disabledParentalGate();
+			SAAppWall.setCallback(function(placement:int, evt: int): void {
+				if (evt == SAEvent.adLoaded) {
+					trace("SAAppWall Ad loaded " + placement);
+				} else if (evt == SAEvent.adFailedToLoad) {
+					trace("SAAppWall Ad failed to load " + placement);
+				} else if (evt == SAEvent.adShown) {
+					trace("SAAppWall Ad shown " + placement);
+				} else if (evt == SAEvent.adFailedToShow) {
+					trace("SAAppWall Ad failed to show " + placement);
+				} else if (evt == SAEvent.adClicked) {
+					trace("SAAppWall Ad clicked " + placement);
+				} else if (evt == SAEvent.adClosed) {
+					trace("SAAppWall Ad closed " + placement);
+				}
+			});
+			SAAppWall.load(437);
 			
 			var color1:uint = 0xff0000;
 			var color2:uint = 0x00ff00;
@@ -139,9 +160,9 @@ package
 			playVideo1.graphics.endFill();
 			addChild(playVideo1);
 			playVideo1.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
-				if (SAVideoAd.hasAdAvailable(28000)) {
+				 if (SAVideoAd.hasAdAvailable(28000)) {
 					SAVideoAd.play(28000);
-				}
+				 }
 			});
 			
 			var playVideo2:Sprite = new Sprite ();
@@ -153,8 +174,8 @@ package
 //				if (SAVideoAd.hasAdAvailable(417)) {
 //					SAVideoAd.play(417);
 //				}
-				if (SAGameWall.hasAdAvailable(437)) {
-					SAGameWall.play(437);
+				if (SAAppWall.hasAdAvailable(437)) {
+					SAAppWall.play(437);
 				}
 			});
 			
