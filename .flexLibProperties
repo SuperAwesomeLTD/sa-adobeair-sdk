@@ -13,9 +13,7 @@
     <classEntry path="tv.superawesome.SAInterstitialAd"/>
     <classEntry path="tv.superawesome.SAVideoAd"/>
     <classEntry path="tv.superawesome.SuperAwesome"/>
-    <classEntry path="tv.superawesome.enums.SABannerColor"/>
     <classEntry path="tv.superawesome.enums.SABannerPosition"/>
-    <classEntry path="tv.superawesome.enums.SABannerSize"/>
     <classEntry path="tv.superawesome.enums.SAConfiguration"/>
     <classEntry path="tv.superawesome.enums.SAEvent"/>
     <classEntry path="tv.superawesome.enums.SAOrientation"/>

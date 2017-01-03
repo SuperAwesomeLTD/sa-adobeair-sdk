@@ -5,9 +5,7 @@ package tv.superawesome {
 	import flash.events.StatusEvent;
 	
 	import tv.superawesome.SuperAwesome;
-	import tv.superawesome.enums.SABannerColor;
 	import tv.superawesome.enums.SABannerPosition;
-	import tv.superawesome.enums.SABannerSize;
 	import tv.superawesome.enums.SAConfiguration;
 	import tv.superawesome.enums.SAEvent;
 
@@ -19,13 +17,18 @@ package tv.superawesome {
 		// name of the ad
 		private var name: String = null;
 		
-		private static var isParentalGateEnabled: Boolean = true;
-		private var size:int = SABannerSize.LEADER_320_50;
-		private var color:int = SABannerColor.GRAY;
-		private var position:int = SABannerPosition.TOP;
-		private var configuration: int = SAConfiguration.PRODUCTION;
-		private var isTestingEnabled: Boolean = false;
+		// define a default callback so that it's never null and I don't have
+		// to do a check every time I want to call it
 		private var callback: Function = function(pId: int, evt: int): void{};
+		
+		// assign default values to all of these fields
+		private var isParentalGateEnabled: Boolean 	= SuperAwesome.getInstance().defaultParentalGate();
+		private var bannerWidth: int				= SuperAwesome.getInstance().defaultBannerWidth();
+		private var bannerHeight: int 				= SuperAwesome.getInstance().defaultBannerHeight();
+		private var color:Boolean 					= SuperAwesome.getInstance().defaultBgColor();
+		private var position:int 					= SuperAwesome.getInstance().defaultBannerPosition();
+		private var configuration: int		 		= SuperAwesome.getInstance().defaultConfiguration();
+		private var isTestingEnabled: Boolean 		= SuperAwesome.getInstance().defaultTestMode();
 		 
 		// constructor
 		public function SABannerAd () {
@@ -67,7 +70,8 @@ package tv.superawesome {
 				this.name,
 				isParentalGateEnabled, 
 				position, 
-				size,
+				bannerWidth,
+				bannerHeight,
 				color
 			);
 		}
@@ -112,19 +116,23 @@ package tv.superawesome {
 		}
 		
 		public function setSize_300_50 (): void {
-			size = SABannerSize.LEADER_300_50;
+			bannerWidth = 300;
+			bannerHeight = 50;
 		}
 		
 		public function setSize_320_50 () : void {
-			size = SABannerSize.LEADER_320_50;
+			bannerWidth = 320;
+			bannerHeight = 50;
 		}
 		
 		public function setSize_728_90 (): void {
-			size = SABannerSize.LEADER_720_90;
+			bannerWidth = 728;
+			bannerHeight = 90;
 		}
 		
 		public function setSize_300_250 (): void {
-			size = SABannerSize.MPU_300_250;
+			bannerWidth = 300;
+			bannerHeight = 250;
 		}
 		
 		public function setPositionTop (): void {
@@ -136,11 +144,11 @@ package tv.superawesome {
 		}
 		
 		public function setColorTransparent (): void {
-			color = SABannerColor.TRANSPARENT;
+			color = true;
 		}
 		
 		public function setColorGray (): void {
-			color = SABannerColor.GRAY;
+			color = false;
 		}
 
 		////////////////////////////////////////////////////////////

@@ -10,16 +10,22 @@ package tv.superawesome{
 
 	public class SAVideoAd  {
 		
+		// the static video ad instance
 		private static var staticInstance: SAVideoAd = null;
-		private static var isParentalGateEnabled: Boolean = true;
-		private static var orientation: int = SAOrientation.ANY;
-		private static var configuration: int = SAConfiguration.PRODUCTION;
-		private static var shouldShowCloseButton: Boolean = true;
-		private static var shouldShowSmallClickButton: Boolean = false;
-		private static var shouldAutomaticallyCloseAtEnd: Boolean = true;
-		private static var isBackButtonEnabled: Boolean = false;
-		private static var isTestingEnabled: Boolean = false;
+		
+		// define a default callback so that it's never null and I don't have
+		// to do a check every time I want to call it
 		private static var callback: Function = function(pId: int, evt: int): void{};
+		
+		// assign default values to all of these fields
+		private static var isParentalGateEnabled: Boolean 		  = SuperAwesome.getInstance().defaultParentalGate();
+		private static var orientation: int 					  = SuperAwesome.getInstance().defaultOrientation();
+		private static var configuration: int 					  = SuperAwesome.getInstance().defaultConfiguration();
+		private static var shouldShowCloseButton: Boolean 		  = SuperAwesome.getInstance().defaultCloseButton();
+		private static var shouldShowSmallClickButton: Boolean 	  = SuperAwesome.getInstance().defaultSmallClick();
+		private static var shouldAutomaticallyCloseAtEnd: Boolean = SuperAwesome.getInstance().defaultCloseAtEnd();
+		private static var isBackButtonEnabled: Boolean 	      = SuperAwesome.getInstance().defaultBackButton();
+		private static var isTestingEnabled: Boolean 			  = SuperAwesome.getInstance().defaultTestMode();
 		
 		// instance vars
 		private static var name: String = "SAVideoAd";
