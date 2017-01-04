@@ -5,7 +5,7 @@ package
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	
+
 	import tv.superawesome.SABannerAd;
 	import tv.superawesome.SAInterstitialAd;
 	import tv.superawesome.SAVideoAd;
@@ -27,10 +27,11 @@ package
 			
 			// SuperAwesome.getInstance().handleCPI();
 //			SuperAwesome.getInstance().
+			
 			var banner:SABannerAd = new SABannerAd();
-			banner.setPositionBottom();
 			banner.setConfigurationStaging();
-			banner.enableParentalGate();
+//			banner.setPositionTop();
+//			banner.disabledParentalGate();
 			banner.setCallback(function(placement:int, evt: int): void {
 				if (evt == SAEvent.adLoaded) {
 					trace("Banner Ad loaded " + placement);
@@ -46,12 +47,10 @@ package
 					trace("Banner Ad closed " + placement);
 				}
 			});
-			banner.enabledTestMode();
-			banner.load(414);
 			
 			SAInterstitialAd.setConfigurationStaging();
-			SAInterstitialAd.disabledParentalGate();
-			SAInterstitialAd.setOrientationPortrait();
+//			SAInterstitialAd.setOrientationPortrait();
+//			SAInterstitialAd.disabledParentalGate();
 			SAInterstitialAd.setCallback(function(placement:int, evt: int): void {
 				if (evt == SAEvent.adLoaded) {
 					trace("Interstitial Ad loaded " + placement);
@@ -67,12 +66,10 @@ package
 					trace("Interstitial Ad closed " + placement);
 				}
 			});
-			SAInterstitialAd.enabledTestMode();
-			SAInterstitialAd.load(415);
-			SAInterstitialAd.load(418);
 			
-			SAVideoAd.setOrientationLandscape();
-			SAVideoAd.enabledTestMode();
+			SAVideoAd.setConfigurationStaging();
+//			SAVideoAd.setOrientationLandscape();
+//			SAVideoAd.enableCloseButton();
 			SAVideoAd.setCallback(function(placement:int, evt: int): void {
 				if (evt == SAEvent.adLoaded) {
 					trace("Video Ad loaded " + placement);
@@ -89,30 +86,9 @@ package
 				}
 			});
 			
-			SAVideoAd.load(28000);
-//			SAVideoAd.load(416);
-//			SAVideoAd.load(416);
-//			SAVideoAd.load(416);
-//			SAVideoAd.load(417);
-			
-			SAAppWall.setConfigurationStaging();
-			SAAppWall.disabledParentalGate();
-			SAAppWall.setCallback(function(placement:int, evt: int): void {
-				if (evt == SAEvent.adLoaded) {
-					trace("SAAppWall Ad loaded " + placement);
-				} else if (evt == SAEvent.adFailedToLoad) {
-					trace("SAAppWall Ad failed to load " + placement);
-				} else if (evt == SAEvent.adShown) {
-					trace("SAAppWall Ad shown " + placement);
-				} else if (evt == SAEvent.adFailedToShow) {
-					trace("SAAppWall Ad failed to show " + placement);
-				} else if (evt == SAEvent.adClicked) {
-					trace("SAAppWall Ad clicked " + placement);
-				} else if (evt == SAEvent.adClosed) {
-					trace("SAAppWall Ad closed " + placement);
-				}
-			});
-			SAAppWall.load(437);
+			banner.load(584);
+			SAInterstitialAd.load(585);
+			SAVideoAd.load(586);
 			
 			var color1:uint = 0xff0000;
 			var color2:uint = 0x00ff00;
@@ -138,21 +114,21 @@ package
 			playInter1.graphics.endFill();
 			addChild(playInter1);
 			playInter1.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
-				if (SAInterstitialAd.hasAdAvailable(415)){
-					SAInterstitialAd.play(415);
+				if (SAInterstitialAd.hasAdAvailable(585)){
+					SAInterstitialAd.play(585);
 				}
 			});
 			
-			var playInter2:Sprite = new Sprite ();
-			playInter2.graphics.beginFill(color3, 1);
-			playInter2.graphics.drawRect(400, 0, 200, 150);
-			playInter2.graphics.endFill();
-			addChild(playInter2);
-			playInter2.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
-				if (SAInterstitialAd.hasAdAvailable(418)) {
-					SAInterstitialAd.play(418);
-				}
-			});
+//			var playInter2:Sprite = new Sprite ();
+//			playInter2.graphics.beginFill(color3, 1);
+//			playInter2.graphics.drawRect(400, 0, 200, 150);
+//			playInter2.graphics.endFill();
+//			addChild(playInter2);
+//			playInter2.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
+//				if (SAInterstitialAd.hasAdAvailable(418)) {
+//					SAInterstitialAd.play(418);
+//				}
+//			});
 			
 			var playVideo1:Sprite = new Sprite ();
 			playVideo1.graphics.beginFill(color4, 1);
@@ -160,24 +136,24 @@ package
 			playVideo1.graphics.endFill();
 			addChild(playVideo1);
 			playVideo1.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
-				 if (SAVideoAd.hasAdAvailable(28000)) {
-					SAVideoAd.play(28000);
+				 if (SAVideoAd.hasAdAvailable(586)) {
+					SAVideoAd.play(586);
 				 }
 			});
 			
-			var playVideo2:Sprite = new Sprite ();
-			playVideo2.graphics.beginFill(color5, 1);
-			playVideo2.graphics.drawRect(200, 150, 200, 150);
-			playVideo2.graphics.endFill();
-			addChild(playVideo2);
-			playVideo2.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
-//				if (SAVideoAd.hasAdAvailable(417)) {
-//					SAVideoAd.play(417);
+//			var playVideo2:Sprite = new Sprite ();
+//			playVideo2.graphics.beginFill(color5, 1);
+//			playVideo2.graphics.drawRect(200, 150, 200, 150);
+//			playVideo2.graphics.endFill();
+//			addChild(playVideo2);
+//			playVideo2.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
+////				if (SAVideoAd.hasAdAvailable(417)) {
+////					SAVideoAd.play(417);
+////				}
+//				if (SAAppWall.hasAdAvailable(437)) {
+//					SAAppWall.play(437);
 //				}
-				if (SAAppWall.hasAdAvailable(437)) {
-					SAAppWall.play(437);
-				}
-			});
+//			});
 			
 //			var dispose:Sprite = new Sprite ();
 //			dispose.graphics.beginFill(color6, 1);

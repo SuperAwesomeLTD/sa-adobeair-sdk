@@ -34,7 +34,7 @@
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_agent.swc" useDefaultLinkType="false"/>
         </excludedEntries>
       </libraryPathEntry>
-      <libraryPathEntry kind="5" linkType="2" path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo-2/air_build/SuperAwesomeSDK.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/aa-air-build/SuperAwesomeSDK.AdobeAIR.ane"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
@@ -49,21 +49,20 @@
   <flashCatalyst validateFlashCatalystCompatibility="false"/>
   <buildTargets>
     <buildTarget airDownloadURL="" androidSettingsVersion="2" buildTargetName="device" isCurrent="true" platformId="com.adobe.flexide.multiplatform.android.platform">
-      <multiPlatformSettings enabled="true" hideAneLibSymbols="0" includePlatformLibs="false" platformID="com.adobe.flexide.multiplatform.android.platform" reducedSizePackaging="false" version="1"/>
       <airSettings airCertificatePath="" airTimestamp="true" anePathSet="true" version="1">
         <airExcludes/>
         <anePaths>
-          <anePathEntry path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo-2/air_build/SuperAwesomeSDK.ane"/>
+          <anePathEntry path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/aa-air-build/SuperAwesomeSDK.AdobeAIR.ane"/>
         </anePaths>
         <newLaunchParams/>
         <modifiedLaunchParams/>
         <newPackagingParams/>
         <modifiedPackagingParams/>
       </airSettings>
+      <multiPlatformSettings enabled="true" hideAneLibSymbols="0" includePlatformLibs="false" platformID="com.adobe.flexide.multiplatform.android.platform" reducedSizePackaging="false" version="1"/>
       <actionScriptSettings version="1"/>
     </buildTarget>
     <buildTarget buildTargetName="default" isCurrent="true" platformId="default">
-      <multiPlatformSettings enabled="false" hideAneLibSymbols="0" includePlatformLibs="false" platformID="default" reducedSizePackaging="false" version="1"/>
       <airSettings airCertificatePath="" airTimestamp="true" anePathSet="false" version="1">
         <airExcludes/>
         <anePaths/>
@@ -72,20 +71,21 @@
         <newPackagingParams/>
         <modifiedPackagingParams/>
       </airSettings>
+      <multiPlatformSettings enabled="false" hideAneLibSymbols="0" includePlatformLibs="false" platformID="default" reducedSizePackaging="false" version="1"/>
       <actionScriptSettings version="1"/>
     </buildTarget>
     <buildTarget buildTargetName="device" iosSettingsVersion="2" isCurrent="true" platformId="com.adobe.flexide.multiplatform.ios.platform" provisioningFile="/Users/gabriel.coman/Desktop/CERTS/AdobeAIR-2.mobileprovision" releasePackageType="">
-      <multiPlatformSettings enabled="true" hideAneLibSymbols="0" includePlatformLibs="false" platformID="com.adobe.flexide.multiplatform.ios.platform" reducedSizePackaging="false" version="1"/>
       <airSettings airCertificatePath="/Users/gabriel.coman/Desktop/CERTS/GabCert.p12" airTimestamp="true" anePathSet="true" version="1">
         <airExcludes/>
         <anePaths>
-          <anePathEntry path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo-2/air_build/SuperAwesomeSDK.ane"/>
+          <anePathEntry path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/aa-air-build/SuperAwesomeSDK.AdobeAIR.ane"/>
         </anePaths>
         <newLaunchParams/>
         <modifiedLaunchParams/>
         <newPackagingParams/>
         <modifiedPackagingParams/>
       </airSettings>
+      <multiPlatformSettings enabled="true" hideAneLibSymbols="0" includePlatformLibs="false" platformID="com.adobe.flexide.multiplatform.ios.platform" reducedSizePackaging="false" version="1"/>
       <actionScriptSettings version="1"/>
     </buildTarget>
   </buildTargets>
