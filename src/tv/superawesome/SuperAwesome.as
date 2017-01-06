@@ -11,6 +11,10 @@ package tv.superawesome {
 		// the extension context
 		private var extContext: ExtensionContext; 
 		
+		// version & sdk
+		private const version: String = "5.1.6";
+		private const sdk: String = "air";
+		
 		// singleton variable
 		private static var _instance: SuperAwesome;
 		public static function getInstance(): SuperAwesome {
@@ -29,6 +33,9 @@ package tv.superawesome {
 				throw new Error( "SuperAwesome native extension is not supported on this platform." );
 			}
 			
+			// call the version method
+			extContext.call("SuperAwesomeAIRSetVersion", version, sdk);
+			
 			// instrance 
 			_instance = this;
 		}
@@ -36,11 +43,11 @@ package tv.superawesome {
 		// getters
 		
 		private function getVersion(): String {
-			return "5.1.6";
+			return version;
 		}
 		
 		private function getSdk(): String {
-			return "air";
+			return sdk;
 		}
 		
 		public function getSdkVersion(): String {
