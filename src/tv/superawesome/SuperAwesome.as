@@ -1,5 +1,8 @@
 package tv.superawesome {
 	
+	import com.adobe.serialization.json.JSON;
+	
+	import flash.events.StatusEvent;
 	import flash.external.ExtensionContext;
 	
 	import tv.superawesome.enums.SABannerPosition;
@@ -10,6 +13,13 @@ package tv.superawesome {
 		
 		// the extension context
 		private var extContext: ExtensionContext; 
+		
+		// define a default callback so that it's never null and I don't have
+		// to do a check every time I want to call it
+		private var cpiCallback: Function = function(success: Boolean): void{};
+		
+		// instance vars
+		private static var name: String = "SAAIRSuperAwesome";
 		
 		// version & sdk
 		private const version: String = "5.1.7";
@@ -33,8 +43,11 @@ package tv.superawesome {
 				throw new Error( "SuperAwesome native extension is not supported on this platform." );
 			}
 			
+			// add event listener
+			extContext.addEventListener(StatusEvent.STATUS, nativeCallback);
+			
 			// call the version method
-			extContext.call("SuperAwesomeAIRSetVersion", version, sdk);
+			extContext.call("SuperAwesomeAIRSuperAwesomeSetVersion", version, sdk);
 			
 			// instrance 
 			_instance = this;
@@ -58,7 +71,8 @@ package tv.superawesome {
 			return extContext;
 		}
 		
-		public function handleCPI (): void {
+		public function handleCPI (callback: Function): void {
+			cpiCallback = callback != null ? callback : cpiCallback;
 			extContext.call("SuperAwesomeAIRSuperAwesomeHandleCPI");
 		}
 		
@@ -114,6 +128,41 @@ package tv.superawesome {
 		
 		public function defaultBannerHeight (): int {
 			return 50;
+		}
+		
+		////////////////////////////////////////////////////////////
+		// Callback
+		////////////////////////////////////////////////////////////
+		
+		public function nativeCallback(event:StatusEvent): void {
+			// get data
+			var data: String = event.code;
+			var content: String = event.level;
+			
+			// parse data
+			var meta: Object = com.adobe.serialization.json.JSON.decode(data);
+			var callName:String = null;
+			var success:Boolean = false;
+			var call:String = null;
+			
+			// get properties (right way)
+			if (meta.hasOwnProperty("name")) {
+				callName = meta.name;
+			}
+			if (meta.hasOwnProperty("success")) {
+				success = meta.success;
+			}
+			if (meta.hasOwnProperty("callback")) {
+				call = meta.callback;
+			}
+			
+			// check to see target
+			if (callName != null && call != null && callName.indexOf(name) >= 0) {
+				
+				if (call.indexOf("HandleCPI") >= 0) {
+					this.cpiCallback (success);
+				}
+			}
 		}
 	}
 }
