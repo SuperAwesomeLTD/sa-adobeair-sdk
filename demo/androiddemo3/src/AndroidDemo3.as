@@ -5,13 +5,13 @@ package
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-
+	
+	import tv.superawesome.SAAppWall;
 	import tv.superawesome.SABannerAd;
 	import tv.superawesome.SAInterstitialAd;
 	import tv.superawesome.SAVideoAd;
-	import tv.superawesome.enums.SAEvent;
-	import tv.superawesome.SAAppWall;
 	import tv.superawesome.SuperAwesome;
+	import tv.superawesome.enums.SAEvent;
 	
 	public class AndroidDemo3 extends Sprite
 	{	
@@ -23,7 +23,11 @@ package
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
-			SuperAwesome.getInstance().handleCPI ();
+			SuperAwesome.getInstance().handleCPI(function (success:Boolean): void {
+				
+			});
+			
+//			SuperAwesome.getInstance().handleCPI ();
 			
 			// SuperAwesome.getInstance().handleCPI();
 //			SuperAwesome.getInstance().
@@ -68,6 +72,7 @@ package
 			});
 			
 			SAVideoAd.setConfigurationStaging();
+			SAVideoAd.disableCloseAtEnd();
 //			SAVideoAd.setOrientationLandscape();
 //			SAVideoAd.enableCloseButton();
 			SAVideoAd.setCallback(function(placement:int, evt: int): void {
