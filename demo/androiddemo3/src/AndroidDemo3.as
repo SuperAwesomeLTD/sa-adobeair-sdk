@@ -88,12 +88,15 @@ package
 					trace("Video Ad clicked " + placement);
 				} else if (evt == SAEvent.adClosed) {
 					trace("Video Ad closed " + placement);
+				} else if (evt == SAEvent.adEnded) { 
+					trace("Video Ad ended " + placement);
 				}
 			});
 			
-			banner.load(584);
-			SAInterstitialAd.load(585);
-			SAVideoAd.load(586);
+			banner.load(602);
+			SAInterstitialAd.load(605);
+			SAInterstitialAd.load(606);
+			SAVideoAd.load(604);
 			
 			var color1:uint = 0xff0000;
 			var color2:uint = 0x00ff00;
@@ -119,21 +122,21 @@ package
 			playInter1.graphics.endFill();
 			addChild(playInter1);
 			playInter1.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
-				if (SAInterstitialAd.hasAdAvailable(585)){
-					SAInterstitialAd.play(585);
+				if (SAInterstitialAd.hasAdAvailable(605)){
+					SAInterstitialAd.play(605);
 				}
 			});
 			
-//			var playInter2:Sprite = new Sprite ();
-//			playInter2.graphics.beginFill(color3, 1);
-//			playInter2.graphics.drawRect(400, 0, 200, 150);
-//			playInter2.graphics.endFill();
-//			addChild(playInter2);
-//			playInter2.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
-//				if (SAInterstitialAd.hasAdAvailable(418)) {
-//					SAInterstitialAd.play(418);
-//				}
-//			});
+			var playInter2:Sprite = new Sprite ();
+			playInter2.graphics.beginFill(color3, 1);
+			playInter2.graphics.drawRect(400, 0, 200, 150);
+			playInter2.graphics.endFill();
+			addChild(playInter2);
+			playInter2.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
+				if (SAInterstitialAd.hasAdAvailable(606)) {
+					SAInterstitialAd.play(606);
+				}
+			});
 			
 			var playVideo1:Sprite = new Sprite ();
 			playVideo1.graphics.beginFill(color4, 1);
@@ -141,8 +144,8 @@ package
 			playVideo1.graphics.endFill();
 			addChild(playVideo1);
 			playVideo1.addEventListener(MouseEvent.CLICK, function(evt:Event): void {
-				 if (SAVideoAd.hasAdAvailable(586)) {
-					SAVideoAd.play(586);
+				 if (SAVideoAd.hasAdAvailable(604)) {
+					SAVideoAd.play(604);
 				 }
 			});
 			
