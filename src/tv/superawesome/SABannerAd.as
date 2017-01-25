@@ -186,6 +186,9 @@ package tv.superawesome {
 				if (call.indexOf ("adFailedToLoad") >= 0) {
 					callback (placement, SAEvent.adFailedToLoad);
 				}
+				if (call.indexOf("adAlreadyLoaded") >= 0) {
+					callback (placement, SAEvent.adAlreadyLoaded);
+				}
 				if (call.indexOf ("adShown") >= 0) {
 					callback (placement, SAEvent.adShown);
 				}
@@ -194,6 +197,9 @@ package tv.superawesome {
 				}
 				if (call.indexOf ("adClicked") >= 0) {
 					callback (placement, SAEvent.adClicked);
+				}
+				if (call.indexOf ("adEnded") >= 0) {
+					callback (placement, SAEvent.adEnded);
 				}
 				if (call.indexOf ("adClosed") >= 0) {
 					callback (placement, SAEvent.adClosed);
