@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+5.2.1
+ - Updated the AIR SDK to communicate with the new Android (5.4.8) SDK. 
+ - That removed the need to add layout and drawable resources to the build and changed slightly the Android manifest to change in your AIR project.
+ - As a consequence all the UI elements are generated in code, even images (through base64 encoded strings).
+ - This also adds a new and improved video player that is much more versatile.
+
 5.2.0
  - Updated the AIR SDK to communicate with the new iOS (5.4.0) and Android (5.4.0) SDKs
  - Those added support for a new WebPlayer that scales the ad using native code matrix manipulation

@@ -34,6 +34,7 @@ package
 			
 			var banner:SABannerAd = new SABannerAd();
 			banner.setConfigurationStaging();
+			banner.setColorTransparent();
 //			banner.setPositionTop();
 //			banner.disabledParentalGate();
 			banner.setCallback(function(placement:int, evt: int): void {
