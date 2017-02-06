@@ -22,7 +22,7 @@ package tv.superawesome {
 		private static var name: String = "SAAIRSuperAwesome";
 		
 		// version & sdk
-		private const version: String = "5.2.1";
+		private const version: String = "5.2.2";
 		private const sdk: String = "air";
 		
 		// singleton variable

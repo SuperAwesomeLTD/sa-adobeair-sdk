@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+5.2.2
+ - Updated the AIR SDK to communicate with the new Android (5.4.8) and iOS (5.4.1) SDK
+ - Banner ads don't fire up an "adClosed" event on first load
+ - On iOS the "setOrientationLandscape" and "setOrientationPortrait" methods will take into account the available orientations the app provides
+ - The video ad close button will appear by default after 15 seconds of content playing
+
 5.2.1
  - Updated the AIR SDK to communicate with the new Android (5.4.8) SDK. 
  - That removed the need to add layout and drawable resources to the build and changed slightly the Android manifest to change in your AIR project.
