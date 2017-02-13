@@ -24,7 +24,7 @@ package
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
 			SuperAwesome.getInstance().handleCPI(function (success:Boolean): void {
-				
+				trace("Handled CPI with " + success);
 			});
 			
 //			SuperAwesome.getInstance().handleCPI ();
@@ -73,7 +73,7 @@ package
 			});
 			
 			SAVideoAd.setConfigurationStaging();
-			SAVideoAd.disableCloseAtEnd();
+//			SAVideoAd.disableCloseAtEnd();
 //			SAVideoAd.setOrientationLandscape();
 //			SAVideoAd.enableCloseButton();
 			SAVideoAd.setCallback(function(placement:int, evt: int): void {
