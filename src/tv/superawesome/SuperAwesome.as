@@ -18,7 +18,7 @@ package tv.superawesome {
 		// singleton variable
 		private static var _instance: SuperAwesome;
 		public static function getInstance(): SuperAwesome {
-			if (!_instance) { new SuperAwesome(); }
+			if (!_instance) { _instance = new SuperAwesome(); }
 			return _instance;
 		}
 		

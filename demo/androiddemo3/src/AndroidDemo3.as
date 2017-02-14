@@ -8,6 +8,7 @@ package
 	
 	import tv.superawesome.SAAppWall;
 	import tv.superawesome.SABannerAd;
+	import tv.superawesome.SACPI;
 	import tv.superawesome.SAInterstitialAd;
 	import tv.superawesome.SAVideoAd;
 	import tv.superawesome.SuperAwesome;
@@ -23,9 +24,12 @@ package
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
-			SuperAwesome.getInstance().handleCPI(function (success:Boolean): void {
-				trace("Handled CPI with " + success);
-			});
+			var inst:SACPI = SACPI.getInstance();
+			trace("Instance is " + inst);
+			
+//			SACPI.getInstance().handleInstall (function (success:Boolean): void {
+//				trace("Handled CPI with " + success);
+//			});
 			
 //			SuperAwesome.getInstance().handleCPI ();
 			

@@ -18,7 +18,7 @@ package tv.superawesome {
 		// singleton variable
 		private static var _instance: SACPI;
 		public static function getInstance(): SACPI {
-			if (!_instance) { new SACPI(); }
+			if (!_instance) { _instance = new SACPI(); }
 			return _instance;
 		}
 		
