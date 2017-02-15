@@ -1,8 +1,20 @@
 CHANGELOG
 =========
 
+5.3.0
+ - Updated the AIR SDK to communicate with the new Android (5.5.0) and iOS (5.5.0) SDKs
+ - Added a separate SACPI class (singleton) to handle all CPI:
+    - communicating with native methods
+    - receiving a callback with a "success" parameter
+    - also removed any reference of CPI in the SuperAwesome class (singleton)
+ - Contains changes done in the 5.5.0 versions of the native SDKs:
+    - reworked CPI
+    - reworked events
+    - reworked video player (for Android)
+    - improvements & bug fixes
+
 5.2.2
- - Updated the AIR SDK to communicate with the new Android (5.4.8) and iOS (5.4.1) SDK
+ - Updated the AIR SDK to communicate with the new Android (5.4.8) and iOS (5.4.1) SDKs
  - Banner ads don't fire up an "adClosed" event on first load
  - On iOS the "setOrientationLandscape" and "setOrientationPortrait" methods will take into account the available orientations the app provides
  - The video ad close button will appear by default after 15 seconds of content playing

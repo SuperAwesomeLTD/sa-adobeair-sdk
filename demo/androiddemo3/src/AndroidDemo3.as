@@ -27,9 +27,9 @@ package
 			var inst:SACPI = SACPI.getInstance();
 			trace("Instance is " + inst);
 			
-//			SACPI.getInstance().handleInstall (function (success:Boolean): void {
-//				trace("Handled CPI with " + success);
-//			});
+			SACPI.getInstance().handleInstall (function (success:Boolean): void {
+				trace("Handled CPI with " + success);
+			});
 			
 //			SuperAwesome.getInstance().handleCPI ();
 			
@@ -99,6 +99,7 @@ package
 			});
 			
 			banner.load(602);
+//			banner.close();
 			SAInterstitialAd.load(605);
 			SAInterstitialAd.load(606);
 			SAVideoAd.load(604);
