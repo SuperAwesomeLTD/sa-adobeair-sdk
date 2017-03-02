@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+5.3.1
+ - Updated the AIR SDK to communicate with the new Android (5.5.2) and iOS (5.5.2) SDKs that add improvements to the modelspace and eventing systems
+
 5.3.0
  - Updated the AIR SDK to communicate with the new Android (5.5.0) and iOS (5.5.0) SDKs
  - Added a separate SACPI class (singleton) to handle all CPI:
