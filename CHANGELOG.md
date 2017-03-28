@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+5.3.4
+ - Updated the Adobe AIR SDK to work with the new Android (5.5.6) and iOS (5.5.5) SDKs. This fixes a smal
+l error when the video player tries to play a non-video creative but doesn't auto-close.
+
 5.3.3
  - Updated the Adobe AIR SDK to work with the new Android (5.5.4) and iOS (5.5.4) SDKs that load data in webviews using a base url as well
 
