@@ -95,15 +95,15 @@ package tv.superawesome {
 			isParentalGateEnabled = true;
 		}
 		
-		public function disabledParentalGate (): void {
+		public function disableParentalGate (): void {
 			isParentalGateEnabled = false;
 		}
 		
-		public function enabledTestMode (): void {
+		public function enableTestMode (): void {
 			isTestingEnabled = true;
 		}
 		
-		public function disabledTestMode (): void {
+		public function disableTestMode (): void {
 			isTestingEnabled  = false; 
 		}
 		

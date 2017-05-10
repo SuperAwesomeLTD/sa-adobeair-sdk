@@ -39,6 +39,7 @@ package
 			var banner:SABannerAd = new SABannerAd();
 			banner.setConfigurationStaging();
 			banner.setColorTransparent();
+			banner.setSize_728_90();
 //			banner.setPositionTop();
 //			banner.disabledParentalGate();
 			banner.setCallback(function(placement:int, evt: int): void {
@@ -98,7 +99,7 @@ package
 				}
 			});
 			
-			banner.load(602);
+			banner.load(636);
 //			banner.close();
 			SAInterstitialAd.load(605);
 			SAInterstitialAd.load(606);

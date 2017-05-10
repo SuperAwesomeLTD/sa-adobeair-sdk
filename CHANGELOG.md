@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+5.4.0
+ - Uodate the Adobe AIR SDK to work with the Android (5.6.0) and iOS (5.6.0) SDKs
+ - Add MRAID support for banner & interstitial ads
+ - Update MOAT version to latest supported
+
 5.3.5
  - Updated the Adobe AIR SDK to work wiith the Android (5.5.7) and iOS (5.5.8) SDKs
  - Added camel & snake case options when parsing the SACreative object - for click, impression and install

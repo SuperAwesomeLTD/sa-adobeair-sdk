@@ -86,15 +86,15 @@ package tv.superawesome {
 			isParentalGateEnabled = true;
 		}
 		
-		public static function disabledParentalGate (): void {
+		public static function disableParentalGate (): void {
 			isParentalGateEnabled = false;
 		}
 		
-		public static function enabledTestMode (): void {
+		public static function enableTestMode (): void {
 			isTestingEnabled = true;
 		}
 		
-		public static function disabledTestMode (): void {
+		public static function disableTestMode (): void {
 			isTestingEnabled  = false; 
 		}
 		
@@ -106,7 +106,7 @@ package tv.superawesome {
 			configuration = SAConfiguration.STAGING;
 		}
 		
-		public static function enabledBackButton (): void {
+		public static function enableBackButton (): void {
 			isBackButtonEnabled = true;
 		}
 		
