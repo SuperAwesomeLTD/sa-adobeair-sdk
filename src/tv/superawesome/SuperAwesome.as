@@ -12,7 +12,7 @@ package tv.superawesome {
 		private var extContext: ExtensionContext; 
 		
 		// version & sdk
-		private const version: String = "5.4.0";
+		private const version: String = "5.5.0";
 		private const sdk: String = "air";
 		
 		// singleton variable
