@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+5.5.1
+ - Added support for iOS 5.7.1 and Android 5.7.3
+ - Added support for the adEmpty callback
+
 5.5.0
  - Added support for iOS & Android 5.7.0 version, which:
  - Adds support for AdMob

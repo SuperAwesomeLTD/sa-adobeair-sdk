@@ -146,6 +146,9 @@ package tv.superawesome {
 				if (call.indexOf ("adLoaded") >= 0) {
 					callback (placement, SAEvent.adLoaded);
 				}
+				if (call.indexOf ("adEmpty") >= 0) {
+					callback (placement, SAEvent.adEmpty);
+				}
 				if (call.indexOf ("adFailedToLoad") >= 0) {
 					callback (placement, SAEvent.adFailedToLoad);
 				}
