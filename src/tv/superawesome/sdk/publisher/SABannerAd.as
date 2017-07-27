@@ -1,13 +1,15 @@
-package tv.superawesome {
+package tv.superawesome.sdk.publisher {
 	
 	import com.adobe.serialization.json.JSON;
 	
 	import flash.events.StatusEvent;
 	
-	import tv.superawesome.SuperAwesome;
-	import tv.superawesome.enums.SABannerPosition;
-	import tv.superawesome.enums.SAConfiguration;
-	import tv.superawesome.enums.SAEvent;
+	import tv.superawesome.sdk.publisher.SAExtensionContext;
+	import tv.superawesome.sdk.publisher.SAVersion;
+	import tv.superawesome.sdk.publisher.enums.SABannerPosition;
+	import tv.superawesome.sdk.publisher.enums.SAConfiguration;
+	import tv.superawesome.sdk.publisher.enums.SAEvent;
+	import tv.superawesome.sdk.publisher.SADefaults;
 
 	public class SABannerAd  {
 		
@@ -22,13 +24,13 @@ package tv.superawesome {
 		private var callback: Function = function(pId: int, evt: int): void{};
 		
 		// assign default values to all of these fields
-		private var isParentalGateEnabled: Boolean 	= SuperAwesome.getInstance().defaultParentalGate();
-		private var bannerWidth: int				= SuperAwesome.getInstance().defaultBannerWidth();
-		private var bannerHeight: int 				= SuperAwesome.getInstance().defaultBannerHeight();
-		private var color:Boolean 					= SuperAwesome.getInstance().defaultBgColor();
-		private var position:int 					= SuperAwesome.getInstance().defaultBannerPosition();
-		private var configuration: int		 		= SuperAwesome.getInstance().defaultConfiguration();
-		private var isTestingEnabled: Boolean 		= SuperAwesome.getInstance().defaultTestMode();
+		private var isParentalGateEnabled: Boolean 	= SADefaults.defaultParentalGate();
+		private var bannerWidth: int				= SADefaults.defaultBannerWidth();
+		private var bannerHeight: int 				= SADefaults.defaultBannerHeight();
+		private var color:Boolean 					= SADefaults.defaultBgColor();
+		private var position:int 					= SADefaults.defaultBannerPosition();
+		private var configuration: int		 		= SADefaults.defaultConfiguration();
+		private var isTestingEnabled: Boolean 		= SADefaults.defaultTestMode();
 		 
 		// constructor
 		public function SABannerAd () {
@@ -36,11 +38,14 @@ package tv.superawesome {
 			super ();
 			this.name = "SABannerAd_" + (++SABannerAd.index);
 			
+			// just set version
+			SAVersion.setVersionInNative();
+			
 			// add event listener
-			SuperAwesome.getInstance().getContext().addEventListener(StatusEvent.STATUS, nativeCallback);
+			SAExtensionContext.current().context().addEventListener(StatusEvent.STATUS, nativeCallback);
 			
 			// call create
-			SuperAwesome.getInstance().getContext().call("SuperAwesomeAIRSABannerAdCreate", this.name);
+			SAExtensionContext.current().context().call("SuperAwesomeAIRSABannerAdCreate", this.name);
  		}
 		
 		////////////////////////////////////////////////////////////
@@ -48,7 +53,7 @@ package tv.superawesome {
 		////////////////////////////////////////////////////////////
 		
 		public function load (placementId: int) : void {
-			SuperAwesome.getInstance().getContext().call(
+			SAExtensionContext.current().context().call(
 				"SuperAwesomeAIRSABannerAdLoad", 
 				this.name,
 				placementId, 
@@ -58,14 +63,14 @@ package tv.superawesome {
 		}
 		
 		public function hasAdAvailable (): Boolean {
-			var adAvailable:Boolean = SuperAwesome.getInstance().getContext().call(
+			var adAvailable:Boolean = SAExtensionContext.current().context().call(
 				"SuperAwesomeAIRSABannerAdHasAdAvailable", 
 				this.name) as Boolean;
 			return adAvailable;
 		}
 		
 		public function play (): void {
-			SuperAwesome.getInstance().getContext().call(
+			SAExtensionContext.current().context().call(
 				"SuperAwesomeAIRSABannerAdPlay", 
 				this.name,
 				isParentalGateEnabled, 
@@ -77,7 +82,7 @@ package tv.superawesome {
 		}
 		
 		public function close (): void {
-			SuperAwesome.getInstance().getContext().call(
+			SAExtensionContext.current().context().call(
 				"SuperAwesomeAIRSABannerAdClose",
 				this.name
 			);

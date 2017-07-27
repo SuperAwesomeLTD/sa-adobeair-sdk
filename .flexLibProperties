@@ -10,7 +10,6 @@
     <classEntry path="com.adobe.serialization.json.JSONTokenizer"/>
     <classEntry path="tv.superawesome.SABannerAd"/>
     <classEntry path="tv.superawesome.SAAppWall"/>
-    <classEntry path="tv.superawesome.SAInterstitialAd"/>
     <classEntry path="tv.superawesome.SAVideoAd"/>
     <classEntry path="tv.superawesome.SuperAwesome"/>
     <classEntry path="tv.superawesome.enums.SABannerPosition"/>

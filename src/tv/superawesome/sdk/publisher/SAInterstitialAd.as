@@ -1,13 +1,16 @@
-package tv.superawesome {
+package tv.superawesome.sdk.publisher {
 	
 	import com.adobe.serialization.json.JSON;
 	
 	import flash.events.EventDispatcher;
 	import flash.events.StatusEvent;
 	
-	import tv.superawesome.enums.SAConfiguration;
-	import tv.superawesome.enums.SAEvent;
-	import tv.superawesome.enums.SAOrientation;
+	import tv.superawesome.sdk.publisher.SAExtensionContext;
+	import tv.superawesome.sdk.publisher.SAVersion;
+	import tv.superawesome.sdk.publisher.enums.SAConfiguration;
+	import tv.superawesome.sdk.publisher.enums.SAEvent;
+	import tv.superawesome.sdk.publisher.enums.SAOrientation;
+	import tv.superawesome.sdk.publisher.SADefaults;
 	
 	public class SAInterstitialAd extends EventDispatcher {
 		
@@ -19,11 +22,11 @@ package tv.superawesome {
 		private static var callback: Function = function(pId: int, evt: int): void{};
 		
 		// assign default values to all of these fields
-		private static var isParentalGateEnabled: Boolean = SuperAwesome.getInstance().defaultParentalGate();
-		private static var isTestingEnabled: Boolean 	  = SuperAwesome.getInstance().defaultTestMode();
-		private static var isBackButtonEnabled: Boolean   = SuperAwesome.getInstance().defaultBackButton();
-		private static var orientation: int 			  = SuperAwesome.getInstance().defaultOrientation();
-		private static var configuration: int 		      = SuperAwesome.getInstance().defaultConfiguration();
+		private static var isParentalGateEnabled: Boolean = SADefaults.defaultParentalGate();
+		private static var isTestingEnabled: Boolean 	  = SADefaults.defaultTestMode();
+		private static var isBackButtonEnabled: Boolean   = SADefaults.defaultBackButton();
+		private static var orientation: int 			  = SADefaults.defaultOrientation();
+		private static var configuration: int 		      = SADefaults.defaultConfiguration();
 		
 		// instance vars
 		private static var name: String = "SAInterstitialAd";
@@ -37,11 +40,14 @@ package tv.superawesome {
 		
 		// constructor
 		public function SAInterstitialAd () {
+			// just set version
+			SAVersion.setVersionInNative();
+			
 			// add event listener
-			SuperAwesome.getInstance().getContext().addEventListener(StatusEvent.STATUS, nativeCallback);
+			SAExtensionContext.current().context().addEventListener(StatusEvent.STATUS, nativeCallback);
 			
 			// call to create the instance
-			SuperAwesome.getInstance().getContext().call("SuperAwesomeAIRSAInterstitialAdCreate");
+			SAExtensionContext.current().context().call("SuperAwesomeAIRSAInterstitialAdCreate");
 		}
 		
 		////////////////////////////////////////////////////////////
@@ -50,7 +56,7 @@ package tv.superawesome {
 		
 		public static function load (placementId: int) : void {
 			tryAndCreateOnce ();
-			SuperAwesome.getInstance().getContext().call(
+			SAExtensionContext.current().context().call(
 				"SuperAwesomeAIRSAInterstitialAdLoad", 
 				placementId, 
 				configuration, 
@@ -60,7 +66,7 @@ package tv.superawesome {
 		
 		public static function play (placementId: int): void {
 			tryAndCreateOnce ();
-			SuperAwesome.getInstance().getContext().call(
+			SAExtensionContext.current().context().call(
 				"SuperAwesomeAIRSAInterstitialAdPlay", 
 				placementId, 
 				isParentalGateEnabled, 
@@ -71,7 +77,7 @@ package tv.superawesome {
 		
 		public static function hasAdAvailable (placementId: int): Boolean {
 			tryAndCreateOnce ();
-			var adAvailable: Boolean = SuperAwesome.getInstance().getContext().call(
+			var adAvailable: Boolean = SAExtensionContext.current().context().call(
 				"SuperAwesomeAIRSAInterstitialAdHasAdAvailable", 
 				placementId) as Boolean;
 			return adAvailable;

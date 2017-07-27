@@ -1,4 +1,4 @@
-package tv.superawesome.enums {
+package tv.superawesome.sdk.publisher.enums {
 	
 	public class SAEvent {
 		public static const adLoaded: int = 0;

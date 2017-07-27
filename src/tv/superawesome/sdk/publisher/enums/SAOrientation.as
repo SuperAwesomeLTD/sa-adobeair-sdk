@@ -1,4 +1,4 @@
-package tv.superawesome.enums {
+package tv.superawesome.sdk.publisher.enums {
 	
 	public class SAOrientation {
 		public static const ANY: int = 0;

@@ -298,9 +298,9 @@
 						android:configChanges="keyboardHidden|orientation|screenSize"/>
 				
 				    <service android:name="tv.superawesome.lib.sanetwork.asynctask.SAAsyncTask$SAAsync" android:exported="false"/>
-				    <receiver android:name="tv.superawesome.sdk.cpi.SACPI" android:exported="true">
-		                <intent-filter><action android:name="com.android.vending.INSTALL_REFERRER"/></intent-filter>
-		            </receiver>
+				    <receiver android:name="tv.superawesomeadvertiser.sdk.SuperAwesomeAdvertiser" android:exported="false" android:permission="tv.superawesome.sdk.SuperAwesomeSDK">
+						<intent-filter><action android:name="com.android.vending.INSTALL_REFERRER"/></intent-filter>
+					</receiver>
 			    
 			    </application>
 			    
@@ -344,5 +344,7 @@
 
 <extensions>
         <extensionID>tv.superawesome.plugins.air</extensionID>
+    <extensionID>tv.superawesomeadvertiser.plugins.air</extensionID>
+    <extensionID>tv.superawesome.plugins.advertiser.air</extensionID>
     </extensions>
 </application>
