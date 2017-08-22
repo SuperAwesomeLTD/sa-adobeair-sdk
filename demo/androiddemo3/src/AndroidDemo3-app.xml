@@ -346,5 +346,6 @@
         <extensionID>tv.superawesome.plugins.air</extensionID>
     <extensionID>tv.superawesomeadvertiser.plugins.air</extensionID>
     <extensionID>tv.superawesome.plugins.advertiser.air</extensionID>
+    <extensionID>tv.superawesome.plugins.publisher.air</extensionID>
     </extensions>
 </application>
