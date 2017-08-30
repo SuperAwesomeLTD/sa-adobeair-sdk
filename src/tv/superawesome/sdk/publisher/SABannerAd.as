@@ -25,6 +25,7 @@ package tv.superawesome.sdk.publisher {
 		
 		// assign default values to all of these fields
 		private var isParentalGateEnabled: Boolean 	= SADefaults.defaultParentalGate();
+		private var isBumperPageEnabled: Boolean 	= SADefaults.defaultBumperPage();
 		private var bannerWidth: int				= SADefaults.defaultBannerWidth();
 		private var bannerHeight: int 				= SADefaults.defaultBannerHeight();
 		private var color:Boolean 					= SADefaults.defaultBgColor();
@@ -74,6 +75,7 @@ package tv.superawesome.sdk.publisher {
 				"SuperAwesomeAIRSABannerAdPlay", 
 				this.name,
 				isParentalGateEnabled, 
+				isBumperPageEnabled,
 				position, 
 				bannerWidth,
 				bannerHeight,
@@ -102,6 +104,14 @@ package tv.superawesome.sdk.publisher {
 		
 		public function disableParentalGate (): void {
 			isParentalGateEnabled = false;
+		}
+		
+		public function enableBumperPage (): void {
+			isBumperPageEnabled = true;
+		}
+		
+		public function disableBumperPage (): void {
+			isBumperPageEnabled = false;
 		}
 		
 		public function enableTestMode (): void {

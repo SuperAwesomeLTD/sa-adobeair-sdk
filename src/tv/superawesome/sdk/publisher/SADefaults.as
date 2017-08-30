@@ -18,7 +18,11 @@ package tv.superawesome.sdk.publisher {
 		}
 		
 		public static function defaultParentalGate (): Boolean {
-			return true;
+			return false;
+		}
+		
+		public static function defaultBumperPage (): Boolean {
+			return false;
 		}
 		
 		public static function defaultConfiguration (): int {

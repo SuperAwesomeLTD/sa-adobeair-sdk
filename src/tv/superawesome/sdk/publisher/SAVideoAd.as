@@ -22,6 +22,7 @@ package tv.superawesome.sdk.publisher {
 		
 		// assign default values to all of these fields
 		private static var isParentalGateEnabled: Boolean 		  = SADefaults.defaultParentalGate();
+		private static var isBumperPageEnabled: Boolean			  = SADefaults.defaultBumperPage();
 		private static var orientation: int 					  = SADefaults.defaultOrientation();
 		private static var configuration: int 					  = SADefaults.defaultConfiguration();
 		private static var shouldShowCloseButton: Boolean 		  = SADefaults.defaultCloseButton();
@@ -72,6 +73,7 @@ package tv.superawesome.sdk.publisher {
 				"SuperAwesomeAIRSAVideoAdPlay", 
 				placementId, 
 				isParentalGateEnabled, 
+				isBumperPageEnabled,
 				shouldShowCloseButton, 
 				shouldShowSmallClickButton, 
 				shouldAutomaticallyCloseAtEnd, 
@@ -102,6 +104,14 @@ package tv.superawesome.sdk.publisher {
 		
 		public static function disableParentalGate (): void {
 			isParentalGateEnabled = false;
+		}
+		
+		public static function enableBumperPage (): void {
+			isBumperPageEnabled = true;
+		}
+		
+		public static function disableBumperPage (): void {
+			isBumperPageEnabled = false;
 		}
 		
 		public static function enableTestMode (): void {

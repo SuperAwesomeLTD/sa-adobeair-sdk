@@ -22,6 +22,7 @@ package tv.superawesome.sdk.publisher {
 		
 		// assign default values to all of these fields
 		private static var isParentalGateEnabled: Boolean = SADefaults.defaultParentalGate();
+		private static var isBumperPageEnabled: Boolean   = SADefaults.defaultBumperPage();
 		private static var isTestingEnabled: Boolean 	  = SADefaults.defaultTestMode();
 		private static var isBackButtonEnabled: Boolean   = SADefaults.defaultBackButton();
 		private static var configuration: int 			  = SADefaults.defaultConfiguration();
@@ -68,6 +69,7 @@ package tv.superawesome.sdk.publisher {
 				"SuperAwesomeAIRSAAppWallPlay", 
 				placementId, 
 				isParentalGateEnabled,
+				isBumperPageEnabled,
 				isBackButtonEnabled
 			);
 		}
@@ -94,6 +96,14 @@ package tv.superawesome.sdk.publisher {
 		
 		public static function disableParentalGate (): void {
 			isParentalGateEnabled = false;
+		}
+		
+		public static function enableBumperPage (): void {
+			isBumperPageEnabled = true;
+		}
+		
+		public static function disableBumperPage (): void {
+			isBumperPageEnabled = false;
 		}
 		
 		public static function enableTestMode (): void {
