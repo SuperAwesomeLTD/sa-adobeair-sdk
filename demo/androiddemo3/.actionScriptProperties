@@ -36,6 +36,7 @@
       </libraryPathEntry>
       <libraryPathEntry kind="5" linkType="2" path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/adv-air-build/SuperAwesomeAdvertiserSDK.AdobeAIR.ane"/>
       <libraryPathEntry kind="5" linkType="2" path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/aa-air-build/SuperAwesomeSDK.AdobeAIR.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/ag-air-build/SAAgeGateSDK.AdobeAIR.ane"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
@@ -54,6 +55,8 @@
         <airExcludes/>
         <anePaths>
           <anePathEntry path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/adv-air-build/SuperAwesomeAdvertiserSDK.AdobeAIR.ane"/>
+          <anePathEntry path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/aa-air-build/SuperAwesomeSDK.AdobeAIR.ane"/>
+          <anePathEntry path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/ag-air-build/SAAgeGateSDK.AdobeAIR.ane"/>
         </anePaths>
         <newLaunchParams/>
         <modifiedLaunchParams/>
@@ -80,6 +83,8 @@
         <airExcludes/>
         <anePaths>
           <anePathEntry path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/adv-air-build/SuperAwesomeAdvertiserSDK.AdobeAIR.ane"/>
+          <anePathEntry path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/aa-air-build/SuperAwesomeSDK.AdobeAIR.ane"/>
+          <anePathEntry path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/ag-air-build/SAAgeGateSDK.AdobeAIR.ane"/>
         </anePaths>
         <newLaunchParams/>
         <modifiedLaunchParams/>

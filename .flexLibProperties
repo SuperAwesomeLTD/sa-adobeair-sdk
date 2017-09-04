@@ -16,6 +16,7 @@
     <classEntry path="tv.superawesome.enums.SAConfiguration"/>
     <classEntry path="tv.superawesome.enums.SAEvent"/>
     <classEntry path="tv.superawesome.enums.SAOrientation"/>
+    <classEntry path="tv.superawesome.sdk.publisher.SABumperPage"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="tv/.DS_Store" sourcePath="tv/.DS_Store"/>
