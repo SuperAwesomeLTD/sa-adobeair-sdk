@@ -10,13 +10,13 @@
 <stringAttribute key="com.adobe.flexbuilder.debug.ATTR_MOBILE_LAUNCH_HANDLER" value="com.adobe.flexide.multiplatform.android.launching.AndroidOnDeviceLaunchHandler"/>
 <stringAttribute key="com.adobe.flexbuilder.debug.ATTR_MOBILE_PLATFORM" value="com.adobe.flexide.multiplatform.android.platform"/>
 <stringAttribute key="com.adobe.flexbuilder.debug.ATTR_MOD_APP_ID:src/AndroidDemo3.as" value="com.superawesome.AndroidDemo3"/>
-<stringAttribute key="com.adobe.flexbuilder.debug.ATTR_PROJECT" value="androiddemo3"/>
+<stringAttribute key="com.adobe.flexbuilder.debug.ATTR_PROJECT" value="demo"/>
 <stringAttribute key="com.adobe.flexbuilder.debug.ATTR_RUN_URL" value="file:/Users/gabriel.coman/Workspace/sa-adobeair-sdk/demo/androiddemo3/bin-debug/AndroidDemo3-app.xml"/>
 <stringAttribute key="com.adobe.flexbuilder.debug.ATTR_SELECTED_BUILD_TARGET" value=""/>
 <booleanAttribute key="com.adobe.flexbuilder.debug.ATTR_USE_DEFAULT_URLS" value="true"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/androiddemo3"/>
-<listEntry value="/androiddemo3/src/AndroidDemo3.as"/>
+<listEntry value="/demo"/>
+<listEntry value="/demo/src/AndroidDemo3.as"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="4"/>
