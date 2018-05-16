@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <projectDescription>
-	<name>AndroidDemo3</name>
-	<comment></comment>
+	<name>androiddemo3</name>
+	<comment/>
 	<projects>
 	</projects>
 	<buildSpec>
@@ -23,3 +23,4 @@
 		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
 	</natures>
 </projectDescription>
+

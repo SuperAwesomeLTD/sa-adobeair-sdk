@@ -34,9 +34,7 @@
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_agent.swc" useDefaultLinkType="false"/>
         </excludedEntries>
       </libraryPathEntry>
-      <libraryPathEntry kind="5" linkType="2" path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/ag-air-build/SAAgeGateSDK.AdobeAIR.ane"/>
-      <libraryPathEntry kind="5" linkType="2" path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/aa-air-build/SuperAwesomeSDK.AdobeAIR.ane"/>
-      <libraryPathEntry kind="5" linkType="2" path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/adv-air-build/SuperAwesomeAdvertiserSDK.AdobeAIR.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/package/aa_air/6.1.5/SuperAwesomeSDK-6.1.5.AdobeAIR.full.ane"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
@@ -54,9 +52,7 @@
       <airSettings airCertificatePath="" airTimestamp="true" anePathSet="true" version="1">
         <airExcludes/>
         <anePaths>
-          <anePathEntry path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/ag-air-build/SAAgeGateSDK.AdobeAIR.ane"/>
-          <anePathEntry path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/aa-air-build/SuperAwesomeSDK.AdobeAIR.ane"/>
-          <anePathEntry path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/adv-air-build/SuperAwesomeAdvertiserSDK.AdobeAIR.ane"/>
+          <anePathEntry path="/Users/gabriel.coman/Workspace/sa-sdk-build-repo/package/aa_air/6.1.5/SuperAwesomeSDK-6.1.5.AdobeAIR.full.ane"/>
         </anePaths>
         <newLaunchParams/>
         <modifiedLaunchParams/>

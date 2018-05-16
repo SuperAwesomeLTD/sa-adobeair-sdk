@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ExportSigningOptions">
+		<list key="certificates">
+			<item value="/Users/gabriel.coman/Desktop/CERTS/GabCert.p12"/>
+			<item value=""/>
+		</list>
+	</section>
+</section>
