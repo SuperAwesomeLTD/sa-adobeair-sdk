@@ -63,7 +63,8 @@ package tv.superawesome.sdk.publisher {
 				"SuperAwesomeAIRSAVideoAdLoad", 
 				placementId, 
 				configuration, 
-				isTestingEnabled
+				isTestingEnabled,
+				0
 			);
 		}
 		
