@@ -25,6 +25,7 @@ public class AwesomeAds {
     }
 
     public static function initSDK (loggingEnabled: Boolean): void {
+        tryAndCreateOnce();
         SAExtensionContext.current().context().call("SuperAwesomeAIRAwesomeAdsInit");
     }
 
