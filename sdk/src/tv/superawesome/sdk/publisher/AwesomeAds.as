@@ -1,4 +1,5 @@
 package tv.superawesome.sdk.publisher {
+
 import com.adobe.serialization.json.JSON;
 
 import flash.events.StatusEvent;
@@ -25,8 +26,8 @@ public class AwesomeAds {
     }
 
     public static function initSDK (loggingEnabled: Boolean): void {
-        tryAndCreateOnce();
-        SAExtensionContext.current().context().call("SuperAwesomeAIRAwesomeAdsInit");
+//        tryAndCreateOnce();
+//        SAExtensionContext.current().context().call("SuperAwesomeAIRAwesomeAdsInit");
     }
 
     ////////////////////////////////////////////////////////////

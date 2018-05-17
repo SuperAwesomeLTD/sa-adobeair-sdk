@@ -1,18 +1,15 @@
 package tv.superawesome.sdk.publisher {
-	
-	import com.adobe.serialization.json.JSON;
-	
-	import flash.events.EventDispatcher;
-	import flash.events.StatusEvent;
-	
-	import tv.superawesome.sdk.publisher.SAExtensionContext;
-	import tv.superawesome.sdk.publisher.SAVersion;
-	import tv.superawesome.sdk.publisher.enums.SAConfiguration;
-	import tv.superawesome.sdk.publisher.enums.SAEvent;
-	import tv.superawesome.sdk.publisher.enums.SAOrientation;
-	import tv.superawesome.sdk.publisher.SADefaults;
-	
-	public class SAInterstitialAd extends EventDispatcher {
+
+import com.adobe.serialization.json.JSON;
+
+import flash.events.EventDispatcher;
+import flash.events.StatusEvent;
+
+import tv.superawesome.sdk.publisher.enums.SAConfiguration;
+import tv.superawesome.sdk.publisher.enums.SAEvent;
+import tv.superawesome.sdk.publisher.enums.SAOrientation;
+
+public class SAInterstitialAd extends EventDispatcher {
 		
 		// the static interstitial ad instance
 		private static var staticInstance: SAInterstitialAd = null;

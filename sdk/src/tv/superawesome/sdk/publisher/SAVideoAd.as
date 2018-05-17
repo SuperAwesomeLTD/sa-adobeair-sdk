@@ -1,17 +1,14 @@
-package tv.superawesome.sdk.publisher { 
+package tv.superawesome.sdk.publisher {
 
-	import com.adobe.serialization.json.JSON;
-	
-	import flash.events.StatusEvent;
-	
-	import tv.superawesome.sdk.publisher.SAExtensionContext;
-	import tv.superawesome.sdk.publisher.SAVersion;
-	import tv.superawesome.sdk.publisher.enums.SAConfiguration;
-	import tv.superawesome.sdk.publisher.enums.SAEvent;
-	import tv.superawesome.sdk.publisher.enums.SAOrientation;
-	import tv.superawesome.sdk.publisher.SADefaults;
+import com.adobe.serialization.json.JSON;
 
-	public class SAVideoAd  {
+import flash.events.StatusEvent;
+
+import tv.superawesome.sdk.publisher.enums.SAConfiguration;
+import tv.superawesome.sdk.publisher.enums.SAEvent;
+import tv.superawesome.sdk.publisher.enums.SAOrientation;
+
+public class SAVideoAd  {
 		
 		// the static video ad instance
 		private static var staticInstance: SAVideoAd = null;

@@ -1,9 +1,7 @@
 // ActionScript file
 package tv.superawesome.sdk.publisher {
 
-	import tv.superawesome.sdk.publisher.SAExtensionContext;
-	
-	public class SAVersion {
+public class SAVersion {
 	
 		// version & sdk
 		private static const version: String = "7.0.0";
