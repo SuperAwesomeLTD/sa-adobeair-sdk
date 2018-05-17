@@ -25,7 +25,7 @@ public class AwesomeAds {
 //        SAExtensionContext.current().context().addEventListener(StatusEvent.STATUS, nativeCallback);
     }
 
-    public static function initSDK (loggingEnabled: Boolean): void {
+    public static function initSDK () {
 //        tryAndCreateOnce();
 //        SAExtensionContext.current().context().call("SuperAwesomeAIRAwesomeAdsInit");
     }
