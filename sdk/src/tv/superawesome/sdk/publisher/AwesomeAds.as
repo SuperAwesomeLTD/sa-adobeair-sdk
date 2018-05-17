@@ -36,6 +36,7 @@ public class AwesomeAds {
         }
 
         public static function triggerAgeCheck (dateOfBirth: String, call: Function): void {
+            tryAndCreateOnce();
             callback = call != null ? call : callback;
             SAExtensionContext.current().context().call("SuperAwesomeAIRAwesomeAdsTriggerAgeCheck", dateOfBirth);
         }
