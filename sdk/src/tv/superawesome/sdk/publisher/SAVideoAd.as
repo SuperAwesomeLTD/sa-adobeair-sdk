@@ -189,8 +189,8 @@ public class SAVideoAd  {
 			
 			// get properties (right way)
 			if (meta.hasOwnProperty("name")) {
-				callName = meta.name;
-			}
+                callName = meta.name;
+            }
 			if (meta.hasOwnProperty("placementId")) {
 				placement = meta.placementId;
 			}
