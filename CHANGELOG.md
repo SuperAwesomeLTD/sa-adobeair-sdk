@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+7.0.1
+ - Transitioned to a non-scaling WebView to display banner & interstitial type ads
+
 6.1.5
  - Improved Bumper Page Experience
 

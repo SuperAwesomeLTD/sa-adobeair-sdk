@@ -4,7 +4,7 @@ package tv.superawesome.sdk.publisher {
 public class SAVersion {
 	
 		// version & sdk
-		private static const version: String = "7.0.0";
+		private static const version: String = "7.0.1";
 		private static const sdk: String = "air";
 		
 		// getters

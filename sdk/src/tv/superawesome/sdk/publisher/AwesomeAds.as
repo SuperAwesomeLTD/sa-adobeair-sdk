@@ -48,7 +48,6 @@ public class AwesomeAds {
         public static function nativeCallback(event:StatusEvent): void {
             // get data
             var data: String = event.code;
-            var content: String = event.level;
 
             // parse data
             var meta: Object = com.adobe.serialization.json.JSON.decode(data);
